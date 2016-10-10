@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gris_bajo">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp">
+
+                        <ImageView
+                            android:id="@+id/ivOfrecer1"
+                            android:layout_width="@dimen/editarperfil_image"
+                            android:layout_height="@dimen/editarperfil_image"
+                            android:background="@color/naranja_degradado"
+                            android:padding="30dp"
+                            android:src="@drawable/ic_agregar_blanco" />
+
+                        <ProgressBar
+                            android:id="@+id/pbHabitacion1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/ivOfrecer2"
+                            android:layout_width="@dimen/editarperfil_image"
+                            android:layout_height="@dimen/editarperfil_image"
+                            android:background="@color/naranja_degradado"
+                            android:padding="30dp"
+                            android:src="@drawable/ic_agregar_blanco" />
+
+                        <ProgressBar
+                            android:id="@+id/pbHabitacion2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp">
+
+                        <ImageView
+                            android:id="@+id/ivOfrecer3"
+                            android:layout_width="@dimen/editarperfil_image"
+                            android:layout_height="@dimen/editarperfil_image"
+                            android:background="@color/naranja_degradado"
+                            android:padding="30dp"
+                            android:src="@drawable/ic_agregar_blanco" />
+
+                        <ProgressBar
+                            android:id="@+id/pbHabitacion3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    style="@style/Edittext_Personalidad"
+                    android:layout_width="@dimen/editarperfil_boton"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/ivIconPriceHint"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_price" />
+
+                    <EditText
+                        android:id="@+id/etOfrecer_Precio"
+                        android:layout_width="@dimen/editarperfil_boton"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/ivIconPriceHint"
+                        android:background="@null"
+                        android:hint="@string/ofrecer_precio_hint"
+                        android:inputType="numberDecimal"
+                        android:textColorHint="@color/naranja_degradado"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tvCuandoEstara"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:gravity="center"
+                    android:text="@string/ofrecer_cuandoestara"
+                    android:textSize="@dimen/perfil_card_textoSobreMi" />
+
+                <Button
+                    android:id="@+id/btOfrecer_Fecha"
+                    android:layout_width="@dimen/editarperfil_boton"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/boton_fecha"
+                    android:text="Fecha"
+                    android:textColor="@color/naranja_degradado" />
+
+                <RadioGroup
+                    android:id="@+id/rgAmueblado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbAmueblado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="@string/ofrecer_amueblado"
+                        android:textSize="@dimen/perfil_card_textoSobreMi" />
+
+                    <RadioButton
+                        android:id="@+id/rbNoAmueblado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/ofrecer_noamueblado"
+                        android:textSize="@dimen/perfil_card_textoSobreMi" />
+
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/btOfrecer_Guardar"
+                    android:layout_width="@dimen/editarperfil_boton"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/boton_degradado_personalidad"
+                    android:text="@string/personalidad_guardar"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/perfil_card_textoSobreMi" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

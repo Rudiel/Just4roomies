@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="ofrecerhabitacion_et_precio">200dp</dimen>
+
+    <dimen name="ajustes_bt_guardar">150dp</dimen>
+
+    <dimen name="perfil_bt_aceptado">60dp</dimen>
+    <dimen name="perfil_bt_galeria">50dp</dimen>
+    <dimen name="perfil_card_height">310dp</dimen>
+    <dimen name="perfil_card_imagen">190dp</dimen>
+
+</resources>

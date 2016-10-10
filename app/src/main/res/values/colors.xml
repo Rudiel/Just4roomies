@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="naranja_degradado">#faab4d</color>
+    <color name="naranja_degradado_transparente">#80faab4d</color>
+    <color name="naranja_degradado_transparente_dialog">#B3faab4d</color>
+    <color name="amarillo_degradado">#FF9962</color>
+    <color name="transparent">#00000000</color>
+    <color name="gris_bajo">#E4E4E4</color>
+    <color name="naranja_fuerte">#DF7401</color>
+</resources>

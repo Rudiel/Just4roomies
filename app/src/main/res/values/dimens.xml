@@ -1,0 +1,30 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="menu_textsize">13sp</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="editarperfil_personalidad">50dp</dimen>
+    <dimen name="editarperfil_boton">200dp</dimen>
+    <dimen name="editarperfil_imagen_height">130dp</dimen>
+    <dimen name="editarperfil_image">100dp</dimen>
+
+
+    <dimen name="perfil_bt_aceptado">70dp</dimen>
+    <dimen name="perfil_bt_galeria">60dp</dimen>
+    <dimen name="perfil_card_height">410dp</dimen>
+    <dimen name="perfil_card_imagen">250dp</dimen>
+    <dimen name="perfil_card_personalidad">30dp</dimen>
+    <dimen name="perfil_card_textoSobreMi">14sp</dimen>
+    <dimen name="perfil_galeria_image">300dp</dimen>
+
+    <dimen name="ofrecerhabitacion_et_precio">250dp</dimen>
+
+    <dimen name="ajustes_bt_guardar">200dp</dimen>
+    <dimen name="ajustes_titulo">40sp</dimen>
+    <dimen name="ajustes_texto">16sp</dimen>
+
+
+</resources>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/ivImagen"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:background="@android:color/darker_gray" />
+
+                <ImageView
+                    android:id="@+id/ivIconMap"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignBottom="@id/ivImagen"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/com_facebook_button_icon_white" />
+
+                <TextView
+                    android:id="@+id/tvDistancia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/ivImagen"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/ivIconMap"
+                    android:text="jehba"
+                    android:textColor="@android:color/white" />"
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/ivImagen"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10dp"
+                    android:text="jehba"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tvPrecio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/ivImagen"
+                    android:layout_alignRight="@id/ivImagen"
+                    android:layout_margin="10dp"
+                    android:text="jehba"
+                    android:textColor="@android:color/white" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="350dp"
+                    android:layout_height="0.5dp"
+                    android:layout_above="@id/ivIconMap"
+                    android:layout_marginBottom="10dp"
+                    android:background="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tvNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/view"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="askjgbd"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tvConexion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/amarillo_degradado"
+                    android:text="Conexion"
+                    android:textColor="@android:color/white" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivMascota"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/cocina_false_incial" />
+
+                <ImageView
+                    android:id="@+id/ivFumas"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/cocina_false_incial" />
+
+                <ImageView
+                    android:id="@+id/ivEstudias"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/cocina_false_incial" />
+
+                <ImageView
+                    android:id="@+id/ivNacionalidad"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/cocina_false_incial" />
+
+                <ImageView
+                    android:id="@+id/ivActivo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/cocina_false_incial" />
+
+                <ImageView
+                    android:id="@+id/ivCocinas"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/cocina_false_incial" />
+
+                <ImageView
+                    android:id="@+id/ivFiestero"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/cocina_false_incial" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Sobre Mi" />
+
+            <TextView
+                android:id="@+id/tvSobremi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Sobre Mi" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/ivGaleria"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/cocina_false_incial" />
+
+                <ImageView
+                    android:id="@+id/ivRoomieTrue"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/ivGaleria"
+                    android:src="@drawable/cocina_false_incial" />
+
+                <ImageView
+                    android:id="@+id/ivRoomuieFalse"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/ivGaleria"
+                    android:src="@drawable/cocina_false_incial" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>

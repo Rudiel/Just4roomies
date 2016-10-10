@@ -1,0 +1,96 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/naranja_degradado</item>
+        <item name="colorPrimaryDark">@color/naranja_degradado</item>
+        <item name="colorAccent">@color/naranja_degradado</item>
+    </style>
+
+    <style name="Edittext_Personalidad" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">@dimen/ofrecerhabitacion_et_precio</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:background">@drawable/edittext_personalidad</item>
+    </style>
+
+    <style name="Edittext_Descripcion" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">@dimen/ofrecerhabitacion_et_precio</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:background">@drawable/edittext_personalidad_descripcion</item>
+    </style>
+
+    <style name="ImageViewPersonalidad">
+        <item name="android:layout_width">@dimen/editarperfil_personalidad</item>
+        <item name="android:layout_height">@dimen/editarperfil_personalidad</item>
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+    </style>
+
+    <style name="MyTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:alertDialogStyle">@style/ProgressBarCustom</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:tint">@color/naranja_fuerte</item>
+        <item name="colorAccent">@color/naranja_fuerte</item>
+    </style>
+
+    <style name="ProgressBarCustom">
+        <item name="android:bottomBright">@color/transparent</item>
+        <item name="android:color">@color/amarillo_degradado</item>
+        <item name="android:bottomDark">@color/transparent</item>
+        <item name="android:bottomMedium">@color/transparent</item>
+        <item name="android:centerBright">@color/transparent</item>
+        <item name="android:centerDark">@color/transparent</item>
+        <item name="android:centerMedium">@color/transparent</item>
+        <item name="android:fullBright">@color/transparent</item>
+        <item name="android:fullDark">@color/transparent</item>
+        <item name="android:topBright">@color/transparent</item>
+        <item name="android:topDark">@color/transparent</item>
+    </style>
+
+    <style name="DialogTheme" parent="android:Theme.Dialog">
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <!-- No backgrounds, titles or window float -->
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="CropTheme" parent="Base.Theme.AppCompat">
+        <item name="colorPrimary">@color/naranja_degradado</item>
+        <item name="colorPrimaryDark">@color/naranja_degradado</item>
+    </style>
+
+    <style name="ProgressBarCustom_Orange" parent="@android:style/Theme.Translucent.NoTitleBar" />
+
+    <style name="NavigationDrawerStyle">
+        <item name="android:textSize">@dimen/menu_textsize</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="ToolbarColoredBackArrow" parent="AppTheme">
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+
+    <style name="ThemeToolbar" parent="Theme.AppCompat.Light">
+
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
+</resources>

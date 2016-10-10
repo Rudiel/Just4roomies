@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/ivFondoEditarPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <HorizontalScrollView
+                android:id="@+id/svEditarPerfilFotos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/llEditarPerfilFotos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp">
+
+                        <ImageView
+                            android:id="@+id/ivEditar1"
+                            android:layout_width="@dimen/editarperfil_image"
+                            android:layout_height="@dimen/editarperfil_image"
+                            android:background="@color/naranja_degradado"
+                            android:padding="30dp"
+                            android:src="@drawable/ic_agregar_blanco" />
+
+                        <ProgressBar
+                            android:id="@+id/pbImagen1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/ivEditar2"
+                            android:layout_width="@dimen/editarperfil_image"
+                            android:layout_height="@dimen/editarperfil_image"
+                            android:background="@color/naranja_degradado"
+                            android:padding="30dp"
+                            android:src="@drawable/ic_agregar_blanco" />
+
+                        <ProgressBar
+                            android:id="@+id/pbImagen2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp">
+
+                        <ImageView
+                            android:id="@+id/ivEditar3"
+                            android:layout_width="@dimen/editarperfil_image"
+                            android:layout_height="@dimen/editarperfil_image"
+                            android:background="@color/naranja_degradado"
+                            android:padding="30dp"
+                            android:src="@drawable/ic_agregar_blanco" />
+
+                        <ProgressBar
+                            android:id="@+id/pbImagen3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <EditText
+                android:id="@+id/etEditarPerfil_Descripcion"
+                style="@style/Edittext_Descripcion"
+                android:layout_below="@id/svEditarPerfilFotos"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:minHeight="300dp"
+                android:paddingLeft="5dp"
+                android:singleLine="false" />
+
+            <RelativeLayout
+                android:id="@+id/llNombre"
+                style="@style/Edittext_Personalidad"
+                android:layout_width="@dimen/ofrecerhabitacion_et_precio"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etEditarPerfil_Descripcion"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/ivIconNombreHint"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_sobremi" />
+
+                <EditText
+                    android:id="@+id/etEditarPerfil_Nombre"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/ivIconNombreHint"
+                    android:background="@null"
+                    android:hint="@string/contacto_nombre"
+                    android:inputType="text"
+                    android:textColorHint="@color/naranja_degradado"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/llEdad"
+                style="@style/Edittext_Personalidad"
+                android:layout_width="@dimen/ofrecerhabitacion_et_precio"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llNombre"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/ivIconEdadHint"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/edt_hint_edad" />
+
+                <EditText
+                    android:id="@+id/etEditarPerfil_Edad"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/ivIconEdadHint"
+                    android:background="@null"
+                    android:hint="@string/personalidad_edad_hint"
+                    android:inputType="number"
+                    android:textColorHint="@color/naranja_degradado"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/llPrecio"
+                style="@style/Edittext_Personalidad"
+                android:layout_width="@dimen/ofrecerhabitacion_et_precio"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llEdad"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/ivIconPriceHint"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_price" />
+
+                <EditText
+                    android:id="@+id/etEditarPerfil_Precio"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/ivIconPriceHint"
+                    android:background="@null"
+                    android:hint="@string/ofrecer_precio_hint"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="@color/naranja_degradado"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvUbicacion"
+                android:layout_width="@dimen/ofrecerhabitacion_et_precio"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llPrecio"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/personalidad_ubicacion" />
+
+
+            <RelativeLayout
+                android:id="@+id/llUbicacion"
+                style="@style/Edittext_Personalidad"
+                android:layout_width="@dimen/ofrecerhabitacion_et_precio"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvUbicacion"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/ivIconUbicacionHint"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@android:drawable/ic_menu_mylocation" />
+
+                <EditText
+                    android:id="@+id/etEditarPerfil_Ubicacion"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/ivIconUbicacionHint"
+                    android:background="@null"
+                    android:hint="@string/personalidad_ubicacion_hint"
+                    android:inputType="text"
+                    android:textColorHint="@color/naranja_degradado"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/llPersonalidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llUbicacion"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivFumasTrue"
+                            style="@style/ImageViewPersonalidad" />
+
+                        <ImageView
+                            android:id="@+id/ivFumasFalse"
+                            style="@style/ImageViewPersonalidad" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivMascotasTrue"
+                            style="@style/ImageViewPersonalidad" />
+
+                        <ImageView
+                            android:id="@+id/ivMascotasFalse"
+                            style="@style/ImageViewPersonalidad" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/tvEditarFumas"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/personalidad_fumas"
+                        android:textSize="@dimen/perfil_card_textoSobreMi" />
+
+                    <TextView
+                        android:id="@+id/tvEditarMascota"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/personalidad_mascotas"
+                        android:textSize="@dimen/perfil_card_textoSobreMi" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivActivoTrue"
+                            style="@style/ImageViewPersonalidad" />
+
+                        <ImageView
+                            android:id="@+id/ivActivoFalse"
+                            style="@style/ImageViewPersonalidad" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivEstudiasTrue"
+                            style="@style/ImageViewPersonalidad" />
+
+                        <ImageView
+                            android:id="@+id/ivEstudiasFalse"
+                            style="@style/ImageViewPersonalidad" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/tvEditarActivo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/personalidad_activo"
+                        android:textSize="@dimen/perfil_card_textoSobreMi" />
+
+                    <TextView
+                        android:id="@+id/tvEditarEstudias"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/personalidad_dedicacion"
+                        android:textSize="@dimen/perfil_card_textoSobreMi" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivFiesteroTrue"
+                            style="@style/ImageViewPersonalidad" />
+
+                        <ImageView
+                            android:id="@+id/ivFiesteroFalse"
+                            style="@style/ImageViewPersonalidad" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivCocinasTrue"
+                            style="@style/ImageViewPersonalidad" />
+
+                        <ImageView
+                            android:id="@+id/ivCocinasFalse"
+                            style="@style/ImageViewPersonalidad" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/tvEditarFiestero"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/personalidad_fiestero"
+                        android:textSize="@dimen/perfil_card_textoSobreMi" />
+
+                    <TextView
+                        android:id="@+id/tvEditarCocinas"
+                        android:layout_width="0dp"
+
+
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/personalidad_cocinas"
+                        android:textSize="@dimen/perfil_card_textoSobreMi" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btEditarPerfilGuardar"
+                android:layout_width="@dimen/editarperfil_boton"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llPersonalidad"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/boton_degradado_personalidad"
+                android:text="@string/personalidad_guardar"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/perfil_card_textoSobreMi" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvSugerencias"
+                android:layout_width="@dimen/ofrecerhabitacion_et_precio"
+                android:elevation="5dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/llUbicacion"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/white"
+                android:visibility="invisible" />
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivFondoAjustes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/tvAjustestitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/ajustes_titulo"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/ajustes_titulo" />
+
+    <LinearLayout
+        android:id="@+id/llSwiches"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvAjustestitulo"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivIconAjustesLocalizacion"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_localizacion" />
+
+            <TextView
+                android:id="@+id/tvAjustesLocalizacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/ivIconAjustesLocalizacion"
+                android:text="@string/ajustes_localizacion"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/ajustes_texto" />
+
+            <Switch
+                android:id="@+id/swAjustesLocalizacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:layout_toRightOf="@id/tvAjustesLocalizacion" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivIconAjustesNotificacion"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_notificacion" />
+
+            <TextView
+                android:id="@+id/tvAjustesNotificacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/ivIconAjustesNotificacion"
+                android:text="@string/ajustes_notificacion"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/ajustes_texto" />
+
+            <Switch
+                android:id="@+id/swAjustesNotificacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tvAjustesNotificacion" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btAjustesGuardar"
+        android:layout_width="@dimen/ajustes_bt_guardar"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llSwiches"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/boton_degradado_personalidad"
+        android:gravity="center"
+        android:text="@string/guardar_button"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/perfil_card_textoSobreMi" />
+
+    <LinearLayout
+        android:id="@+id/llPoliticas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btAjustesGuardar"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvPrivacidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/ivIconAjustesNotificacion"
+            android:text="@string/ajustes_politica"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/ajustes_texto" />
+
+        <TextView
+            android:id="@+id/tvPoliticas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/ivIconAjustesNotificacion"
+            android:text="@string/ajustes_terminos"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/ajustes_texto" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlEliminarCuenta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/ivIconEliminarCuenta"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_eliminar_naranja" />
+
+        <TextView
+            android:id="@+id/tvEliminarCuenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/ivIconEliminarCuenta"
+            android:text="@string/ajustes_eliminarcuenta"
+            android:textSize="@dimen/ajustes_texto" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@id/rlEliminarCuenta"
+        android:layout_marginBottom="10dp"
+        android:background="@color/gris_bajo" />
+
+
+</RelativeLayout>

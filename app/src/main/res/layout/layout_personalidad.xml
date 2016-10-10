@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/ivFondoPersonalidad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbPersonalidad"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/fondo_degradado"
+        android:elevation="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/nombre_app"
+                android:visibility="visible" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tbPersonalidad">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rlFotoPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:id="@+id/ivImagenPerfil"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/imagen_fb_personalidad" />
+
+                <ImageView
+                    android:id="@+id/ivIconoIamgenPerfil"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:src="@android:drawable/ic_menu_camera" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="invisible" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlPersonalidadNombre"
+                style="@style/Edittext_Personalidad"
+                android:layout_below="@id/rlFotoPerfil"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/ivPersonalidadHint"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/edt_hint_nombre" />
+
+                <EditText
+                    android:id="@+id/etPersonalidad_Nombre"
+                    android:layout_width="@dimen/ofrecerhabitacion_et_precio"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/ivPersonalidadHint"
+                    android:background="@null"
+                    android:hint="@string/personalidad_nombre_hint"
+                    android:inputType="text"
+                    android:textColorHint="@color/naranja_degradado"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlPersonalidadNacionalidad"
+                style="@style/Edittext_Personalidad"
+                android:layout_below="@id/rlPersonalidadNombre"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/ivPersonalidadNacionalidadHint"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/edt_hint_nacionalidad" />
+
+                <EditText
+                    android:id="@+id/etPersonalidad_Nacionalidad"
+                    android:layout_width="@dimen/ofrecerhabitacion_et_precio"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/ivPersonalidadNacionalidadHint"
+                    android:background="@null"
+                    android:hint="@string/personalidad_nacionalidad_hint"
+                    android:inputType="text"
+                    android:textColorHint="@color/naranja_degradado"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlPersonalidadIdioma"
+                style="@style/Edittext_Personalidad"
+                android:layout_below="@id/rlPersonalidadNacionalidad"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/ivPersonalidadIdiomaHint"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/edt_hint_idioma" />
+
+                <EditText
+                    android:id="@+id/etPersonalidad_Idioma"
+                    android:layout_width="@dimen/ofrecerhabitacion_et_precio"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/ivPersonalidadIdiomaHint"
+                    android:background="@null"
+                    android:hint="@string/personalidad_idioma_hint"
+                    android:inputType="text"
+                    android:textColorHint="@color/naranja_degradado"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlPersonalidadEdad"
+                style="@style/Edittext_Personalidad"
+                android:layout_below="@id/rlPersonalidadIdioma"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/ivPersonalidadEdadHint"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/edt_hint_edad" />
+
+                <EditText
+                    android:id="@+id/etPersonalidad_Edad"
+                    android:layout_width="@dimen/ofrecerhabitacion_et_precio"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/ivPersonalidadEdadHint"
+                    android:background="@null"
+                    android:hint="@string/personalidad_edad_hint"
+                    android:inputType="number"
+                    android:textColorHint="@color/naranja_degradado"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlPersonalidadUbicacion"
+                style="@style/Edittext_Personalidad"
+                android:layout_below="@id/rlPersonalidadEdad"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/ivPersonalidadUbicacionHint"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@android:drawable/ic_menu_mylocation" />
+
+                <EditText
+                    android:id="@+id/etPersonalidad_Ubicacion"
+                    android:layout_width="@dimen/ofrecerhabitacion_et_precio"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/ivPersonalidadUbicacionHint"
+                    android:background="@null"
+                    android:hint="@string/personalidad_ubicacion_hint"
+                    android:inputType="text"
+                    android:textColorHint="@color/naranja_degradado"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tvPersonalidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlPersonalidadUbicacion"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/personalidad_tv_personalidad" />
+
+            <LinearLayout
+                android:id="@+id/llPersonalidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvPersonalidad"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivFumasTrue"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginRight="3dp" />
+
+                        <ImageView
+                            android:id="@+id/ivFumasFalse"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="3dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivMascotasTrue"
+                            style="@style/ImageViewPersonalidad" />
+
+                        <ImageView
+                            android:id="@+id/ivMascotasFalse"
+                            style="@style/ImageViewPersonalidad" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/tvPersonalidadFumas"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/personalidad_fumas" />
+
+                    <TextView
+                        android:id="@+id/tvPersonalidadMascota"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/personalidad_mascotas" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivActivoTrue"
+                            style="@style/ImageViewPersonalidad" />
+
+                        <ImageView
+                            android:id="@+id/ivActivoFalse"
+                            style="@style/ImageViewPersonalidad" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivEstudiasTrue"
+                            style="@style/ImageViewPersonalidad" />
+
+                        <ImageView
+                            android:id="@+id/ivEstudiasFalse"
+                            style="@style/ImageViewPersonalidad" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/tvPersonalidadActivo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/personalidad_activo" />
+
+                    <TextView
+                        android:id="@+id/tvPersonalidadEstudias"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/personalidad_dedicacion" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivFiesteroTrue"
+                            style="@style/ImageViewPersonalidad" />
+
+                        <ImageView
+                            android:id="@+id/ivFiesteroFalse"
+                            style="@style/ImageViewPersonalidad" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivCocinasTrue"
+                            style="@style/ImageViewPersonalidad" />
+
+                        <ImageView
+                            android:id="@+id/ivCocinasFalse"
+                            style="@style/ImageViewPersonalidad" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/tvPersonalidadFiestero"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/personalidad_fiestero" />
+
+                    <TextView
+                        android:id="@+id/tvPersonalidadCocinas"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/personalidad_cocinas" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btPersonalidadGuardar"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llPersonalidad"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/boton_degradado_personalidad"
+                android:text="@string/personalidad_guardar"
+                android:textColor="@android:color/white" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvPersonalidadSugerencias"
+                android:layout_width="@dimen/ofrecerhabitacion_et_precio"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/rlPersonalidadUbicacion"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/white"
+                android:elevation="5dp"
+                android:visibility="invisible" />
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

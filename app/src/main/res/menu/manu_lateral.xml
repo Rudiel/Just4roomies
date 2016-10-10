@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+
+        <item
+            android:id="@+id/menu_editarperfil"
+            android:checked="false"
+            android:icon="@drawable/menu_editarperfil"
+            android:title="Editar Perfil" />
+
+        <item
+            android:id="@+id/menu_buscarroomie"
+            android:checked="false"
+            android:icon="@drawable/ic_serach_menu"
+            android:title="Buscar Roomie" />
+
+        <item
+            android:id="@+id/menu_chats"
+            android:checked="false"
+            android:icon="@drawable/tab_chat_active"
+            android:title="Chats/Conexioness" />
+
+        <item
+            android:id="@+id/menu_ofrecer"
+            android:checked="false"
+            android:icon="@drawable/ic_ofrecer_habitacion"
+            android:title="Ofrecer habitacion" />
+
+        <item
+            android:id="@+id/menu_ajustes"
+            android:checked="false"
+            android:icon="@drawable/menu_ajustes"
+            android:title="Ajustes" />
+
+
+    </group>
+
+    <item
+        android:id="@+id/menu_social"
+        android:title="@null">
+        <menu>
+            <item
+                android:id="@+id/menu_invitaramigos"
+                android:checked="false"
+                android:icon="@drawable/menu_invitaramigos"
+                android:title="Invitar Amigos" />
+
+            <item
+                android:id="@+id/menu_calificarapp"
+                android:checked="false"
+                android:icon="@drawable/menu_calificar"
+                android:title="Calificar App" />
+
+            <item
+                android:id="@+id/menu_cerrarsesion"
+                android:checked="false"
+                android:icon="@drawable/menu_salir"
+                android:title="Cerrar Sesión" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/navigation_subheader"
+        android:title="@null">
+        <menu>
+            <item
+                android:id="@+id/menu_contactanos"
+                android:icon="@drawable/tab_chat_active"
+                android:title="Contáctanos" />
+
+        </menu>
+    </item>
+</menu>
