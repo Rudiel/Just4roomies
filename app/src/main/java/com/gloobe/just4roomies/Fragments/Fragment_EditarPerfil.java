@@ -226,19 +226,19 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
             }).into(ivEditar3);
         }
 
-        if (!((Activity_Principal_Fragment) getActivity()).perfil.getPersonality().getComments().equals("") && ((Activity_Principal_Fragment) getActivity()).perfil.getPersonality().getComments() != null)
+        if (((Activity_Principal_Fragment) getActivity()).perfil.getPersonality().getComments() != null && !((Activity_Principal_Fragment) getActivity()).perfil.getPersonality().getComments().equals(""))
             etComentarios.setText(((Activity_Principal_Fragment) getActivity()).perfil.getPersonality().getComments());
 
-        if (!((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getAge().equals("") && ((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getAge() != null)
+        if (((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getAge() != null && !((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getAge().equals(""))
             etEdad.setText(((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getAge());
 
-        if (!((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getName().equals("") && ((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getName() != null)
+        if (((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getName() != null && !((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getName().equals(""))
             etNombre.setText(((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getName());
 
-        if (!((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getPlace().equals("") && ((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getPlace() != null)
+        if (((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getPlace() != null && !((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getPlace().equals(""))
             etSugerencias.setText(((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getPlace());
 
-        if (!((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getPrice().equals("") && ((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getPrice() != null)
+        if (((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getPrice() != null && !((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getPrice().equals(""))
             etPrecio.setText(((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getPrice());
 
 
@@ -603,6 +603,7 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
                 if (response.body() != null) {
                     guardarPerfilLocal(usuario);
                     mostrarAlerta(getString(R.string.editarperfil_dialog_titlo), getString(R.string.editarperfil_dialog_mensaje_bien));
+                    ((Activity_Principal_Fragment) getActivity()).updateImagenPerfil();
                 } else {
                     mostrarAlerta(getString(R.string.editarperfil_dialog_titlo), getString(R.string.editarperfil_dialog_mensaje_mal));
                 }
@@ -774,7 +775,7 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
         if (!etPrecio.getText().toString().equals(""))
             ((Activity_Principal_Fragment) getActivity()).perfil.getProfile().setPrice(etPrecio.getText().toString());
 
-        if (!etSugerencias.getText().toString().equals(""))
+        if (place != null && !place.equals(""))
             ((Activity_Principal_Fragment) getActivity()).perfil.getProfile().setPlace(place);
 
         if (latitud != null && !latitud.equals(""))

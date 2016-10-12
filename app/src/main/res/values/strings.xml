@@ -69,6 +69,10 @@
     <string name="contacto_asunto">Asunto</string>
     <string name="contacto_nombre">Nombre</string>
     <string name="contacto_mensaje">Mensaje</string>
+    <string name="contacto_dialog_titulo">Contacto</string>
+    <string name="contacto_dialog_mensaje_bien">Mensaje enviado con éxito</string>
+    <string name="contacto_dialog_mensaje_mal">Ocurrió un error, Intente Nuevamente</string>
+
 
     <string name="mensaje_error">Ocurrió un error, intente nuevamente</string>
 

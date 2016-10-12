@@ -52,18 +52,17 @@ public class Fragment_Contactanos extends Fragment {
         etNombre = (EditText) getActivity().findViewById(R.id.etContactoNombre);
         btEnviar = (Button) getActivity().findViewById(R.id.btContactoEnviar);
 
+        etNombre.setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
+        etAsunto.setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
+        etMensaje.setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
+        btEnviar.setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
+
 
         btEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Model_Contact contact = new Model_Contact();
-                contact.setUser_id(((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getId());
-                contact.setSubject(etAsunto.getText().toString());
-                contact.setFullname(etNombre.getText().toString());
-                contact.setBodyMessage(etMensaje.getText().toString());
-
-                enviarMensage(contact);
+                enviarMensage();
             }
         });
 
@@ -74,7 +73,7 @@ public class Fragment_Contactanos extends Fragment {
 
     }
 
-    private void enviarMensage(Model_Contact contact) {
+    private void enviarMensage() {
 
         progressDialog.show();
 
@@ -85,17 +84,28 @@ public class Fragment_Contactanos extends Fragment {
 
         Just4Interface service = retrofit.create(Just4Interface.class);
 
+        Model_Contact contact = new Model_Contact();
+        contact.setSubject(etAsunto.getText().toString());
+        contact.setFullname(etNombre.getText().toString());
+        contact.setBodyMessage(etMensaje.getText().toString());
+
         Call<ResponseBody> response = service.contacto(contact);
 
         response.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.body() != null) {
+                    if (response.code() == 200) {
+                        mostrarAlerta(getResources().getString(R.string.contacto_dialog_titulo), getResources().getString(R.string.contacto_dialog_mensaje_bien));
+                        etAsunto.setText("");
+                        etMensaje.setText("");
+                        etNombre.setText("");
+                    }
                     progressDialog.dismiss();
-                    mostrarAlerta("Contacto", "Mensaje enviado con éxito");
+
                 } else {
                     progressDialog.dismiss();
-                    mostrarAlerta("Contacto", "Ocurrió un error, Intente Nuevamente");
+                    mostrarAlerta(getResources().getString(R.string.contacto_dialog_titulo), getResources().getString(R.string.contacto_dialog_mensaje_mal));
                 }
 
             }

@@ -17,6 +17,7 @@ import com.gloobe.just4roomies.Adaptadores.Adapter_RecyclerView;
 import com.gloobe.just4roomies.Interfaces.Interface_RecyclerView;
 import com.gloobe.just4roomies.Interfaces.Just4Interface;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Response;
+import com.gloobe.just4roomies.Modelos.Model_EliminarChat;
 import com.gloobe.just4roomies.R;
 
 import okhttp3.ResponseBody;
@@ -83,7 +84,10 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
 
         Just4Interface service = retrofit.create(Just4Interface.class);
 
-        Call<ResponseBody> eliminar = service.borrarChat(((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getId());
+        Model_EliminarChat model_eliminarChat = new Model_EliminarChat();
+        model_eliminarChat.setId(((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getId());
+
+        Call<ResponseBody> eliminar = service.borrarChat(model_eliminarChat);
 
         eliminar.enqueue(new Callback<ResponseBody>() {
             @Override

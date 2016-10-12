@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:hint="@string/contacto_mensaje"
+                android:maxLength="200"
                 android:maxLines="15"
                 android:textColorHint="@color/naranja_degradado" />
 

@@ -304,10 +304,13 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
         TextView precio = (TextView) dialogGaleria.findViewById(R.id.tvGaleriaPrecio);
         TextView amueblado = (TextView) dialogGaleria.findViewById(R.id.tvGaleriaAmueblado);
         TextView disponible = (TextView) dialogGaleria.findViewById(R.id.tvGaleriaDisponible);
+        TextView descripcion = (TextView) dialogGaleria.findViewById(R.id.tvDescripcion);
 
         precio.setVisibility(View.INVISIBLE);
         amueblado.setVisibility(View.INVISIBLE);
         disponible.setVisibility(View.INVISIBLE);
+
+        descripcion.setText(((Activity_Principal_Fragment) getActivity()).arrRomies.get(position).getProfile().getComments());
 
         if (arrImagenes.size() > 0) {
             adapter_galeriaPerfil = new Adapter_GaleriaPerfil(getActivity(), arrImagenes);

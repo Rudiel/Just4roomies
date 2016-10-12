@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
@@ -43,8 +44,10 @@ public class GCMIntentService extends IntentService {
 
         android.support.v4.app.NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                        .setSmallIcon(R.drawable.ic_app_notification)
                         .setContentTitle(getResources().getString(R.string.app_name))
+                        .setDefaults(android.support.v4.app.NotificationCompat.DEFAULT_SOUND)
                         .setStyle(new NotificationCompat.BigTextStyle()
                                 .bigText(msg))
                         .setAutoCancel(true)

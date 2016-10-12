@@ -7,6 +7,7 @@ import com.gloobe.just4roomies.Modelos.Model_Chat_Mensaje;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Mensaje_Response;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Response;
 import com.gloobe.just4roomies.Modelos.Model_Contact;
+import com.gloobe.just4roomies.Modelos.Model_EliminarChat;
 import com.gloobe.just4roomies.Modelos.Model_Like;
 import com.gloobe.just4roomies.Modelos.Model_Like_Response;
 import com.gloobe.just4roomies.Modelos.Model_Perfiles;
@@ -61,7 +62,7 @@ public interface Just4Interface {
     Call<ResponseBody> createHabitacion(@Body AddRoom room);
 
     @Headers("Content-Type: application/json")
-    @POST("contac")
+    @POST("contact")
     Call<ResponseBody> contacto(@Body Model_Contact contacto);
 
     @Headers("Content-Type: application/json")
@@ -102,6 +103,6 @@ public interface Just4Interface {
 
     @Headers("Content-Type: application/json")
     @POST("deleteChat")
-    Call<ResponseBody> borrarChat(@Body int id);
+    Call<ResponseBody> borrarChat(@Body Model_EliminarChat id);
 
 }

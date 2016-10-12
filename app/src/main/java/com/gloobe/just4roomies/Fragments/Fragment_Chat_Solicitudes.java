@@ -16,6 +16,7 @@ import com.gloobe.just4roomies.Adaptadores.Adapter_Recycler_Solicitudes;
 import com.gloobe.just4roomies.Interfaces.Interface_Solicitudes;
 import com.gloobe.just4roomies.Interfaces.Just4Interface;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Response;
+import com.gloobe.just4roomies.Modelos.Model_EliminarChat;
 import com.gloobe.just4roomies.Modelos.Model_SolicitudAceptar;
 import com.gloobe.just4roomies.R;
 
@@ -105,7 +106,35 @@ public class Fragment_Chat_Solicitudes extends Fragment implements Interface_Sol
 
     @Override
     public void clicRechazar(View v, int position) {
-        mostrarAlerta(getString(R.string.solicitud_dialogo_titulo), getString(R.string.solicitud_dialogo_mensaje_mal));
+
+        progressDialog.show();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.url_base))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Just4Interface service = retrofit.create(Just4Interface.class);
+
+        Model_EliminarChat model_eliminarChat = new Model_EliminarChat();
+        model_eliminarChat.setId(((Activity_Principal_Fragment) getActivity()).arrSolicitudes.get(position).getId());
+
+        Call<ResponseBody> eliminar = service.borrarChat(model_eliminarChat);
+
+        eliminar.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.body() != null) {
+                    recargarLista();
+                    mostrarAlerta(getString(R.string.solicitud_dialogo_titulo), getString(R.string.solicitud_dialogo_mensaje_mal));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
     }
 
     public void mostrarAlerta(String titulo, String mensaje) {

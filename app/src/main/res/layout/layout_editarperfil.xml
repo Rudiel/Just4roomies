@@ -103,6 +103,7 @@
                 android:layout_below="@id/svEditarPerfilFotos"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
+                android:maxLength="200"
                 android:minHeight="300dp"
                 android:paddingLeft="5dp"
                 android:singleLine="false" />
@@ -478,13 +479,12 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvSugerencias"
                 android:layout_width="@dimen/ofrecerhabitacion_et_precio"
-                android:elevation="5dp"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/llUbicacion"
                 android:layout_centerHorizontal="true"
                 android:background="@android:color/white"
+                android:elevation="5dp"
                 android:visibility="invisible" />
-
 
 
         </RelativeLayout>

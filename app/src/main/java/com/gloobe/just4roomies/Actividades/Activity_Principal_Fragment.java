@@ -1,27 +1,14 @@
 package com.gloobe.just4roomies.Actividades;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -57,27 +44,10 @@ import com.gloobe.just4roomies.Modelos.Personalidad_String;
 import com.gloobe.just4roomies.Modelos.RespuestaLoginFB;
 import com.gloobe.just4roomies.R;
 import com.gloobe.just4roomies.Utils.FontsOverride;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResult;
-import com.google.android.gms.location.LocationSettingsStates;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.google.android.gms.location.places.Places;
 import com.google.gson.Gson;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -108,19 +78,6 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
     public ArrayList<Model_Chat> arrChats;
     public ArrayList<Model_Chat_Solicitudes> arrSolicitudes;
 
-    //GMC
-    public static final String PROPERTY_REG_ID = "registration_id";
-    private static final String PROPERTY_APP_VERSION = "appVersion";
-    private String SENDER_ID = "1599014313";
-    static final String TAG = "GCMDemo";
-
-    GoogleCloudMessaging gcm;
-    AtomicInteger msgId = new AtomicInteger();
-    SharedPreferences prefs;
-    Context context;
-
-    String regid;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -131,19 +88,6 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
         Gson gson = new Gson();
         String strObj = getIntent().getStringExtra("obj");
         perfil = gson.fromJson(strObj, RespuestaLoginFB.class);
-
-       /* if (isGooglePlayServicesAvailable(this)) {
-            gcm = GoogleCloudMessaging.getInstance(this);
-            regid = getRegistrationId(context);
-            //si el id que se tiene en sahred es igual al del perfil no se guarda nada
-            if(regid!=perfil.getProfile().getToken())
-            if (regid.isEmpty()) {
-                registerInBackground();
-            }
-        } else {
-            Log.i(TAG, "No valid Google Play Services APK found.");
-        }*/
-
 
         if (perfil == null) {
 
@@ -234,6 +178,14 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
         progressDialog = new ProgressDialog(this, R.style.MyTheme);
         progressDialog.setCancelable(false);
 
+        arrRoomiesPreferidos = new ArrayList<>();
+        arrRoomiesRechazados = new ArrayList<>();
+        arrRomies = new ArrayList<>();
+        arrRoomiesAux = new ArrayList<>();
+
+        arrChats = new ArrayList<>();
+        arrSolicitudes = new ArrayList<>();
+
         getProfiles();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -310,28 +262,7 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         mDrawerToggle.syncState();
 
-
-        if (profile != null) {
-
-            Glide.with(Activity_Principal_Fragment.this).load(profile.getProfilePictureUri(150, 150)).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivImagenPerfilMenu) {
-                @Override
-                protected void setResource(Bitmap resource) {
-                    RoundedBitmapDrawable circularBitmapDrawable =
-                            RoundedBitmapDrawableFactory.create(getBaseContext().getResources(), resource);
-                    circularBitmapDrawable.setCircular(true);
-                    ivImagenPerfilMenu.setImageDrawable(circularBitmapDrawable);
-                }
-            });
-
-        }
-
-        arrRoomiesPreferidos = new ArrayList<>();
-        arrRoomiesRechazados = new ArrayList<>();
-        arrRomies = new ArrayList<>();
-        arrRoomiesAux = new ArrayList<>();
-
-        arrChats = new ArrayList<>();
-        arrSolicitudes = new ArrayList<>();
+        updateImagenPerfil();
 
     }
 
@@ -418,89 +349,21 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
         });
     }
 
-    public boolean isGooglePlayServicesAvailable(Activity activity) {
-        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
-        int status = googleApiAvailability.isGooglePlayServicesAvailable(activity);
-        if (status != ConnectionResult.SUCCESS) {
-            if (googleApiAvailability.isUserResolvableError(status)) {
-                googleApiAvailability.getErrorDialog(activity, status, 2404).show();
-            }
-            return false;
-        }
-        return true;
-    }
+    public void updateImagenPerfil() {
+        if (perfil.getProfile().getPhoto() != null && !perfil.getProfile().getPhoto().equals("")) {
 
-    private String getTokenDevice() {
-        return regid;
-    }
-
-    private String getRegistrationId(Context context) {
-        final SharedPreferences prefs = getGCMPreferences(context);
-        String registrationId = prefs.getString(PROPERTY_REG_ID, "");
-        if (registrationId.isEmpty()) {
-            Log.i(TAG, "Registration not found.");
-            return "";
-        }
-        // Check if app was updated; if so, it must clear the registration ID
-        // since the existing registration ID is not guaranteed to work with
-        // the new app version.
-        int registeredVersion = prefs.getInt(PROPERTY_APP_VERSION, Integer.MIN_VALUE);
-        int currentVersion = getAppVersion(context);
-        if (registeredVersion != currentVersion) {
-            Log.i(TAG, "App version changed.");
-            return "";
-        }
-        return registrationId;
-    }
-
-    private SharedPreferences getGCMPreferences(Context context) {
-        return getSharedPreferences(Activity_Personalidad.class.getSimpleName(),
-                Context.MODE_PRIVATE);
-    }
-
-    private static int getAppVersion(Context context) {
-        try {
-            PackageInfo packageInfo = context.getPackageManager()
-                    .getPackageInfo(context.getPackageName(), 0);
-            return packageInfo.versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-            throw new RuntimeException("Could not get package name: " + e);
-        }
-    }
-
-    private void registerInBackground() {
-        new registerID().execute();
-    }
-
-    public class registerID extends AsyncTask<Void, Void, String> {
-
-        @Override
-        protected String doInBackground(Void... params) {
-            String msg = "";
-            try {
-                if (gcm == null) {
-                    gcm = GoogleCloudMessaging.getInstance(context);
+            Glide.with(Activity_Principal_Fragment.this).load(perfil.getProfile().getPhoto()).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivImagenPerfilMenu) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(getBaseContext().getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    ivImagenPerfilMenu.setImageDrawable(circularBitmapDrawable);
                 }
-                regid = gcm.register(SENDER_ID);
-                msg = "Device registered, registration ID=" + regid;
-                Log.d(TAG, msg);
-                storeRegistrationId(context, regid);
-                //update token id
+            });
 
-            } catch (IOException ex) {
-                msg = "Error :" + ex.getMessage();
-            }
-            return msg;
         }
     }
 
-    private void storeRegistrationId(Context context, String regId) {
-        final SharedPreferences prefs = getGCMPreferences(context);
-        int appVersion = getAppVersion(context);
-        Log.i(TAG, "Saving regId on app version " + appVersion);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(PROPERTY_REG_ID, regId);
-        editor.putInt(PROPERTY_APP_VERSION, appVersion);
-        editor.commit();
-    }
+
 }

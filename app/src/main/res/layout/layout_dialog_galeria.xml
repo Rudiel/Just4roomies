@@ -5,9 +5,9 @@
 
     <ImageView
         android:id="@+id/btDialogCerrar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="true"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_margin="10dp"
         android:background="@drawable/ic_popup_cerrar" />
@@ -84,5 +84,22 @@
             android:textSize="@dimen/perfil_card_textoSobreMi" />
 
     </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="@dimen/perfil_galeria_image"
+        android:layout_height="@dimen/perfil_galeria_image"
+        android:layout_below="@id/vpDialogCarrusel"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/tvDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@android:color/white" />
+
+    </ScrollView>
 
 </RelativeLayout>
