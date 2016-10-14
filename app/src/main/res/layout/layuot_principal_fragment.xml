@@ -20,7 +20,9 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="40dp"
+                android:gravity="center">
 
 
                 <ImageView
@@ -29,18 +31,15 @@
                     android:layout_height="20dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
                     android:src="@drawable/ic_filtro"
                     android:visibility="visible" />
 
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
-                    android:layout_marginLeft="40dp"
                     android:src="@drawable/nombre_app"
-                    android:visibility="invisible" />
+                    android:visibility="visible" />
 
             </RelativeLayout>
 

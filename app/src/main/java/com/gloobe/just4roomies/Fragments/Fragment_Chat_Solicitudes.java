@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.gloobe.just4roomies.Actividades.Activity_Principal_Fragment;
 import com.gloobe.just4roomies.Adaptadores.Adapter_Recycler_Solicitudes;
@@ -35,6 +37,7 @@ public class Fragment_Chat_Solicitudes extends Fragment implements Interface_Sol
     private RecyclerView recyclerView;
     private Adapter_Recycler_Solicitudes adapter;
     private ProgressDialog progressDialog;
+    private RelativeLayout rlSolicitudes;
 
 
     @Nullable
@@ -52,11 +55,20 @@ public class Fragment_Chat_Solicitudes extends Fragment implements Interface_Sol
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        rlSolicitudes = (RelativeLayout) getActivity().findViewById(R.id.rlSolicitudesEmpty);
+
         adapter = new Adapter_Recycler_Solicitudes(getActivity(), ((Activity_Principal_Fragment) getActivity()).arrSolicitudes, ((Activity_Principal_Fragment) getActivity()).typeFace, Fragment_Chat_Solicitudes.this);
         recyclerView.setAdapter(adapter);
 
         progressDialog = new ProgressDialog(getActivity(), R.style.MyTheme);
         progressDialog.setCancelable(false);
+
+        ((TextView) getActivity().findViewById(R.id.tvSolicitudes)).setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
+
+        if (((Activity_Principal_Fragment) getActivity()).arrSolicitudes.size() > 0)
+            rlSolicitudes.setVisibility(View.GONE);
+        else
+            rlSolicitudes.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -175,6 +187,11 @@ public class Fragment_Chat_Solicitudes extends Fragment implements Interface_Sol
 
                         adapter = new Adapter_Recycler_Solicitudes(getActivity(), ((Activity_Principal_Fragment) getActivity()).arrSolicitudes, ((Activity_Principal_Fragment) getActivity()).typeFace, Fragment_Chat_Solicitudes.this);
                         recyclerView.setAdapter(adapter);
+
+                        if (((Activity_Principal_Fragment) getActivity()).arrSolicitudes.size() > 0)
+                            rlSolicitudes.setVisibility(View.GONE);
+                        else
+                            rlSolicitudes.setVisibility(View.VISIBLE);
                     }
 
                 } else {

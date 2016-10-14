@@ -98,9 +98,7 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
         cardStack.setEventCallback(new SwipeDeck.SwipeEventCallback() {
             @Override
             public void cardSwipedLeft(int position) {
-                Log.i("MainActivity", "card was swiped left, position in adapter: " + position);
                 ((Activity_Principal_Fragment) getActivity()).arrRoomiesRechazados.add(((Activity_Principal_Fragment) getActivity()).arrRomies.get(position));
-                Log.i("MainActivity", "Rechazados Size: " + ((Activity_Principal_Fragment) getActivity()).arrRoomiesRechazados.size());
                 positionRoomie = position + 1;
                 haveGallery();
 
@@ -108,9 +106,7 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
 
             @Override
             public void cardSwipedRight(int position) {
-                Log.i("MainActivity", "card was swiped right, position in adapter: " + position);
                 ((Activity_Principal_Fragment) getActivity()).arrRoomiesPreferidos.add(((Activity_Principal_Fragment) getActivity()).arrRomies.get(position));
-                Log.i("MainActivity", "Aceptados Size: " + ((Activity_Principal_Fragment) getActivity()).arrRoomiesPreferidos.size());
                 liketoPerfil(positionRoomie);
                 positionRoomie = position + 1;
                 haveGallery();
@@ -121,7 +117,6 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
             public void cardsDepleted() {
                 llPerfilesacabados.setVisibility(View.VISIBLE);
                 llPerfilesOpciones.setVisibility(View.INVISIBLE);
-                Log.i("MainActivity", "no more cards");
             }
 
             @Override
@@ -530,6 +525,15 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
                     cardStack.setAdapter(swipeDeck);
                     positionRoomie = 0;
                     haveGallery();
+
+                    if (((Activity_Principal_Fragment) getActivity()).arrRomies.size() > 0) {
+                        llPerfilesacabados.setVisibility(View.INVISIBLE);
+                        llPerfilesOpciones.setVisibility(View.VISIBLE);
+                    } else {
+                        llPerfilesacabados.setVisibility(View.VISIBLE);
+                        llPerfilesOpciones.setVisibility(View.INVISIBLE);
+                    }
+
                     progressDialog.dismiss();
 
                 } else {

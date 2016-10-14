@@ -27,6 +27,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.PermissionChecker;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +41,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +50,7 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.gloobe.just4roomies.Adaptadores.Adapter_PlacesAutoComplete;
+import com.gloobe.just4roomies.Fragments.Fragment_EditarPerfil;
 import com.gloobe.just4roomies.Interfaces.Interface_RecyclerView_Sugerencia;
 import com.gloobe.just4roomies.Interfaces.Just4Interface;
 import com.gloobe.just4roomies.Modelos.AddUser;
@@ -119,6 +122,7 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
     private Profile profile;
 
     private ProgressDialog progressDialog;
+    private ProgressBar pbPersonalidadUbicacion;
 
     private String correo, cumple, genero, location;
 
@@ -209,6 +213,7 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
         ivFondo = (ImageView) findViewById(R.id.ivFondoPersonalidad);
         etPersonalidad_Ubicacion = (EditText) findViewById(R.id.etPersonalidad_Ubicacion);
         ivPersonalidadUbicacionHint = (ImageView) findViewById(R.id.ivPersonalidadUbicacionHint);
+        pbPersonalidadUbicacion = (ProgressBar) findViewById(R.id.pbPersonalidadUbicacion);
 
         Glide.with(this).load(R.drawable.bg_perfil).centerCrop().into(ivFondo);
 
@@ -417,13 +422,11 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
             public void onClick(View view) {
                 settingActiveRequest();
 
-                if (mLocation != null) {
-                    etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
-                    place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
-                    latitud = String.valueOf(mLocation.getLatitude());
-                    longitud = String.valueOf(mLocation.getLongitude());
-                    rvSugerencias.setVisibility(View.INVISIBLE);
-                }
+                settingActiveRequest();
+
+                pbPersonalidadUbicacion.setVisibility(View.VISIBLE);
+                ivPersonalidadUbicacionHint.setVisibility(View.INVISIBLE);
+
             }
         });
 
@@ -520,6 +523,18 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
                 Exception error = result.getError();
             }
         }
+        if (requestCode == 0x1) {
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                    if (checkLocationPermission()) {
+                        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+                    }
+                    break;
+                case Activity.RESULT_CANCELED:
+                    settingActiveRequest();
+                    break;
+            }
+        }
     }
 
     private void guardarUsuario() {
@@ -536,7 +551,7 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
                 addUser.setPhoto(convertImagetoBase64(file));
             addUser.setSocial_id(profile.getId());
 
-            if(correo==null || correo=="")
+            if (correo == null || correo == "")
                 getshared();
 
             addUser.setEmail(correo);
@@ -828,7 +843,24 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
 
     @Override
     public void onLocationChanged(Location location) {
+        mLocationRequest = LocationRequest.create();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(5000);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PermissionChecker.PERMISSION_GRANTED)
+            return;
+        mLocation = location;
 
+        if (mLocation != null) {
+            place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
+            latitud = String.valueOf(mLocation.getLatitude());
+            longitud = String.valueOf(mLocation.getLongitude());
+            pbPersonalidadUbicacion.setVisibility(View.INVISIBLE);
+            ivPersonalidadUbicacionHint.setVisibility(View.VISIBLE);
+            etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
+            rvSugerencias.setVisibility(View.INVISIBLE);
+        }
+
+        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
     }
 
     @Override
@@ -925,6 +957,20 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
                 final LocationSettingsStates states = locationSettingsResult.getLocationSettingsStates();
                 switch (status.getStatusCode()) {
                     case LocationSettingsStatusCodes.SUCCESS:
+                        if (checkLocationPermission())
+                            mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+                        if (mLocation != null) {
+                            place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
+                            latitud = String.valueOf(mLocation.getLatitude());
+                            longitud = String.valueOf(mLocation.getLongitude());
+                            pbPersonalidadUbicacion.setVisibility(View.INVISIBLE);
+                            ivPersonalidadUbicacionHint.setVisibility(View.VISIBLE);
+                            etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
+                            rvSugerencias.setVisibility(View.INVISIBLE);
+                        } else {
+                            mGoogleApiClient.connect();
+                        }
                         break;
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                         try {
@@ -964,6 +1010,39 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
 
         return Base64.encodeToString(b, Base64.NO_WRAP);
 
+    }
+
+    public boolean checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                //TODO:
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+                //Prompt the user once explanation has been shown
+                //(just doing it here for now, note that with this code, no explanation is shown)
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        22);
+
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        22);
+            }
+            return false;
+        } else {
+            return true;
+        }
     }
 
 

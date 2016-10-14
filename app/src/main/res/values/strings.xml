@@ -50,6 +50,9 @@
     <string name="ofrecer_precio_hint">Precio</string>
     <string name="ofrecer_amueblado">Amueblado</string>
     <string name="ofrecer_noamueblado">Sin Amueblado</string>
+    <string name="ofrecer_alerta_titulo">Ofrecer Habitación</string>
+    <string name="ofrecer_alerta_mensaje_bien">Habitación guardada con éxito</string>
+    <string name="ofrecer_alerta_mensaje_mal">Ocurrió un error, vuelve a intentarlo</string>
 
     <string name="ajustes_titulo">Ajustes</string>
     <string name="ajustes_notificacion">Notificaciones</string>
@@ -84,7 +87,10 @@
         running the sample again.</string>
 
     <string name="chat_solicitudes">Solicitudes</string>
+    <string name="chat_solicitudes_mesaje">Busca roomies para comenzar!</string>
     <string name="chat_misroomies">Mis roomies</string>
+    <string name="chat_chats_mesaje">No hay nuevos mensajes!</string>
+
 
     <string name="solicitud_dialogo_titulo">Solicitud</string>
     <string name="solicitud_dialogo_mensaje_bien">Has aceptado la solicitud.</string>

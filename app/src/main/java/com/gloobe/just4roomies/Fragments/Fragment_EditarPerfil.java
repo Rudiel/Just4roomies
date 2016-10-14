@@ -14,6 +14,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -104,6 +105,7 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
     private int COCINA_ESTADO;
 
     private ProgressDialog progressDialog;
+    private ProgressBar progressBarLocalizacion;
 
     private int ImagenID = 0;
 
@@ -159,6 +161,7 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
         ivEditar2 = (ImageView) getActivity().findViewById(R.id.ivEditar2);
         ivEditar3 = (ImageView) getActivity().findViewById(R.id.ivEditar3);
         ivUbicacion = (ImageView) getActivity().findViewById(R.id.ivIconUbicacionHint);
+        progressBarLocalizacion = (ProgressBar) getActivity().findViewById(R.id.pbLocalizacion);
 
         Glide.with(this).load(R.drawable.bg_perfil).centerCrop().into(ivFondo);
 
@@ -485,13 +488,9 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
 
                 settingActiveRequest();
 
-                if (mLocation != null) {
-                    place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
-                    latitud = String.valueOf(mLocation.getLatitude());
-                    longitud = String.valueOf(mLocation.getLongitude());
-                    etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
-                    rvSugerencias.setVisibility(View.INVISIBLE);
-                }
+                progressBarLocalizacion.setVisibility(View.VISIBLE);
+                ivUbicacion.setVisibility(View.INVISIBLE);
+
             }
         });
 
@@ -635,90 +634,6 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
         dialog.show();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == getActivity().RESULT_OK) {
-            Uri imageUri = CropImage.getPickImageResultUri(getActivity(), data);
-
-            // For API >= 23 we need to check specifically that we have permissions to read external storage.
-            if (CropImage.isReadExternalStoragePermissionsRequired(getActivity(), imageUri)) {
-                // request permissions and handle the result in onRequestPermissionsResult()
-                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, CropImage.PICK_IMAGE_PERMISSIONS_REQUEST_CODE);
-            } else {
-                // no permissions required or already grunted, can start crop image activity
-                startCropImageActivity(imageUri);
-            }
-        }
-
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == getActivity().RESULT_OK) {
-                Uri resultUri = result.getUri();
-
-                switch (ImagenID) {
-                    case 1:
-                        ivEditar1.setPadding(0, 0, 0, 0);
-
-                        file1 = resultUri.getPath();
-
-                        Glide.with(getActivity())
-                                .load(file1)// Uri of the picture
-                                .centerCrop()
-                                .into(ivEditar1);
-                        break;
-                    case 2:
-                        ivEditar2.setPadding(0, 0, 0, 0);
-
-                        file2 = resultUri.getPath();
-
-                        Glide.with(getActivity())
-                                .load(file2)// Uri of the picture
-                                .centerCrop()
-                                .into(ivEditar2);
-                        break;
-                    case 3:
-                        ivEditar3.setPadding(0, 0, 0, 0);
-
-                        file3 = resultUri.getPath();
-
-                        Glide.with(getActivity())
-                                .load(file3)// Uri of the picture
-                                .centerCrop()
-                                .into(ivEditar3);
-                        break;
-                }
-
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
-            }
-        }
-
-        if (requestCode == 0x1) {
-            switch (resultCode) {
-                case Activity.RESULT_OK:
-                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
-                        return;
-                    }
-                    LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, Fragment_EditarPerfil.this);
-                    break;
-                case Activity.RESULT_CANCELED:
-                    settingActiveRequest();
-                    break;
-            }
-        }
-
-
-    }
-
-
     private void startCropImageActivity(Uri imageUri) {
         Intent intent = CropImage.activity(imageUri)
                 .setBorderLineColor(getResources().getColor(R.color.naranja_degradado))
@@ -807,10 +722,22 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
     public void onLocationChanged(Location location) {
         mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(1000);
+        mLocationRequest.setInterval(5000);
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PermissionChecker.PERMISSION_GRANTED)
             return;
         mLocation = location;
+
+        if (mLocation != null) {
+            place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
+            latitud = String.valueOf(mLocation.getLatitude());
+            longitud = String.valueOf(mLocation.getLongitude());
+            progressBarLocalizacion.setVisibility(View.INVISIBLE);
+            ivUbicacion.setVisibility(View.VISIBLE);
+            etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
+            rvSugerencias.setVisibility(View.INVISIBLE);
+        }
+
+        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, Fragment_EditarPerfil.this);
 
     }
 
@@ -876,17 +803,6 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
 
     }
 
-    @Override
-    public void onStart() {
-        mGoogleApiClient.connect();
-        super.onStart();
-    }
-
-    @Override
-    public void onStop() {
-        mGoogleApiClient.disconnect();
-        super.onStop();
-    }
 
     public String obtenerNombreCiudad(Double latitude, Double longitud) {
         List<Address> addresses;
@@ -904,16 +820,136 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
 
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == getActivity().RESULT_OK) {
+            Uri imageUri = CropImage.getPickImageResultUri(getActivity(), data);
+
+            // For API >= 23 we need to check specifically that we have permissions to read external storage.
+            if (CropImage.isReadExternalStoragePermissionsRequired(getActivity(), imageUri)) {
+                // request permissions and handle the result in onRequestPermissionsResult()
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, CropImage.PICK_IMAGE_PERMISSIONS_REQUEST_CODE);
+            } else {
+                // no permissions required or already grunted, can start crop image activity
+                startCropImageActivity(imageUri);
+            }
+        }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == getActivity().RESULT_OK) {
+                Uri resultUri = result.getUri();
+
+                switch (ImagenID) {
+                    case 1:
+                        ivEditar1.setPadding(0, 0, 0, 0);
+
+                        file1 = resultUri.getPath();
+
+                        Glide.with(getActivity())
+                                .load(file1)// Uri of the picture
+                                .centerCrop()
+                                .into(ivEditar1);
+                        break;
+                    case 2:
+                        ivEditar2.setPadding(0, 0, 0, 0);
+
+                        file2 = resultUri.getPath();
+
+                        Glide.with(getActivity())
+                                .load(file2)// Uri of the picture
+                                .centerCrop()
+                                .into(ivEditar2);
+                        break;
+                    case 3:
+                        ivEditar3.setPadding(0, 0, 0, 0);
+
+                        file3 = resultUri.getPath();
+
+                        Glide.with(getActivity())
+                                .load(file3)// Uri of the picture
+                                .centerCrop()
+                                .into(ivEditar3);
+                        break;
+                }
+
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
+        }
+
+        if (requestCode == 0x1) {
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                    if (checkLocationPermission()) {
+                        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, Fragment_EditarPerfil.this);
+                    }
+                    break;
+                case Activity.RESULT_CANCELED:
+                    settingActiveRequest();
+                    break;
+            }
+        }
+
+
+    }
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case 22: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(getActivity(),
+                            Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED) {
 
+                        if (mGoogleApiClient == null) {
+                            buildGoogleApiClient();
+                        }
+                    }
                 }
             }
+
         }
     }
+
+    public boolean checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                //TODO:
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+                //Prompt the user once explanation has been shown
+                //(just doing it here for now, note that with this code, no explanation is shown)
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        22);
+
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        22);
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
     private void settingActiveRequest() {
         mLocationRequest = LocationRequest.create();
@@ -932,6 +968,20 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
                 final LocationSettingsStates states = locationSettingsResult.getLocationSettingsStates();
                 switch (status.getStatusCode()) {
                     case LocationSettingsStatusCodes.SUCCESS:
+                        if (checkLocationPermission())
+                            mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+                        if (mLocation != null) {
+                            place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
+                            latitud = String.valueOf(mLocation.getLatitude());
+                            longitud = String.valueOf(mLocation.getLongitude());
+                            progressBarLocalizacion.setVisibility(View.INVISIBLE);
+                            ivUbicacion.setVisibility(View.VISIBLE);
+                            etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
+                            rvSugerencias.setVisibility(View.INVISIBLE);
+                        } else{
+                            mGoogleApiClient.connect();}
+
                         break;
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                         try {
@@ -949,4 +999,16 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
 
     }
 
+
+    @Override
+    public void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
 }

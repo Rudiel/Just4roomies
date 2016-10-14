@@ -3,6 +3,7 @@ package com.gloobe.just4roomies.Actividades;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
@@ -19,6 +21,7 @@ import com.gloobe.just4roomies.Interfaces.Just4Interface;
 import com.gloobe.just4roomies.Modelos.RespuestaLoginFB;
 import com.gloobe.just4roomies.Modelos.SocialLogin;
 import com.gloobe.just4roomies.R;
+import com.gloobe.just4roomies.Utils.Utilerias;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -69,7 +72,7 @@ public class Activity_SplashMaterial extends AppCompatActivity {
 
         context = getApplicationContext();
 
-        checarGMCRegister();
+        inicio();
 
     }
 
@@ -244,6 +247,30 @@ public class Activity_SplashMaterial extends AppCompatActivity {
             startActivity(intent);
             //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         }
+    }
+
+    private void mostrarDialogo() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setMessage("Revisa tu conexion a internet e intenta nuevamente")
+                .setTitle("Just4Roomies");
+
+        final android.app.AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setButton("ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialog.dismiss();
+                inicio();
+            }
+        });
+        dialog.show();
+    }
+
+    private void inicio() {
+        if (Utilerias.haveNetworkConnection(this))
+            checarGMCRegister();
+        else
+            mostrarDialogo();
     }
 
 

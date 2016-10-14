@@ -411,16 +411,16 @@ public class Frgament_OfrecerHabitacion extends Fragment {
                             ((Activity_Principal_Fragment) getActivity()).perfil.getRoom().setFile3(file3);
 
 
-                        mostrarAlerta("Ofrecer Habitacion", "Habitación guardada con éxito");
+                        mostrarAlerta(getResources().getString(R.string.ofrecer_alerta_titulo), getResources().getString(R.string.ofrecer_alerta_mensaje_bien));
                     } else {
-                        mostrarAlerta("Ofrecer Habitacion", "Ocurrió un error, vuelve a intentarlo");
+                        mostrarAlerta(getResources().getString(R.string.ofrecer_alerta_titulo), getResources().getString(R.string.ofrecer_alerta_mensaje_mal));
                     }
                     progressDialog.dismiss();
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    mostrarAlerta("Ofrecer Habitacion", "Ocurrió un error, vuelve a intentarlo");
+                    mostrarAlerta(getResources().getString(R.string.ofrecer_alerta_titulo), getResources().getString(R.string.ofrecer_alerta_mensaje_mal));
                     progressDialog.dismiss();
 
                 }

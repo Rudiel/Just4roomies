@@ -33,7 +33,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tbPersonalidad">
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -197,6 +199,13 @@
                     android:layout_height="20dp"
                     android:layout_centerVertical="true"
                     android:src="@android:drawable/ic_menu_mylocation" />
+
+                <ProgressBar
+                    android:id="@+id/pbPersonalidadUbicacion"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:visibility="invisible" />
 
                 <EditText
                     android:id="@+id/etPersonalidad_Ubicacion"

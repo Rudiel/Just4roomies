@@ -365,5 +365,15 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == 0x1) {
+            Fragment_EditarPerfil fragment = (Fragment_EditarPerfil) getSupportFragmentManager()
+                    .findFragmentById(R.id.flContenedor);
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
+
+    }
 }

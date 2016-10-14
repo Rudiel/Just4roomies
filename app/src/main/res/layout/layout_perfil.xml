@@ -49,8 +49,8 @@
             android:id="@+id/swipe_deck"
             android:layout_width="match_parent"
             android:layout_height="@dimen/perfil_card_height"
-            android:padding="20dp"
-            swipedeck:card_spacing="10dp"
+            android:padding="15dp"
+            swipedeck:card_spacing="5dp"
             swipedeck:max_visible="3"
             swipedeck:render_above="true"
             swipedeck:rotation_degrees="15" />
@@ -74,8 +74,8 @@
 
             <ImageView
                 android:id="@+id/ivGaleria"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/ic_galeria_false" />
 
             <ImageView

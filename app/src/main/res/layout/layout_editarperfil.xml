@@ -228,6 +228,13 @@
                     android:layout_centerVertical="true"
                     android:src="@android:drawable/ic_menu_mylocation" />
 
+                <ProgressBar
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/pbLocalizacion"
+                    android:visibility="invisible"
+                    android:layout_centerVertical="true"/>
+
                 <EditText
                     android:id="@+id/etEditarPerfil_Ubicacion"
                     android:layout_width="200dp"

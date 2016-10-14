@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.gloobe.just4roomies.Actividades.Activity_Conversacion;
 import com.gloobe.just4roomies.Actividades.Activity_Principal_Fragment;
@@ -35,6 +37,7 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
     private RecyclerView recyclerView;
     private Adapter_RecyclerView adapter;
     private ProgressDialog progressDialog;
+    private RelativeLayout rlChatsEmpty;
 
     @Nullable
     @Override
@@ -49,12 +52,21 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
         recyclerView = (RecyclerView) getActivity().findViewById(R.id.rvConversaciones);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rlChatsEmpty = (RelativeLayout) getActivity().findViewById(R.id.rlChatsEmpty);
 
         adapter = new Adapter_RecyclerView(getActivity(), ((Activity_Principal_Fragment) getActivity()).arrChats, ((Activity_Principal_Fragment) getActivity()).typeFace, Fragment_Chat_Data.this);
         recyclerView.setAdapter(adapter);
 
         progressDialog = new ProgressDialog(getActivity(), R.style.MyTheme);
         progressDialog.setCancelable(false);
+
+        ((TextView) getActivity().findViewById(R.id.tvSolicitudes)).setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
+
+
+        if (((Activity_Principal_Fragment) getActivity()).arrChats.size() > 0)
+            rlChatsEmpty.setVisibility(View.GONE);
+        else
+            rlChatsEmpty.setVisibility(View.VISIBLE);
 
     }
 
@@ -125,6 +137,11 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
                         adapter = new Adapter_RecyclerView(getActivity(), ((Activity_Principal_Fragment) getActivity()).arrChats, ((Activity_Principal_Fragment) getActivity()).typeFace, Fragment_Chat_Data.this);
                         recyclerView.setAdapter(adapter);
                         progressDialog.dismiss();
+
+                        if (((Activity_Principal_Fragment) getActivity()).arrChats.size() > 0)
+                            rlChatsEmpty.setVisibility(View.GONE);
+                        else
+                            rlChatsEmpty.setVisibility(View.VISIBLE);
                     }
                 } else {
 
