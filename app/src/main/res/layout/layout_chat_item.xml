@@ -78,6 +78,16 @@
                 android:textColor="@color/naranja_degradado"
                 android:visibility="gone" />
 
+            <ImageView
+                android:id="@+id/ivEnespera"
+                android:layout_width="30dp"
+                android:visibility="invisible"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/ivFlechaItem"
+                android:src="@drawable/ic_enespera" />
+
             <RelativeLayout
                 android:layout_width="50dp"
                 android:layout_height="50dp"

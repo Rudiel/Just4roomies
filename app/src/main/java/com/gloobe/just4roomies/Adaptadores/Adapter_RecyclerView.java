@@ -36,6 +36,7 @@ public class Adapter_RecyclerView extends RecyclerSwipeAdapter<Adapter_RecyclerV
         LinearLayout buttonDelete;
         ImageView ivImagenPerfil;
         RelativeLayout rlContenedor;
+        ImageView ivEnespera;
 
 
         public SimpleViewHolder(View itemView) {
@@ -46,6 +47,7 @@ public class Adapter_RecyclerView extends RecyclerSwipeAdapter<Adapter_RecyclerV
             buttonDelete = (LinearLayout) itemView.findViewById(R.id.llEliminar);
             ivImagenPerfil = (ImageView) itemView.findViewById(R.id.ivPerfilChatItem);
             rlContenedor = (RelativeLayout) itemView.findViewById(R.id.rlContenedorChat);
+            ivEnespera = (ImageView) itemView.findViewById(R.id.ivEnespera);
         }
     }
 
@@ -83,6 +85,11 @@ public class Adapter_RecyclerView extends RecyclerSwipeAdapter<Adapter_RecyclerV
                 viewHolder.ivImagenPerfil.setImageDrawable(circularBitmapDrawable);
             }
         });
+
+        if (mDataset.get(position).getStatus().equals("1"))
+            viewHolder.ivEnespera.setVisibility(View.GONE);
+        else
+            viewHolder.ivEnespera.setVisibility(View.VISIBLE);
 
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
         viewHolder.swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {

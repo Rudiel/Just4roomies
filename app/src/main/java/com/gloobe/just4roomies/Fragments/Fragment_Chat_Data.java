@@ -73,15 +73,18 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
     @Override
     public void clicItem(View view, int position) {
 
-        Intent intent = new Intent(getActivity(), Activity_Conversacion.class);
-        Bundle bundle = new Bundle();
-        bundle.putInt("CHAT_ID", ((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getChat_id());
-        bundle.putInt("USER_ID", ((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getUser_id_send());
-        bundle.putString("CHAT_PHOTO", ((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getData_user().getUrlphoto());
-        bundle.putString("CHAT_NAME", ((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getData_user().getName());
+        if (((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getStatus().equals("1")) {
 
-        intent.putExtras(bundle);
-        startActivity(intent);
+            Intent intent = new Intent(getActivity(), Activity_Conversacion.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("CHAT_ID", ((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getChat_id());
+            bundle.putInt("USER_ID", ((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getUser_id_send());
+            bundle.putString("CHAT_PHOTO", ((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getData_user().getUrlphoto());
+            bundle.putString("CHAT_NAME", ((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getData_user().getName());
+
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 
     @Override
