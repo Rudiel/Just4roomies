@@ -97,6 +97,13 @@ public class Adapter_Recycler_Solicitudes extends RecyclerView.Adapter<Adapter_R
             }
         });
 
+        holder.ivPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.clicImagen(v, position);
+            }
+        });
+
     }
 
     @Override

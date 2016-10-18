@@ -5,8 +5,27 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="@dimen/perfil_galeria_image"
-        android:layout_height="@dimen/perfil_galeria_image"
+        android:id="@+id/ivProfilePicture"
+        android:layout_width="@dimen/dialog_profilepicture"
+        android:layout_height="@dimen/dialog_profilepicture_h"
         android:layout_centerInParent="true" />
+
+    <RelativeLayout
+        android:layout_width="@dimen/dialog_profilepicture"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/ivProfilePicture"
+        android:layout_centerHorizontal="true"
+        android:background="@color/profile_background"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tvProfileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -22,6 +22,8 @@
     <dimen name="perfil_card_textoSobreMi">16sp</dimen>
     <dimen name="perfil_galeria_image">500dp</dimen>
     <integer name="perfil_descripcion">5</integer>
+    <dimen name="dialog_profilepicture">300dp</dimen>
+    <dimen name="dialog_profilepicture_h">350dp</dimen>
 
 
 

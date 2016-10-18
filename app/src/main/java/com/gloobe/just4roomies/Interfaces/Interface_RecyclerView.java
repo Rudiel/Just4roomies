@@ -11,4 +11,6 @@ public interface Interface_RecyclerView {
 
     void clicItemDelete(View view, int position);
 
+    void clicItemImage(View view, int position);
+
 }

@@ -1,7 +1,6 @@
 package com.gloobe.just4roomies.Adaptadores;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.gloobe.just4roomies.Modelos.Room;
 import com.gloobe.just4roomies.R;
 
 import java.util.ArrayList;

@@ -26,7 +26,8 @@
     <dimen name="ajustes_titulo">40sp</dimen>
     <dimen name="ajustes_texto">16sp</dimen>
     <integer name="perfil_descripcion">4</integer>
-
+    <dimen name="dialog_profilepicture">250dp</dimen>
+    <dimen name="dialog_profilepicture_h">300dp</dimen>
 
 
 </resources>

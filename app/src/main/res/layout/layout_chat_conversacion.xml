@@ -51,26 +51,59 @@
         android:layout_alignParentBottom="true"
         android:background="@null">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabEnviar"
+
+        <com.dmitrymalkovich.android.ProgressFloatingActionButton
+            android:id="@+id/fabProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_margin="10dp"
-            android:src="@drawable/ic_send_white_24dp"
-            app:fabSize="normal" />
+            android:layout_margin="5dp"
+            android:clickable="true">
 
-        <EditText
-            android:id="@+id/etMensajeChat"
-            android:layout_width="match_parent"
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabEnviar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_send_white_24dp"
+                app:fabSize="normal" />
+
+            <ProgressBar
+                android:id="@+id/pbEnviar"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible" />
+
+        </com.dmitrymalkovich.android.ProgressFloatingActionButton>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toLeftOf="@id/fabEnviar"
-            android:background="@drawable/burbuja"
-            android:hint="Escribir Mensaje"
-            android:minHeight="50dp"
-            android:paddingLeft="5dp" />
+            android:layout_toLeftOf="@id/fabProgress"
+            android:background="@drawable/burbuja">
+
+            <ImageView
+                android:id="@+id/ivImagenChat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@android:drawable/ic_menu_camera" />
+
+            <EditText
+                android:id="@+id/etMensajeChat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/ivImagenChat"
+                android:background="@null"
+                android:hint="Escribir Mensaje"
+                android:minHeight="50dp"
+                android:paddingLeft="5dp" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

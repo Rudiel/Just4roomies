@@ -6,7 +6,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import java.net.HttpURLConnection;
-import java.net.InetAddress;
 import java.net.URL;
 
 /**

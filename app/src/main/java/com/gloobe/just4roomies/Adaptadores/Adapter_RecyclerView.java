@@ -130,12 +130,20 @@ public class Adapter_RecyclerView extends RecyclerSwipeAdapter<Adapter_RecyclerV
             }
         });
 
+        viewHolder.ivImagenPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.clicItemImage(v, position);
+            }
+        });
+
         viewHolder.rlContenedor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.clicItem(view, position);
             }
         });
+
 
     }
 

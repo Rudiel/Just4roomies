@@ -8,9 +8,7 @@ import android.widget.DatePicker;
 
 import com.gloobe.just4roomies.R;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by rudielavilaperaza on 27/08/16.

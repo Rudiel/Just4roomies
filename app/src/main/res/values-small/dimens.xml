@@ -10,5 +10,8 @@
     <dimen name="perfil_card_height">310dp</dimen>
     <dimen name="perfil_card_imagen">190dp</dimen>
     <integer name="perfil_descripcion">3</integer>
+    <dimen name="dialog_profilepicture">200dp</dimen>
+    <dimen name="dialog_profilepicture_h">250dp</dimen>
+
 
 </resources>

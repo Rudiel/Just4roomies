@@ -23,6 +23,8 @@
     <dimen name="perfil_galeria_image">700dp</dimen>
 
     <integer name="perfil_descripcion">6</integer>
+    <dimen name="dialog_profilepicture">350dp</dimen>
+    <dimen name="dialog_profilepicture_h">400dp</dimen>
 
 
 </resources>

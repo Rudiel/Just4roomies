@@ -66,7 +66,14 @@
 
         <activity
             android:name=".Actividades.Activity_Conversacion"
-            android:screenOrientation="portrait" />
+            android:parentActivityName=".Actividades.Activity_Principal_Fragment"
+            android:screenOrientation="portrait">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Actividades.Activity_Principal_Fragment" />
+
+        </activity>
 
         <activity
             android:name="com.facebook.FacebookActivity"

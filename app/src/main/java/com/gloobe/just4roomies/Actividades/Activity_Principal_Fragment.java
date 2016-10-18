@@ -2,7 +2,11 @@ package com.gloobe.just4roomies.Actividades;
 
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -39,9 +43,8 @@ import com.gloobe.just4roomies.Modelos.Model_Chat;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Solicitudes;
 import com.gloobe.just4roomies.Modelos.Model_Perfiles;
 import com.gloobe.just4roomies.Modelos.Model_Profiles;
-import com.gloobe.just4roomies.Modelos.Model_Room;
-import com.gloobe.just4roomies.Modelos.Personalidad_String;
 import com.gloobe.just4roomies.Modelos.RespuestaLoginFB;
+import com.gloobe.just4roomies.Modelos.SocialLogin;
 import com.gloobe.just4roomies.R;
 import com.gloobe.just4roomies.Utils.FontsOverride;
 import com.google.gson.Gson;
@@ -78,6 +81,9 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
     public ArrayList<Model_Chat> arrChats;
     public ArrayList<Model_Chat_Solicitudes> arrSolicitudes;
 
+    public static final String PROPERTY_REG_ID = "registration_id";
+    private static final String PROPERTY_APP_VERSION = "appVersion";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,77 +91,17 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.layuot_principal_fragment);
 
+        progressDialog = new ProgressDialog(this, R.style.MyTheme);
+        progressDialog.setCancelable(false);
+
+        profile = Profile.getCurrentProfile();
+
         Gson gson = new Gson();
         String strObj = getIntent().getStringExtra("obj");
         perfil = gson.fromJson(strObj, RespuestaLoginFB.class);
 
         if (perfil == null) {
-
-            RespuestaLoginFB respuesta = new RespuestaLoginFB();
-
-            com.gloobe.just4roomies.Modelos.Profile newProfile = new com.gloobe.just4roomies.Modelos.Profile();
-            Personalidad_String personalidad_string = new Personalidad_String();
-
-            Bundle bundle = getIntent().getExtras();
-
-            if (bundle != null) {
-                newProfile.setEmail(bundle.getString("user_email"));
-                newProfile.setName(bundle.getString("user_name"));
-                newProfile.setPhoto("");
-                newProfile.setPhoto2("");
-                newProfile.setPhoto3("");
-                newProfile.setAge(bundle.getString("user_age"));
-                newProfile.setLanguage(bundle.getString("user_lenguaje"));
-                newProfile.setId(bundle.getInt("user_id"));
-                newProfile.setNationality(bundle.getString("user_nacionalidad"));
-
-                if (profile != null)
-                    newProfile.setSocial_id(profile.getId());
-                else
-                    newProfile.setSocial_id(bundle.getString("user_socialid"));
-
-                //personalidad
-
-                if (bundle.getBoolean("user_active"))
-                    personalidad_string.setActive("1");
-                else
-                    personalidad_string.setActive("0");
-
-                if (bundle.getBoolean("user_cook"))
-                    personalidad_string.setCook("1");
-                else
-                    personalidad_string.setCook("0");
-
-                if (bundle.getBoolean("user_party"))
-                    personalidad_string.setParty("1");
-                else
-                    personalidad_string.setParty("0");
-
-                if (bundle.getBoolean("user_pet"))
-                    personalidad_string.setPet("1");
-                else
-                    personalidad_string.setPet("0");
-
-                if (bundle.getBoolean("user_smoke"))
-                    personalidad_string.setSmoke("1");
-                else
-                    personalidad_string.setSmoke("0");
-
-                if (bundle.getBoolean("user_student"))
-                    personalidad_string.setStudent("1");
-                else
-                    personalidad_string.setStudent("0");
-
-                personalidad_string.setComments("");
-                personalidad_string.setUser_id(String.valueOf(bundle.getInt("user_id")));
-
-            }
-
-            respuesta.setProfile(newProfile);
-            respuesta.setPersonality(personalidad_string);
-            respuesta.setRoom(new Model_Room());
-
-            perfil = respuesta;
+            iniciaSesion();
         }
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -173,11 +119,6 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
 
         FontsOverride.setDefaultFont(this, "MAVENPRO", "fonts/MavenPro_Regular.ttf");
 
-        profile = Profile.getCurrentProfile();
-
-        progressDialog = new ProgressDialog(this, R.style.MyTheme);
-        progressDialog.setCancelable(false);
-
         arrRoomiesPreferidos = new ArrayList<>();
         arrRoomiesRechazados = new ArrayList<>();
         arrRomies = new ArrayList<>();
@@ -185,8 +126,6 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
 
         arrChats = new ArrayList<>();
         arrSolicitudes = new ArrayList<>();
-
-        getProfiles();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -262,7 +201,10 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         mDrawerToggle.syncState();
 
-        updateImagenPerfil();
+        if (perfil != null) {
+            updateImagenPerfil();
+            iniciarFragment(new Fragment_Perfiles(), false);
+        }
 
     }
 
@@ -330,20 +272,17 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
             @Override
             public void onResponse(Call<Model_Perfiles> call, Response<Model_Perfiles> response) {
                 if (response.body() != null) {
-                    Log.d("LISTADO", response.body().toString());
                     arrRomies = response.body().getProfiles();
                     progressDialog.dismiss();
                     iniciarFragment(new Fragment_Perfiles(), false);
 
                 } else {
-                    Log.d("LISTADO_MAL", response.body().toString());
                     progressDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<Model_Perfiles> call, Throwable t) {
-                Log.d("LISTADO_MAL", t.toString());
                 progressDialog.dismiss();
             }
         });
@@ -375,5 +314,75 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
             fragment.onActivityResult(requestCode, resultCode, data);
         }
 
+    }
+
+    private void iniciaSesion() {
+        progressDialog.show();
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.url_base))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Just4Interface service = retrofit.create(Just4Interface.class);
+
+        SocialLogin socialLogin = new SocialLogin();
+        socialLogin.setSocial_id(profile.getId());
+        socialLogin.setDevice("Android");
+        socialLogin.setToken(getRegistrationId(this));
+
+        final Call<RespuestaLoginFB> p = service.socialLogin(socialLogin);
+
+        p.enqueue(new Callback<RespuestaLoginFB>() {
+            @Override
+            public void onResponse(Call<RespuestaLoginFB> call, Response<RespuestaLoginFB> response) {
+                if (response.code() == 200) {
+                    perfil = response.body();
+                    //getProfiles();
+                    updateImagenPerfil();
+                    iniciarFragment(new Fragment_Perfiles(), false);
+                    progressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RespuestaLoginFB> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private String getRegistrationId(Context context) {
+        final SharedPreferences prefs = getGCMPreferences(context);
+        String registrationId = prefs.getString(PROPERTY_REG_ID, "");
+        if (registrationId.isEmpty()) {
+            return "";
+        }
+        // Check if app was updated; if so, it must clear the registration ID
+        // since the existing registration ID is not guaranteed to work with
+        // the new app version.
+        int registeredVersion = prefs.getInt(PROPERTY_APP_VERSION, Integer.MIN_VALUE);
+        int currentVersion = getAppVersion(context);
+        if (registeredVersion != currentVersion) {
+            return "";
+        }
+        return registrationId;
+    }
+
+    private SharedPreferences getGCMPreferences(Context context) {
+        return getSharedPreferences(Activity_Personalidad.class.getSimpleName(),
+                Context.MODE_PRIVATE);
+    }
+
+    private static int getAppVersion(Context context) {
+        try {
+            PackageInfo packageInfo = context.getPackageManager()
+                    .getPackageInfo(context.getPackageName(), 0);
+            return packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            throw new RuntimeException("Could not get package name: " + e);
+        }
     }
 }

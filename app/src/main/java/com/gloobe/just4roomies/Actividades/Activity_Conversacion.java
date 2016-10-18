@@ -1,5 +1,6 @@
 package com.gloobe.just4roomies.Actividades;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
@@ -13,12 +14,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.Target;
 import com.gloobe.just4roomies.Adaptadores.Adapter_Chat;
 import com.gloobe.just4roomies.Interfaces.Just4Interface;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Conversacion;
@@ -61,6 +68,8 @@ public class Activity_Conversacion extends AppCompatActivity {
     public static int pagina_actual;
     public static int pagina_ultima;
 
+    public static ProgressBar pbEnviar;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,10 +87,11 @@ public class Activity_Conversacion extends AppCompatActivity {
         ivChatImagen = (ImageView) findViewById(R.id.ivChatImagen);
         tvChatNombre = (TextView) findViewById(R.id.tvChatNombre);
         srlCargar = (SwipeRefreshLayout) findViewById(R.id.srlCargar);
+        pbEnviar = (ProgressBar) findViewById(R.id.pbEnviar);
 
         typeface = Typeface.createFromAsset(getAssets(), "fonts/MavenPro_Regular.ttf");
 
-        Bundle bundle = getIntent().getExtras();
+        final Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
 
             chat_id = bundle.getInt("CHAT_ID");
@@ -114,6 +124,29 @@ public class Activity_Conversacion extends AppCompatActivity {
                 else
                     srlCargar.setRefreshing(false);
 
+            }
+        });
+
+        ivChatImagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialogImage = new Dialog(Activity_Conversacion.this);
+                dialogImage.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+                dialogImage.setContentView(R.layout.layout_dialogo_perfilpicture);
+
+                dialogImage.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+
+                final ImageView ivImagenPerfil = (ImageView) dialogImage.findViewById(R.id.ivProfilePicture);
+                final TextView tvNombrePerfil = (TextView) dialogImage.findViewById(R.id.tvProfileName);
+
+                Glide.with(Activity_Conversacion.this).load(bundle.get("CHAT_PHOTO")).centerCrop().into(ivImagenPerfil);
+
+                tvNombrePerfil.setTypeface(typeface);
+                tvNombrePerfil.setText(bundle.getString("CHAT_NAME"));
+
+                dialogImage.show();
             }
         });
     }
@@ -162,6 +195,10 @@ public class Activity_Conversacion extends AppCompatActivity {
 
     public static void sendMessage(String mensaje, final Context context) {
 
+        pbEnviar.setVisibility(View.VISIBLE);
+        fabSendMessage.setEnabled(false);
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(context.getResources().getString(R.string.url_base))
                 .addConverterFactory(GsonConverterFactory.create())
@@ -183,6 +220,9 @@ public class Activity_Conversacion extends AppCompatActivity {
                     if (response.body().getCode() == 200) {
                         getConversacion(chat_id, user_id, context);
                         etMenssage.setText("");
+                        pbEnviar.setVisibility(View.INVISIBLE);
+                        fabSendMessage.setEnabled(true);
+
                     } else {
 
                     }

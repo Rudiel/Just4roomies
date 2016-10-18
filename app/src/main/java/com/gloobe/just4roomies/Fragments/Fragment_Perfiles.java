@@ -152,8 +152,7 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
             @Override
             public void onClick(View view) {
                 getProfiles();
-                llPerfilesacabados.setVisibility(View.INVISIBLE);
-                llPerfilesOpciones.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -197,9 +196,6 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
                         getProfiles();
                         break;
                 }
-
-                llPerfilesOpciones.setVisibility(View.VISIBLE);
-
             }
         });
 
@@ -578,6 +574,14 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
                     cardStack.setAdapter(swipeDeck);
                     positionRoomie = 0;
                     haveGallery();
+
+                    if (((Activity_Principal_Fragment) getActivity()).arrRomies.size() > 0) {
+                        llPerfilesacabados.setVisibility(View.INVISIBLE);
+                        llPerfilesOpciones.setVisibility(View.VISIBLE);
+                    } else {
+                        llPerfilesacabados.setVisibility(View.VISIBLE);
+                        llPerfilesOpciones.setVisibility(View.INVISIBLE);
+                    }
                     progressDialog.dismiss();
 
                 } else {
