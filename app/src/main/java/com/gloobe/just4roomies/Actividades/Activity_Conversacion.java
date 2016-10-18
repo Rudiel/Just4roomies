@@ -1,11 +1,17 @@
 package com.gloobe.just4roomies.Actividades;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -13,6 +19,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -33,7 +40,10 @@ import com.gloobe.just4roomies.Modelos.Model_Chat_Conversacion_Mensaje;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Mensaje;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Mensaje_Response;
 import com.gloobe.just4roomies.R;
+import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,6 +79,8 @@ public class Activity_Conversacion extends AppCompatActivity {
     public static int pagina_ultima;
 
     public static ProgressBar pbEnviar;
+    private ImageView ivChatfoto;
+    private String file;
 
 
     @Override
@@ -88,6 +100,7 @@ public class Activity_Conversacion extends AppCompatActivity {
         tvChatNombre = (TextView) findViewById(R.id.tvChatNombre);
         srlCargar = (SwipeRefreshLayout) findViewById(R.id.srlCargar);
         pbEnviar = (ProgressBar) findViewById(R.id.pbEnviar);
+        ivChatfoto = (ImageView) findViewById(R.id.ivImagenChat);
 
         typeface = Typeface.createFromAsset(getAssets(), "fonts/MavenPro_Regular.ttf");
 
@@ -147,6 +160,13 @@ public class Activity_Conversacion extends AppCompatActivity {
                 tvNombrePerfil.setText(bundle.getString("CHAT_NAME"));
 
                 dialogImage.show();
+            }
+        });
+
+        ivChatfoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadImageFromGallery();
             }
         });
     }
@@ -276,6 +296,75 @@ public class Activity_Conversacion extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    private void loadImageFromGallery() {
+        //Creamos un intent para abrir aplicaciones como galeria, google photos etc
+        /*Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, LOAD_IMAGE_CODE);*/
+        Intent intent = CropImage.getPickImageChooserIntent(this);
+        startActivityForResult(intent, CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE);
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == this.RESULT_OK) {
+            Uri imageUri = CropImage.getPickImageResultUri(this, data);
+
+            // For API >= 23 we need to check specifically that we have permissions to read external storage.
+            if (CropImage.isReadExternalStoragePermissionsRequired(this, imageUri)) {
+                // request permissions and handle the result in onRequestPermissionsResult()
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, CropImage.PICK_IMAGE_PERMISSIONS_REQUEST_CODE);
+            } else {
+                // no permissions required or already grunted, can start crop image activity
+                startCropImageActivity(imageUri);
+            }
+        }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == this.RESULT_OK) {
+
+                Uri resultUri = result.getUri();
+                file = resultUri.getPath();
+
+
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
+        }
+
+    }
+
+    private void startCropImageActivity(Uri imageUri) {
+        Intent intent = CropImage.activity(imageUri)
+                .setBorderLineColor(getResources().getColor(R.color.naranja_degradado))
+                .setBackgroundColor(getResources().getColor(R.color.naranja_degradado_transparente))
+                .setActivityTitle(getString(R.string.app_name))
+                .getIntent(this);
+        startActivityForResult(intent, CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE);
+    }
+
+    private String convertImagetoBase64(String imagePath) {
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+
+        options.inSampleSize = 2;
+        options.inPurgeable = true;
+
+        Bitmap bm = BitmapFactory.decodeFile(imagePath, options);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG, 75, baos); //bm is the bitmap object
+        byte[] b = baos.toByteArray();
+
+        return Base64.encodeToString(b, Base64.DEFAULT);
+
     }
 
 
