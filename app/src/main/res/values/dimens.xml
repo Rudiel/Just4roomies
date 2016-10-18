@@ -18,13 +18,15 @@
     <dimen name="perfil_card_imagen">260dp</dimen>
     <dimen name="perfil_card_personalidad">30dp</dimen>
     <dimen name="perfil_card_textoSobreMi">14sp</dimen>
-    <dimen name="perfil_galeria_image">300dp</dimen>
+    <dimen name="perfil_galeria_image">350dp</dimen>
 
     <dimen name="ofrecerhabitacion_et_precio">250dp</dimen>
 
     <dimen name="ajustes_bt_guardar">200dp</dimen>
     <dimen name="ajustes_titulo">40sp</dimen>
     <dimen name="ajustes_texto">16sp</dimen>
+    <integer name="perfil_descripcion">4</integer>
+
 
 
 </resources>

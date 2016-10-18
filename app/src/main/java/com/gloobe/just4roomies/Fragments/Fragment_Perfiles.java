@@ -305,6 +305,8 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
         amueblado.setVisibility(View.INVISIBLE);
         disponible.setVisibility(View.INVISIBLE);
 
+        descripcion.setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
+
         descripcion.setText(((Activity_Principal_Fragment) getActivity()).arrRomies.get(position).getProfile().getComments());
 
         if (arrImagenes.size() > 0) {
@@ -405,6 +407,11 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
                                 TextView amueblado = (TextView) dialogGaleria.findViewById(R.id.tvGaleriaAmueblado);
                                 TextView disponible = (TextView) dialogGaleria.findViewById(R.id.tvGaleriaDisponible);
                                 final ImageView ivPuntos = (ImageView) dialogGaleria.findViewById(R.id.ivPuntos);
+
+                                amueblado.setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
+                                precio.setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
+                                disponible.setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
+
 
                                 precio.setText("$" + room.getPrice());
                                 if (room.getFurnished().equals("true"))

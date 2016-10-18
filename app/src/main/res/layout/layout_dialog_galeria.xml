@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="20dp"
             android:text="Amueblado"
             android:textAppearance="?android:textAppearanceSmall"
             android:textColor="@android:color/white"
@@ -46,7 +46,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="20dp"
             android:text="Amueblado"
             android:textAppearance="?android:textAppearanceSmall"
             android:textColor="@android:color/white"
@@ -63,8 +63,10 @@
 
         <View
             android:id="@+id/viewDialog"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/perfil_galeria_image"
             android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_above="@id/tvGaleriaAmueblado"
             android:layout_marginBottom="10dp"
             android:background="@android:color/white" />
@@ -90,7 +92,7 @@
         android:layout_height="@dimen/perfil_galeria_image"
         android:layout_below="@id/vpDialogCarrusel"
         android:layout_centerInParent="true"
-        android:layout_margin="20dp">
+        android:layout_marginBottom="20dp">
 
         <TextView
             android:id="@+id/tvDescripcion"

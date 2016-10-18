@@ -68,7 +68,7 @@
                 android:id="@+id/ivEliminar"
                 android:layout_width="@dimen/perfil_bt_aceptado"
                 android:layout_height="@dimen/perfil_bt_aceptado"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="15dp"
                 android:src="@drawable/ic_rechazado" />
 
 
@@ -82,7 +82,7 @@
                 android:id="@+id/ivAgregar"
                 android:layout_width="@dimen/perfil_bt_aceptado"
                 android:layout_height="@dimen/perfil_bt_aceptado"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:src="@drawable/ic_aceptado" />
         </LinearLayout>
 

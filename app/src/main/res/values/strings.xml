@@ -96,5 +96,16 @@
     <string name="solicitud_dialogo_mensaje_bien">Has aceptado la solicitud.</string>
     <string name="solicitud_dialogo_mensaje_mal">Has rechazado la solicitud.</string>
 
+    <string name="menu_editarperfil">Editar Perfil</string>
+    <string name="menu_buscarroomie">Buscar Roomie</string>
+    <string name="menu_chats_conexiones">Chats/Conexiones</string>
+    <string name="menu_ofrecerhabitacion">Ofrecer Habitación</string>
+    <string name="menu_ajustes">Ajustes</string>
+    <string name="menu_invitar_amigos">Invitar Amigos</string>
+    <string name="menu_calificarapp">Calificar App</string>
+    <string name="menu_cerrarsesion">Cerrar Sesión</string>
+    <string name="menu_contactanos">Contáctanos</string>
+
+
 
 </resources>

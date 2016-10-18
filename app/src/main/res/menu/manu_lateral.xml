@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <group>
 
         <item
             android:id="@+id/menu_editarperfil"
             android:checked="false"
             android:icon="@drawable/menu_editarperfil"
-            android:title="Editar Perfil" />
+            android:title="@string/menu_editarperfil" />
 
         <item
             android:id="@+id/menu_buscarroomie"
             android:checked="false"
             android:icon="@drawable/ic_serach_menu"
-            android:title="Buscar Roomie" />
+            android:title="@string/menu_buscarroomie" />
 
         <item
             android:id="@+id/menu_chats"
             android:checked="false"
             android:icon="@drawable/tab_chat_active"
-            android:title="Chats/Conexioness" />
+            android:title="@string/menu_chats_conexiones" />
 
         <item
             android:id="@+id/menu_ofrecer"
             android:checked="false"
             android:icon="@drawable/ic_ofrecer_habitacion"
-            android:title="Ofrecer habitacion" />
+            android:title="@string/menu_ofrecerhabitacion" />
 
         <item
             android:id="@+id/menu_ajustes"
             android:checked="false"
             android:icon="@drawable/menu_ajustes"
-            android:title="Ajustes" />
+            android:title="@string/menu_ajustes" />
 
 
     </group>
@@ -43,19 +44,19 @@
                 android:id="@+id/menu_invitaramigos"
                 android:checked="false"
                 android:icon="@drawable/menu_invitaramigos"
-                android:title="Invitar Amigos" />
+                android:title="@string/menu_invitar_amigos" />
 
             <item
                 android:id="@+id/menu_calificarapp"
                 android:checked="false"
                 android:icon="@drawable/menu_calificar"
-                android:title="Calificar App" />
+                android:title="@string/menu_calificarapp" />
 
             <item
                 android:id="@+id/menu_cerrarsesion"
                 android:checked="false"
                 android:icon="@drawable/menu_salir"
-                android:title="Cerrar Sesión" />
+                android:title="@string/menu_cerrarsesion" />
         </menu>
     </item>
 
@@ -66,7 +67,7 @@
             <item
                 android:id="@+id/menu_contactanos"
                 android:icon="@drawable/tab_chat_active"
-                android:title="Contáctanos" />
+                android:title="@string/menu_contactanos" />
 
         </menu>
     </item>

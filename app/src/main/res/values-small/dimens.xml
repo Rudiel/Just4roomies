@@ -9,5 +9,6 @@
     <dimen name="perfil_bt_galeria">50dp</dimen>
     <dimen name="perfil_card_height">310dp</dimen>
     <dimen name="perfil_card_imagen">190dp</dimen>
+    <integer name="perfil_descripcion">3</integer>
 
 </resources>
