@@ -11,6 +11,7 @@ public class Model_Chat_Conversacion_Mensaje {
     private String chat_id;
     private String message;
     private String date;
+    private String type;
 
     public int getId() {
         return id;
@@ -58,5 +59,13 @@ public class Model_Chat_Conversacion_Mensaje {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

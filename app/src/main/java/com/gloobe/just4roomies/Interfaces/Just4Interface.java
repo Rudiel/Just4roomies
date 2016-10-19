@@ -3,6 +3,7 @@ package com.gloobe.just4roomies.Interfaces;
 import com.gloobe.just4roomies.Modelos.AddRoom;
 import com.gloobe.just4roomies.Modelos.AddUser;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Conversacion;
+import com.gloobe.just4roomies.Modelos.Model_Chat_Imagen;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Mensaje;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Mensaje_Response;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Response;
@@ -104,5 +105,10 @@ public interface Just4Interface {
     @Headers("Content-Type: application/json")
     @POST("deleteChat")
     Call<ResponseBody> borrarChat(@Body Model_EliminarChat id);
+
+    @Headers("Content-Type: application/json")
+    @POST("sendImage")
+    Call<Model_Chat_Mensaje_Response> sendImage(@Body Model_Chat_Imagen mensaje);
+
 
 }

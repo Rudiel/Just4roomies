@@ -5,7 +5,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
@@ -15,6 +21,11 @@ import com.gloobe.just4roomies.Actividades.Activity_Conversacion;
 import com.gloobe.just4roomies.Actividades.Activity_Principal_Fragment;
 import com.gloobe.just4roomies.Actividades.Activity_SplashMaterial;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Created by rudielavilaperaza on 03/10/16.
@@ -32,13 +43,13 @@ public class GCMIntentService extends IntentService {
         String messageType = gcm.getMessageType(intent);
 
         if (!extras.isEmpty() && GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
-            sendNotification(extras.getString("message"), extras.getString("title"), extras.getString("chat_id"));
+            sendNotification(extras.getString("message"), extras.getString("title"), extras.getString("chat_id"), extras.getString("image"), extras.getString("id_receiver"));
             Log.d("NOTIFICATION", "" + extras.toString());
         }
         GMCBroadcastReceiver.completeWakefulIntent(intent);
     }
 
-    private void sendNotification(String msg, String title, String chat_id) {
+    private void sendNotification(String msg, String title, String chat_id, String chat_photo, String user_id) {
         NotificationManager mNotificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -47,9 +58,9 @@ public class GCMIntentService extends IntentService {
         Bundle bundle = new Bundle();
 
         bundle.putInt("CHAT_ID", Integer.valueOf(chat_id));
-        bundle.putInt("USER_ID", 1);
-        bundle.putString("CHAT_PHOTO", "");
-        bundle.putString("CHAT_NAME", "");
+        bundle.putInt("USER_ID", Integer.valueOf(user_id));
+        bundle.putString("CHAT_PHOTO", chat_photo);
+        bundle.putString("CHAT_NAME", title);
 
         intent.putExtras(bundle);
 
@@ -57,11 +68,11 @@ public class GCMIntentService extends IntentService {
 
         stackBuilder.addNextIntentWithParentStack(intent);
 
-        PendingIntent pendingIntent= stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
         android.support.v4.app.NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                        .setLargeIcon(getBitmapFromURL(chat_photo))
                         .setSmallIcon(R.drawable.ic_app_notification)
                         .setContentTitle(title)
                         .setDefaults(android.support.v4.app.NotificationCompat.DEFAULT_SOUND)
@@ -74,4 +85,42 @@ public class GCMIntentService extends IntentService {
         mNotificationManager.notify(0, mBuilder.build());
     }
 
+    private Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return getCroppedBitmap(myBitmap);
+        } catch (IOException e) {
+            // Log exception
+            return null;
+
+
+        }
+    }
+
+    private Bitmap getCroppedBitmap(Bitmap bitmap) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+                bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        // canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+        canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
+                bitmap.getWidth() / 2, paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+        //Bitmap _bmp = Bitmap.createScaledBitmap(output, 60, 60, false);
+        //return _bmp;
+        return output;
+    }
 }

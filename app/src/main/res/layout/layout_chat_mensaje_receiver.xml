@@ -1,23 +1,35 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginRight="40dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:background="@drawable/bubble_chat_receive"
-        android:elevation="5dp"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:background="@drawable/buuble_receiver"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="15dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/naranja_fuerte" />
+            android:textColor="@color/naranja_degradado"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="@dimen/dialog_profilepicture"
+            android:layout_height="@dimen/dialog_profilepicture"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/activo_false_activo"
+            android:visibility="gone" />
     </LinearLayout>
 
 </RelativeLayout>

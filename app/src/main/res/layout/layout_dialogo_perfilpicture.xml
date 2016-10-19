@@ -11,6 +11,7 @@
         android:layout_centerInParent="true" />
 
     <RelativeLayout
+        android:id="@+id/rlDialogoTexto"
         android:layout_width="@dimen/dialog_profilepicture"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/ivProfilePicture"

@@ -26,6 +26,7 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -34,9 +35,11 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.Target;
 import com.gloobe.just4roomies.Adaptadores.Adapter_Chat;
+import com.gloobe.just4roomies.Interfaces.Interface_ChatImagen;
 import com.gloobe.just4roomies.Interfaces.Just4Interface;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Conversacion;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Conversacion_Mensaje;
+import com.gloobe.just4roomies.Modelos.Model_Chat_Imagen;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Mensaje;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Mensaje_Response;
 import com.gloobe.just4roomies.R;
@@ -190,7 +193,27 @@ public class Activity_Conversacion extends AppCompatActivity {
                         pagina_actual = response.body().getCurrent_page();
                         pagina_ultima = response.body().getLast_page();
                         listMensajes = response.body().getData();
-                        adapter_chat = new Adapter_Chat(context, listMensajes, typeface, user_id);
+                        adapter_chat = new Adapter_Chat(context, listMensajes, typeface, user_id, new Interface_ChatImagen() {
+                            @Override
+                            public void clicImagen(View view, int position) {
+                                final Dialog dialogImage = new Dialog(context);
+                                dialogImage.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+                                dialogImage.setContentView(R.layout.layout_dialogo_perfilpicture);
+
+                                dialogImage.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+
+                                final ImageView ivImagenPerfil = (ImageView) dialogImage.findViewById(R.id.ivProfilePicture);
+                                final RelativeLayout rlDialogImage = (RelativeLayout) dialogImage.findViewById(R.id.rlDialogoTexto);
+
+                                rlDialogImage.setVisibility(View.INVISIBLE);
+
+                                Glide.with(context).load(listMensajes.get(position).getMessage()).centerCrop().into(ivImagenPerfil);
+
+                                dialogImage.show();
+                            }
+                        });
                         recyclerView.setAdapter(adapter_chat);
                     }
                 } else {
@@ -333,6 +356,8 @@ public class Activity_Conversacion extends AppCompatActivity {
 
                 Uri resultUri = result.getUri();
                 file = resultUri.getPath();
+                if (file != null && !file.equals(""))
+                    sendImage();
 
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
@@ -360,10 +385,53 @@ public class Activity_Conversacion extends AppCompatActivity {
 
         Bitmap bm = BitmapFactory.decodeFile(imagePath, options);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 75, baos); //bm is the bitmap object
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
         byte[] b = baos.toByteArray();
 
         return Base64.encodeToString(b, Base64.DEFAULT);
+
+    }
+
+    private void sendImage() {
+
+        pbEnviar.setVisibility(View.VISIBLE);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getResources().getString(R.string.url_base))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Just4Interface service = retrofit.create(Just4Interface.class);
+
+        Model_Chat_Imagen model_chat_imagen = new Model_Chat_Imagen();
+        model_chat_imagen.setChat_id(chat_id);
+        model_chat_imagen.setImage(convertImagetoBase64(file));
+        model_chat_imagen.setUser_id_send(user_id);
+
+        Call<Model_Chat_Mensaje_Response> imageCall = service.sendImage(model_chat_imagen);
+
+        imageCall.enqueue(new Callback<Model_Chat_Mensaje_Response>() {
+            @Override
+            public void onResponse(Call<Model_Chat_Mensaje_Response> call, Response<Model_Chat_Mensaje_Response> response) {
+                if (response.code() == 200) {
+                    //recargo
+                    getConversacion(chat_id, user_id, Activity_Conversacion.this);
+                    etMenssage.setText("");
+                    pbEnviar.setVisibility(View.INVISIBLE);
+                    fabSendMessage.setEnabled(true);
+                    pbEnviar.setVisibility(View.INVISIBLE);
+                } else {
+                    //muestro error
+                    pbEnviar.setVisibility(View.INVISIBLE);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Model_Chat_Mensaje_Response> call, Throwable t) {
+
+            }
+        });
 
     }
 
@@ -379,4 +447,5 @@ public class Activity_Conversacion extends AppCompatActivity {
         super.onStop();
         isActive = false;
     }
+
 }
