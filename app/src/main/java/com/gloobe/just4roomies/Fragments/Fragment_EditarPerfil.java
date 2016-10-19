@@ -583,8 +583,6 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
 
         String gson = new Gson().toJson(usuario);
 
-        Log.d("EDITARPERFIL", gson);
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.url_base))
                 .addConverterFactory(GsonConverterFactory.create())

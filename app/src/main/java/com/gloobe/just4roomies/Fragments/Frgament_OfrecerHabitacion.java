@@ -485,14 +485,14 @@ public class Frgament_OfrecerHabitacion extends Fragment {
                         } else {
                             AddRoom room = new AddRoom();
                         }
-                        mostrarAlerta("Ofrecer Habitacion", "Habitación guardada con éxito");
+                        mostrarAlerta(getString(R.string.ofrecer_alerta_titulo), getString(R.string.ofrecer_alerta_mensaje_bien));
                     }
                     progressDialog.dismiss();
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    mostrarAlerta("Ofrecer Habitacion", "Ocurrió un error, vuelve a intentarlo");
+                    mostrarAlerta(getString(R.string.ofrecer_alerta_titulo), getString(R.string.ofrecer_alerta_mensaje_mal));
                     progressDialog.dismiss();
 
                 }

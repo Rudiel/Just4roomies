@@ -522,7 +522,6 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
             @Override
             public void onResponse(Call<Model_Perfiles> call, Response<Model_Perfiles> response) {
                 if (response.body() != null) {
-                    Log.d("LISTADO", response.body().toString());
                     ((Activity_Principal_Fragment) getActivity()).arrRomies = response.body().getProfiles();
                     Adapter_SwipeDeck swipeDeck = new Adapter_SwipeDeck(((Activity_Principal_Fragment) getActivity()).arrRomies, getActivity(), ((Activity_Principal_Fragment) getActivity()).typeFace, Fragment_Perfiles.this);
                     cardStack.setAdapter(swipeDeck);
@@ -536,18 +535,15 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
                         llPerfilesacabados.setVisibility(View.VISIBLE);
                         llPerfilesOpciones.setVisibility(View.INVISIBLE);
                     }
-
                     progressDialog.dismiss();
 
                 } else {
-                    Log.d("LISTADO_MAL", response.body().toString());
                     progressDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<Model_Perfiles> call, Throwable t) {
-                Log.d("LISTADO_MAL", t.toString());
                 progressDialog.dismiss();
             }
         });
@@ -621,7 +617,6 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
                 } else {
                     //No se pudo enviar la solicitud
                     //Toast.makeText(getActivity(), "Solicitud no enviada", Toast.LENGTH_SHORT).show();
-
                 }
             }
 

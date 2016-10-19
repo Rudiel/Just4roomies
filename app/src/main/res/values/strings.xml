@@ -5,6 +5,8 @@
 
     <string name="facebook_app_id">1068183313241785</string>
 
+    <string name="revisar_conexion">Por favor revisa tu conexión a internet e intenta nuevamente</string>
+
     <string name="guardar_button">Guardar</string>
     <string name="genero_dialog">Género</string>
     <string name="roomies_dialog">Roomies</string>
@@ -105,7 +107,6 @@
     <string name="menu_calificarapp">Calificar App</string>
     <string name="menu_cerrarsesion">Cerrar Sesión</string>
     <string name="menu_contactanos">Contáctanos</string>
-
 
 
 </resources>

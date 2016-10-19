@@ -86,7 +86,6 @@ public class Activity_SplashMaterial extends AppCompatActivity {
             } else
                 iniciarSesion();
         } else {
-            Log.i(TAG, "No valid Google Play Services APK found.");
         }
     }
 
@@ -110,7 +109,6 @@ public class Activity_SplashMaterial extends AppCompatActivity {
         final SharedPreferences prefs = getGCMPreferences(context);
         String registrationId = prefs.getString(PROPERTY_REG_ID, "");
         if (registrationId.isEmpty()) {
-            Log.i(TAG, "Registration not found.");
             return "";
         }
         // Check if app was updated; if so, it must clear the registration ID
@@ -119,7 +117,6 @@ public class Activity_SplashMaterial extends AppCompatActivity {
         int registeredVersion = prefs.getInt(PROPERTY_APP_VERSION, Integer.MIN_VALUE);
         int currentVersion = getAppVersion(context);
         if (registeredVersion != currentVersion) {
-            Log.i(TAG, "App version changed.");
             return "";
         }
         return registrationId;
@@ -182,7 +179,6 @@ public class Activity_SplashMaterial extends AppCompatActivity {
     private void storeRegistrationId(Context context, String regId) {
         final SharedPreferences prefs = getGCMPreferences(context);
         int appVersion = getAppVersion(context);
-        Log.i(TAG, "Saving regId on app version " + appVersion);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(PROPERTY_REG_ID, regId);
         editor.putInt(PROPERTY_APP_VERSION, appVersion);
@@ -250,8 +246,8 @@ public class Activity_SplashMaterial extends AppCompatActivity {
 
     private void mostrarDialogo() {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-        builder.setMessage("Revisa tu conexion a internet e intenta nuevamente")
-                .setTitle("Just4Roomies");
+        builder.setMessage(getString(R.string.revisar_conexion))
+                .setTitle(getString(R.string.app_name));
 
         final android.app.AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);

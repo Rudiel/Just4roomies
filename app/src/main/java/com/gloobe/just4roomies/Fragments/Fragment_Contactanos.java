@@ -113,7 +113,7 @@ public class Fragment_Contactanos extends Fragment {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 progressDialog.dismiss();
-                mostrarAlerta("Contacto", "Ocurrió un error, Intente Nuevamente");
+                mostrarAlerta(getString(R.string.contacto_dialog_titulo), getString(R.string.contacto_dialog_mensaje_mal));
             }
         });
 

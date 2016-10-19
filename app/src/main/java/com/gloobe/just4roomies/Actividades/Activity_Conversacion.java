@@ -30,10 +30,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.bumptech.glide.request.target.Target;
 import com.gloobe.just4roomies.Adaptadores.Adapter_Chat;
 import com.gloobe.just4roomies.Interfaces.Interface_ChatImagen;
 import com.gloobe.just4roomies.Interfaces.Just4Interface;
@@ -46,7 +43,6 @@ import com.gloobe.just4roomies.R;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

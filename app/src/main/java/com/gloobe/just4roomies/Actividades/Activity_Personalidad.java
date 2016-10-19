@@ -173,7 +173,6 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
                 registerInBackground();
             }
         } else {
-            Log.i(TAG, "No valid Google Play Services APK found.");
         }
 
         buildGoogleApiClient();
@@ -749,7 +748,6 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
         final SharedPreferences prefs = getGCMPreferences(context);
         String registrationId = prefs.getString(PROPERTY_REG_ID, "");
         if (registrationId.isEmpty()) {
-            Log.i(TAG, "Registration not found.");
             return "";
         }
         // Check if app was updated; if so, it must clear the registration ID
@@ -758,7 +756,6 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
         int registeredVersion = prefs.getInt(PROPERTY_APP_VERSION, Integer.MIN_VALUE);
         int currentVersion = getAppVersion(context);
         if (registeredVersion != currentVersion) {
-            Log.i(TAG, "App version changed.");
             return "";
         }
         return registrationId;
@@ -905,7 +902,6 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
                 }
                 regid = gcm.register(SENDER_ID);
                 msg = "Device registered, registration ID=" + regid;
-                Log.d(TAG, msg);
                 storeRegistrationId(context, regid);
 
             } catch (IOException ex) {
@@ -918,7 +914,6 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
     private void storeRegistrationId(Context context, String regId) {
         final SharedPreferences prefs = getGCMPreferences(context);
         int appVersion = getAppVersion(context);
-        Log.i(TAG, "Saving regId on app version " + appVersion);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(PROPERTY_REG_ID, regId);
         editor.putInt(PROPERTY_APP_VERSION, appVersion);
