@@ -128,6 +128,7 @@
             <RelativeLayout
                 android:id="@+id/rlPersonalidadNacionalidadTest"
                 style="@style/Edittext_Personalidad"
+                android:visibility="gone"
                 android:layout_below="@id/rlPersonalidadNacionalidad"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"

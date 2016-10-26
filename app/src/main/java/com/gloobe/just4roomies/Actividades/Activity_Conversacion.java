@@ -30,7 +30,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.Target;
 import com.gloobe.just4roomies.Adaptadores.Adapter_Chat;
 import com.gloobe.just4roomies.Interfaces.Interface_ChatImagen;
 import com.gloobe.just4roomies.Interfaces.Just4Interface;
@@ -152,8 +155,23 @@ public class Activity_Conversacion extends AppCompatActivity {
 
                 final ImageView ivImagenPerfil = (ImageView) dialogImage.findViewById(R.id.ivProfilePicture);
                 final TextView tvNombrePerfil = (TextView) dialogImage.findViewById(R.id.tvProfileName);
+                final ProgressBar pbImagenPerfil = (ProgressBar) dialogImage.findViewById(R.id.pbImagenesChat);
 
-                Glide.with(Activity_Conversacion.this).load(bundle.get("CHAT_PHOTO")).centerCrop().into(ivImagenPerfil);
+                //Glide.with(Activity_Conversacion.this).load(bundle.get("CHAT_PHOTO")).centerCrop().into(ivImagenPerfil);
+                pbImagenPerfil.setVisibility(View.VISIBLE);
+
+                Glide.with(Activity_Conversacion.this).load(bundle.get("CHAT_PHOTO").toString()).centerCrop().listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        pbImagenPerfil.setVisibility(View.GONE);
+                        return false;
+                    }
+                }).into(ivImagenPerfil);
 
                 tvNombrePerfil.setTypeface(typeface);
                 tvNombrePerfil.setText(bundle.getString("CHAT_NAME"));
@@ -202,11 +220,23 @@ public class Activity_Conversacion extends AppCompatActivity {
 
                                 final ImageView ivImagenPerfil = (ImageView) dialogImage.findViewById(R.id.ivProfilePicture);
                                 final RelativeLayout rlDialogImage = (RelativeLayout) dialogImage.findViewById(R.id.rlDialogoTexto);
+                                final ProgressBar pbImagenChat =(ProgressBar) dialogImage.findViewById(R.id.pbImagenesChat);
 
                                 rlDialogImage.setVisibility(View.INVISIBLE);
+                                pbImagenChat.setVisibility(View.VISIBLE);
 
-                                Glide.with(context).load(listMensajes.get(position).getMessage()).centerCrop().into(ivImagenPerfil);
+                                Glide.with(context).load(listMensajes.get(position).getMessage()).centerCrop().listener(new RequestListener<String, GlideDrawable>() {
+                                    @Override
+                                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                                        return false;
+                                    }
 
+                                    @Override
+                                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                                        pbImagenChat.setVisibility(View.GONE);
+                                        return false;
+                                    }
+                                }).into(ivImagenPerfil);
                                 dialogImage.show();
                             }
                         });

@@ -8,7 +8,9 @@
         android:id="@+id/ivProfilePicture"
         android:layout_width="@dimen/dialog_profilepicture"
         android:layout_height="@dimen/dialog_profilepicture_h"
-        android:layout_centerInParent="true" />
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/rlDialogoTexto"
+        android:layout_alignStart="@+id/rlDialogoTexto" />
 
     <RelativeLayout
         android:id="@+id/rlDialogoTexto"
@@ -28,5 +30,13 @@
             android:textColor="@android:color/white" />
 
     </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/pbImagenesChat"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
 
 </RelativeLayout>

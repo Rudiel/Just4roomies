@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -138,6 +139,9 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
 
         final ImageView ivImagenPerfil = (ImageView) dialogImage.findViewById(R.id.ivProfilePicture);
         final TextView tvNombrePerfil = (TextView) dialogImage.findViewById(R.id.tvProfileName);
+        final ProgressBar pbImagenPerfil = (ProgressBar) dialogImage.findViewById(R.id.pbImagenesChat);
+
+        pbImagenPerfil.setVisibility(View.VISIBLE);
 
         Glide.with(getActivity()).load(((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getData_user().getUrlphoto()).centerCrop().listener(new RequestListener<String, GlideDrawable>() {
             @Override
@@ -147,7 +151,7 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
 
             @Override
             public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                //pbHabitacion1.setVisibility(View.GONE);
+                pbImagenPerfil.setVisibility(View.GONE);
                 return false;
             }
         }).into(ivImagenPerfil);

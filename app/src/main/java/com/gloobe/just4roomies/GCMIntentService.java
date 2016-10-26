@@ -43,7 +43,12 @@ public class GCMIntentService extends IntentService {
         String messageType = gcm.getMessageType(intent);
 
         if (!extras.isEmpty() && GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
-            sendNotification(extras.getString("message"), extras.getString("title"), extras.getString("chat_id"), extras.getString("image"), extras.getString("id_receiver"));
+            if(extras.getString("message").equals("Tienes una solicitud de chat")){
+                //solo inicio la aplicacion
+                sendNotificationSolicitud(extras.getString("message"), extras.getString("title"), extras.getString("image"));
+            }else {
+                sendNotification(extras.getString("message"), extras.getString("title"), extras.getString("chat_id"), extras.getString("image"), extras.getString("id_receiver"));
+            }
             Log.d("NOTIFICATION", "" + extras.toString());
         }
         GMCBroadcastReceiver.completeWakefulIntent(intent);
@@ -63,6 +68,33 @@ public class GCMIntentService extends IntentService {
         bundle.putString("CHAT_NAME", title);
 
         intent.putExtras(bundle);
+
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+
+        stackBuilder.addNextIntentWithParentStack(intent);
+
+        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        android.support.v4.app.NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setLargeIcon(getBitmapFromURL(chat_photo))
+                        .setSmallIcon(R.drawable.ic_app_notification)
+                        .setContentTitle(title)
+                        .setDefaults(android.support.v4.app.NotificationCompat.DEFAULT_SOUND)
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(msg))
+                        .setAutoCancel(true)
+                        .setContentText(msg);
+
+        mBuilder.setContentIntent(pendingIntent);
+        mNotificationManager.notify(0, mBuilder.build());
+    }
+
+    private void sendNotificationSolicitud(String msg, String title, String chat_photo){
+        NotificationManager mNotificationManager = (NotificationManager)
+                this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Intent intent = new Intent(this, Activity_SplashMaterial.class);
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 
