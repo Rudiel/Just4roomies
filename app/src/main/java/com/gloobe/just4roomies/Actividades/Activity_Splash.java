@@ -81,7 +81,8 @@ public class Activity_Splash extends AppCompatActivity {
 
                                 Gson gson = new Gson();
 
-                                Intent intent = new Intent(Activity_Splash.this, Activity_Principal_Fragment.class);
+                                //Intent intent = new Intent(Activity_Splash.this, Activity_Principal_Fragment.class);
+                                Intent intent = new Intent(Activity_Splash.this, Activity_Personalidad.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.putExtra("obj", gson.toJson(response.body()));
                                 startActivity(intent);

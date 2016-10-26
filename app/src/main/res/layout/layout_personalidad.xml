@@ -126,9 +126,37 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rlPersonalidadIdioma"
+                android:id="@+id/rlPersonalidadNacionalidadTest"
                 style="@style/Edittext_Personalidad"
                 android:layout_below="@id/rlPersonalidadNacionalidad"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/ivPersonalidadNacionalidadHintTest"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/edt_hint_nacionalidad" />
+
+                <Button
+                    android:id="@+id/etPersonalidad_NacionalidadTest"
+                    android:layout_width="@dimen/ofrecerhabitacion_et_precio"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/ivPersonalidadNacionalidadHintTest"
+                    android:background="@null"
+                    android:text="Nacionalidad"
+                    android:textColor="@color/naranja_degradado"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlPersonalidadIdioma"
+                style="@style/Edittext_Personalidad"
+                android:layout_below="@id/rlPersonalidadNacionalidadTest"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp">

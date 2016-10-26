@@ -62,7 +62,7 @@ public class Fragment_Chat extends Fragment {
         chats.enqueue(new Callback<Model_Chat_Response>() {
             @Override
             public void onResponse(Call<Model_Chat_Response> call, Response<Model_Chat_Response> response) {
-                if (response.body() != null) {
+                if (response.body().getCode()==200) {
 
                     ((Activity_Principal_Fragment) getActivity()).arrChats = response.body().getList();
                     ((Activity_Principal_Fragment) getActivity()).arrSolicitudes = response.body().getListRequest();

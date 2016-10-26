@@ -38,5 +38,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:9.4.0'
     compile 'com.google.android.gms:play-services-places:9.4.0'
     compile 'com.dmitrymalkovich.android:progress-fab:1.6'
+    compile 'com.github.mukeshsolanki:country-picker-android:1.1.6'
+
 
 }

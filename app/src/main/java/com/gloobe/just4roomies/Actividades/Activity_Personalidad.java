@@ -75,6 +75,8 @@ import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.gson.Gson;
+import com.mukesh.countrypicker.fragments.CountryPicker;
+import com.mukesh.countrypicker.interfaces.CountryPickerListener;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
@@ -95,7 +97,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Activity_Personalidad extends AppCompatActivity implements LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, Interface_RecyclerView_Sugerencia {
 
     private EditText etNombre, etIdioma, etEdad, etNacionalidad, etPersonalidad_Ubicacion;
-    private Button btGuardar;
+    private Button btGuardar, btNacionalidad;
     private ImageView ivImagenPersonalidad, ivFondo, ivPersonalidadUbicacionHint;
 
     private ImageView ivEstudiasTrue, ivEstudiasFalse;
@@ -210,6 +212,7 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
         etPersonalidad_Ubicacion = (EditText) findViewById(R.id.etPersonalidad_Ubicacion);
         ivPersonalidadUbicacionHint = (ImageView) findViewById(R.id.ivPersonalidadUbicacionHint);
         pbPersonalidadUbicacion = (ProgressBar) findViewById(R.id.pbPersonalidadUbicacion);
+        btNacionalidad = (Button) findViewById(R.id.etPersonalidad_NacionalidadTest);
 
         Glide.with(this).load(R.drawable.bg_perfil).centerCrop().into(ivFondo);
 
@@ -459,6 +462,22 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
 
         progressDialog = new ProgressDialog(this, R.style.MyTheme);
         progressDialog.setCancelable(false);
+
+        btNacionalidad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CountryPicker picker = CountryPicker.newInstance("Select Country");
+                picker.show(getSupportFragmentManager(), "COUNTRY_PICKER");
+                picker.setListener(new CountryPickerListener() {
+                    @Override
+                    public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
+                        // Implement your code here
+                        Toast.makeText(Activity_Personalidad.this, name, Toast.LENGTH_SHORT).show();
+                        picker.dismiss();
+                    }
+                });
+            }
+        });
 
 
         adapter_placesAutoComplete = new Adapter_PlacesAutoComplete(this, R.layout.layout_autocomplete, mGoogleApiClient, BOUNDS_MEX, null, Activity_Personalidad.this, typeface);

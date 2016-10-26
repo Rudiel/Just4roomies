@@ -347,7 +347,8 @@ public class Activity_Login extends AppCompatActivity {
                     progressDialog.dismiss();
 
                     Gson gson = new Gson();
-                    Intent intent = new Intent(Activity_Login.this, Activity_Principal_Fragment.class);
+                    //Intent intent = new Intent(Activity_Login.this, Activity_Principal_Fragment.class);
+                    Intent intent = new Intent(Activity_Login.this, Activity_Personalidad.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("obj", gson.toJson(response.body()));
                     startActivity(intent);
