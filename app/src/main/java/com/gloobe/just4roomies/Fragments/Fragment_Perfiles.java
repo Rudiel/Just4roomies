@@ -131,7 +131,6 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
 
         });
 
-
         ivAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -525,6 +524,10 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
                     ((Activity_Principal_Fragment) getActivity()).arrRomies = response.body().getProfiles();
                     Adapter_SwipeDeck swipeDeck = new Adapter_SwipeDeck(((Activity_Principal_Fragment) getActivity()).arrRomies, getActivity(), ((Activity_Principal_Fragment) getActivity()).typeFace, Fragment_Perfiles.this);
                     cardStack.setAdapter(swipeDeck);
+
+                    cardStack.setLeftImage(R.id.left_image);
+                    cardStack.setRightImage(R.id.right_image);
+
                     positionRoomie = 0;
                     haveGallery();
 
@@ -568,6 +571,10 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
                     ((Activity_Principal_Fragment) getActivity()).arrRomies = response.body().getProfiles();
                     Adapter_SwipeDeck swipeDeck = new Adapter_SwipeDeck(((Activity_Principal_Fragment) getActivity()).arrRomies, getActivity(), ((Activity_Principal_Fragment) getActivity()).typeFace, Fragment_Perfiles.this);
                     cardStack.setAdapter(swipeDeck);
+
+                    cardStack.setLeftImage(R.id.left_image);
+                    cardStack.setRightImage(R.id.right_image);
+
                     positionRoomie = 0;
                     haveGallery();
 
