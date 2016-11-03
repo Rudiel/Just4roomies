@@ -43,13 +43,16 @@ public class GCMIntentService extends IntentService {
         String messageType = gcm.getMessageType(intent);
 
         if (!extras.isEmpty() && GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
-            if(extras.getString("message").equals("Tienes una solicitud de chat")){
-                //solo inicio la aplicacion
-                sendNotificationSolicitud(extras.getString("message"), extras.getString("title"), extras.getString("image"));
-            }else {
-                sendNotification(extras.getString("message"), extras.getString("title"), extras.getString("chat_id"), extras.getString("image"), extras.getString("id_receiver"));
+            try {
+                if (extras.getString("message").equals("Tienes una solicitud de chat")) {
+                    //solo inicio la aplicacion
+                    sendNotificationSolicitud(extras.getString("message"), extras.getString("title"), extras.getString("image"));
+                } else {
+                    sendNotification(extras.getString("message"), extras.getString("title"), extras.getString("chat_id"), extras.getString("image"), extras.getString("id_receiver"));
+                }
+                Log.d("NOTIFICATION", "" + extras.toString());
+            } catch (Exception e) {
             }
-            Log.d("NOTIFICATION", "" + extras.toString());
         }
         GMCBroadcastReceiver.completeWakefulIntent(intent);
     }
@@ -90,7 +93,7 @@ public class GCMIntentService extends IntentService {
         mNotificationManager.notify(0, mBuilder.build());
     }
 
-    private void sendNotificationSolicitud(String msg, String title, String chat_photo){
+    private void sendNotificationSolicitud(String msg, String title, String chat_photo) {
         NotificationManager mNotificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
 
