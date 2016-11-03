@@ -146,12 +146,11 @@ public class Activity_Conversacion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Dialog dialogImage = new Dialog(Activity_Conversacion.this);
+
                 dialogImage.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
                 dialogImage.setContentView(R.layout.layout_dialogo_perfilpicture);
-
                 dialogImage.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
+                dialogImage.getWindow().getAttributes().windowAnimations = R.style.animationdialog;
 
                 final ImageView ivImagenPerfil = (ImageView) dialogImage.findViewById(R.id.ivProfilePicture);
                 final TextView tvNombrePerfil = (TextView) dialogImage.findViewById(R.id.tvProfileName);
@@ -216,11 +215,12 @@ public class Activity_Conversacion extends AppCompatActivity {
                                 dialogImage.setContentView(R.layout.layout_dialogo_perfilpicture);
 
                                 dialogImage.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                                dialogImage.getWindow().getAttributes().windowAnimations = R.style.animationdialog;
 
 
                                 final ImageView ivImagenPerfil = (ImageView) dialogImage.findViewById(R.id.ivProfilePicture);
                                 final RelativeLayout rlDialogImage = (RelativeLayout) dialogImage.findViewById(R.id.rlDialogoTexto);
-                                final ProgressBar pbImagenChat =(ProgressBar) dialogImage.findViewById(R.id.pbImagenesChat);
+                                final ProgressBar pbImagenChat = (ProgressBar) dialogImage.findViewById(R.id.pbImagenesChat);
 
                                 rlDialogImage.setVisibility(View.INVISIBLE);
                                 pbImagenChat.setVisibility(View.VISIBLE);

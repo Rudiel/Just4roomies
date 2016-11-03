@@ -159,11 +159,11 @@ public class Fragment_Chat_Solicitudes extends Fragment implements Interface_Sol
     @Override
     public void clicImagen(View v, int position) {
         final Dialog dialogImage = new Dialog(getActivity());
+
         dialogImage.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         dialogImage.setContentView(R.layout.layout_dialogo_perfilpicture);
-
         dialogImage.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialogImage.getWindow().getAttributes().windowAnimations = R.style.animationdialog;
 
 
         final ImageView ivImagenPerfil = (ImageView) dialogImage.findViewById(R.id.ivProfilePicture);

@@ -135,7 +135,7 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
         dialogImage.setContentView(R.layout.layout_dialogo_perfilpicture);
 
         dialogImage.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
+        dialogImage.getWindow().getAttributes().windowAnimations = R.style.animationdialog;
 
         final ImageView ivImagenPerfil = (ImageView) dialogImage.findViewById(R.id.ivProfilePicture);
         final TextView tvNombrePerfil = (TextView) dialogImage.findViewById(R.id.tvProfileName);
