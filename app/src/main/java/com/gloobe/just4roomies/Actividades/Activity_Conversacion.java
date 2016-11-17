@@ -225,7 +225,7 @@ public class Activity_Conversacion extends AppCompatActivity {
                                 rlDialogImage.setVisibility(View.INVISIBLE);
                                 pbImagenChat.setVisibility(View.VISIBLE);
 
-                                Glide.with(context).load(listMensajes.get(position).getMessage()).centerCrop().listener(new RequestListener<String, GlideDrawable>() {
+                                Glide.with(context).load(listMensajes.get(position).getMessage()).listener(new RequestListener<String, GlideDrawable>() {
                                     @Override
                                     public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
                                         return false;

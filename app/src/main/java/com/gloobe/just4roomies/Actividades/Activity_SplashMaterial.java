@@ -67,6 +67,7 @@ public class Activity_SplashMaterial extends AppCompatActivity {
         progressDialog = new ProgressDialog(this, R.style.MyTheme);
         progressDialog.setCancelable(false);
 
+
         profile = Profile.getCurrentProfile();
 
         context = getApplicationContext();
@@ -146,7 +147,7 @@ public class Activity_SplashMaterial extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog.show();
+            showProgressMessage();
         }
 
         @Override
@@ -188,7 +189,7 @@ public class Activity_SplashMaterial extends AppCompatActivity {
     private void iniciarSesion() {
         if (profile != null) {
 
-            progressDialog.show();
+            showProgressMessage();
 
 
             Retrofit retrofit = new Retrofit.Builder()
@@ -268,5 +269,7 @@ public class Activity_SplashMaterial extends AppCompatActivity {
             mostrarDialogo();
     }
 
-
+    private void showProgressMessage() {
+        progressDialog.show();
+    }
 }
