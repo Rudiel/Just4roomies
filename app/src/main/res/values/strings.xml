@@ -108,5 +108,7 @@
     <string name="menu_cerrarsesion">Cerrar Sesión</string>
     <string name="menu_contactanos">Contáctanos</string>
 
+    <string name="login_iniciando">Iniciando Sesión...</string>
+
 
 </resources>

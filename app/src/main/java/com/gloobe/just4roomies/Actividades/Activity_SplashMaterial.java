@@ -8,11 +8,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
@@ -42,6 +44,8 @@ public class Activity_SplashMaterial extends AppCompatActivity {
 
     private Profile profile;
     private ProgressDialog progressDialog;
+    private Typeface typeface;
+
 
     //GMC
     public static final String PROPERTY_REG_ID = "registration_id";
@@ -67,8 +71,9 @@ public class Activity_SplashMaterial extends AppCompatActivity {
         progressDialog = new ProgressDialog(this, R.style.MyTheme);
         progressDialog.setCancelable(false);
 
-
         profile = Profile.getCurrentProfile();
+
+        typeface = Typeface.createFromAsset(getAssets(), "fonts/MavenPro_Regular.ttf");
 
         context = getApplicationContext();
 
@@ -271,5 +276,8 @@ public class Activity_SplashMaterial extends AppCompatActivity {
 
     private void showProgressMessage() {
         progressDialog.show();
+        progressDialog.setContentView(R.layout.layout_progressdialog);
+        ((TextView) progressDialog.findViewById(R.id.tvProgressMessage)).setTypeface(typeface);
+
     }
 }

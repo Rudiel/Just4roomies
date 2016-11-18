@@ -29,5 +29,8 @@
     <dimen name="dialog_profilepicture">250dp</dimen>
     <dimen name="dialog_profilepicture_h">300dp</dimen>
 
+    <dimen name="dialog_conversacionpicture">300dp</dimen>
+    <dimen name="dialog_conversacionpicture_h">400dp</dimen>
+
 
 </resources>

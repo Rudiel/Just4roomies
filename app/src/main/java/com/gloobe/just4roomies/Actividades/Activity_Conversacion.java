@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -212,18 +213,19 @@ public class Activity_Conversacion extends AppCompatActivity {
                                 final Dialog dialogImage = new Dialog(context);
                                 dialogImage.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-                                dialogImage.setContentView(R.layout.layout_dialogo_perfilpicture);
+                                dialogImage.setContentView(R.layout.layout_dialogo_conversacionimage);
+
+                                Window window = dialogImage.getWindow();
+
+                                window.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
                                 dialogImage.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                                 dialogImage.getWindow().getAttributes().windowAnimations = R.style.animationdialog;
 
 
-                                final ImageView ivImagenPerfil = (ImageView) dialogImage.findViewById(R.id.ivProfilePicture);
-                                final RelativeLayout rlDialogImage = (RelativeLayout) dialogImage.findViewById(R.id.rlDialogoTexto);
-                                final ProgressBar pbImagenChat = (ProgressBar) dialogImage.findViewById(R.id.pbImagenesChat);
+                                final ImageView ivImagenPerfil = (ImageView) dialogImage.findViewById(R.id.ivConversacionImagen);
+                                final ProgressBar pbImagenChat = (ProgressBar) dialogImage.findViewById(R.id.pbImagenesConversacion);
 
-                                rlDialogImage.setVisibility(View.INVISIBLE);
-                                pbImagenChat.setVisibility(View.VISIBLE);
 
                                 Glide.with(context).load(listMensajes.get(position).getMessage()).listener(new RequestListener<String, GlideDrawable>() {
                                     @Override

@@ -32,7 +32,7 @@ public class Adapter_RecyclerView extends RecyclerSwipeAdapter<Adapter_RecyclerV
     public static class SimpleViewHolder extends RecyclerView.ViewHolder {
 
         SwipeLayout swipeLayout;
-        TextView tvNombre;
+        TextView tvNombre,tvHora;
         LinearLayout buttonDelete;
         ImageView ivImagenPerfil;
         RelativeLayout rlContenedor;
@@ -48,6 +48,7 @@ public class Adapter_RecyclerView extends RecyclerSwipeAdapter<Adapter_RecyclerV
             ivImagenPerfil = (ImageView) itemView.findViewById(R.id.ivPerfilChatItem);
             rlContenedor = (RelativeLayout) itemView.findViewById(R.id.rlContenedorChat);
             ivEnespera = (ImageView) itemView.findViewById(R.id.ivEnespera);
+            tvHora=(TextView) itemView.findViewById(R.id.tvHora);
         }
     }
 
@@ -90,6 +91,9 @@ public class Adapter_RecyclerView extends RecyclerSwipeAdapter<Adapter_RecyclerV
             viewHolder.ivEnespera.setVisibility(View.GONE);
         else
             viewHolder.ivEnespera.setVisibility(View.VISIBLE);
+
+        viewHolder.tvHora.setText(mDataset.get(position).getDate().substring(11,16));
+        viewHolder.tvHora.setTypeface(typeface);
 
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
         viewHolder.swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
