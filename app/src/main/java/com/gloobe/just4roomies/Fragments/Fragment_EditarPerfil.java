@@ -58,6 +58,9 @@ import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.places.PlaceBuffer;
+import com.google.android.gms.location.places.PlaceDetectionApi;
+import com.google.android.gms.location.places.PlaceLikelihood;
+import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -125,6 +128,7 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
     private RecyclerView rvSugerencias;
     private LinearLayoutManager linearLayoutManager;
     private Adapter_PlacesAutoComplete adapter_placesAutoComplete;
+
 
     @Nullable
     @Override
@@ -723,13 +727,15 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
         mLocation = location;
 
         if (mLocation != null) {
-            place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
-            latitud = String.valueOf(mLocation.getLatitude());
-            longitud = String.valueOf(mLocation.getLongitude());
-            progressBarLocalizacion.setVisibility(View.INVISIBLE);
-            ivUbicacion.setVisibility(View.VISIBLE);
-            etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
-            rvSugerencias.setVisibility(View.INVISIBLE);
+            //place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
+            //latitud = String.valueOf(mLocation.getLatitude());
+            //longitud = String.valueOf(mLocation.getLongitude());
+            getCurrentLocation();
+            // progressBarLocalizacion.setVisibility(View.INVISIBLE);
+            //ivUbicacion.setVisibility(View.VISIBLE);
+            //etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
+            //etSugerencias.setText(place);
+            //rvSugerencias.setVisibility(View.INVISIBLE);
         }
 
         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, Fragment_EditarPerfil.this);
@@ -967,15 +973,18 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
                             mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
                         if (mLocation != null) {
-                            place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
-                            latitud = String.valueOf(mLocation.getLatitude());
-                            longitud = String.valueOf(mLocation.getLongitude());
-                            progressBarLocalizacion.setVisibility(View.INVISIBLE);
-                            ivUbicacion.setVisibility(View.VISIBLE);
-                            etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
-                            rvSugerencias.setVisibility(View.INVISIBLE);
-                        } else{
-                            mGoogleApiClient.connect();}
+                            //place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
+                            //latitud = String.valueOf(mLocation.getLatitude());
+                            //longitud = String.valueOf(mLocation.getLongitude());
+                            getCurrentLocation();
+                            //progressBarLocalizacion.setVisibility(View.INVISIBLE);
+                            //ivUbicacion.setVisibility(View.VISIBLE);
+                            //etSugerencias.setText(place);
+                            //etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
+                            //rvSugerencias.setVisibility(View.INVISIBLE);
+                        } else {
+                            mGoogleApiClient.connect();
+                        }
 
                         break;
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
@@ -991,6 +1000,38 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
 
             }
         });
+
+    }
+
+    private void getCurrentLocation() {
+
+        progressBarLocalizacion.setVisibility(View.VISIBLE);
+
+        if (mGoogleApiClient != null) {
+
+            if (checkLocationPermission()) {
+                PendingResult<PlaceLikelihoodBuffer> result = Places.PlaceDetectionApi.getCurrentPlace(mGoogleApiClient, null);
+                result.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
+                    @Override
+                    public void onResult(@NonNull PlaceLikelihoodBuffer placeLikelihoods) {
+                        if (placeLikelihoods.getCount() <= 0) {
+
+                        } else {
+                            //place= placeLikelihoods.get(0).getPlace().getName().toString();
+                            place = placeLikelihoods.get(0).getPlace().getAddress().toString();
+                            longitud = String.valueOf(placeLikelihoods.get(0).getPlace().getLatLng().longitude);
+                            latitud = String.valueOf(placeLikelihoods.get(0).getPlace().getLatLng().latitude);
+                            progressBarLocalizacion.setVisibility(View.INVISIBLE);
+                            ivUbicacion.setVisibility(View.VISIBLE);
+                            etSugerencias.setText(place);
+                            //etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
+                            rvSugerencias.setVisibility(View.INVISIBLE);
+
+                        }
+                    }
+                });
+            }
+        }
 
     }
 
