@@ -85,6 +85,8 @@ public class Activity_Conversacion extends AppCompatActivity {
     private ImageView ivChatfoto;
     private String file;
 
+    public static Context ctx;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -106,6 +108,8 @@ public class Activity_Conversacion extends AppCompatActivity {
         ivChatfoto = (ImageView) findViewById(R.id.ivImagenChat);
 
         typeface = Typeface.createFromAsset(getAssets(), "fonts/MavenPro_Regular.ttf");
+
+        ctx = Activity_Conversacion.this;
 
         final Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -210,7 +214,7 @@ public class Activity_Conversacion extends AppCompatActivity {
                         adapter_chat = new Adapter_Chat(context, listMensajes, typeface, user_id, new Interface_ChatImagen() {
                             @Override
                             public void clicImagen(View view, int position) {
-                                final Dialog dialogImage = new Dialog(context);
+                                final Dialog dialogImage = new Dialog(ctx);
                                 dialogImage.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
                                 dialogImage.setContentView(R.layout.layout_dialogo_conversacionimage);
@@ -475,5 +479,4 @@ public class Activity_Conversacion extends AppCompatActivity {
         super.onStop();
         isActive = false;
     }
-
 }
