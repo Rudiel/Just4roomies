@@ -71,6 +71,7 @@ import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.places.PlaceBuffer;
+import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -864,13 +865,14 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
         mLocation = location;
 
         if (mLocation != null) {
-            place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
+            /*place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
             latitud = String.valueOf(mLocation.getLatitude());
             longitud = String.valueOf(mLocation.getLongitude());
             pbPersonalidadUbicacion.setVisibility(View.INVISIBLE);
             ivPersonalidadUbicacionHint.setVisibility(View.VISIBLE);
             etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
-            rvSugerencias.setVisibility(View.INVISIBLE);
+            rvSugerencias.setVisibility(View.INVISIBLE);*/
+            getCurrentLocation();
         }
 
         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
@@ -972,13 +974,14 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
                             mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
                         if (mLocation != null) {
-                            place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
+                            /*place = obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude());
                             latitud = String.valueOf(mLocation.getLatitude());
                             longitud = String.valueOf(mLocation.getLongitude());
                             pbPersonalidadUbicacion.setVisibility(View.INVISIBLE);
                             ivPersonalidadUbicacionHint.setVisibility(View.VISIBLE);
                             etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
-                            rvSugerencias.setVisibility(View.INVISIBLE);
+                            rvSugerencias.setVisibility(View.INVISIBLE);*/
+                            getCurrentLocation();
                         } else {
                             mGoogleApiClient.connect();
                         }
@@ -1054,6 +1057,38 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
         } else {
             return true;
         }
+    }
+
+    private void getCurrentLocation() {
+
+        pbPersonalidadUbicacion.setVisibility(View.VISIBLE);
+
+        if (mGoogleApiClient != null) {
+
+            if (checkLocationPermission()) {
+                PendingResult<PlaceLikelihoodBuffer> result = Places.PlaceDetectionApi.getCurrentPlace(mGoogleApiClient, null);
+                result.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
+                    @Override
+                    public void onResult(@NonNull PlaceLikelihoodBuffer placeLikelihoods) {
+                        if (placeLikelihoods.getCount() <= 0) {
+
+                        } else {
+                            //place= placeLikelihoods.get(0).getPlace().getName().toString();
+                            place = placeLikelihoods.get(0).getPlace().getAddress().toString();
+                            longitud = String.valueOf(placeLikelihoods.get(0).getPlace().getLatLng().longitude);
+                            latitud = String.valueOf(placeLikelihoods.get(0).getPlace().getLatLng().latitude);
+                            pbPersonalidadUbicacion.setVisibility(View.INVISIBLE);
+                            ivPersonalidadUbicacionHint.setVisibility(View.VISIBLE);
+                            etSugerencias.setText(place);
+                            //etSugerencias.setText(obtenerNombreCiudad(mLocation.getLatitude(), mLocation.getLongitude()));
+                            rvSugerencias.setVisibility(View.INVISIBLE);
+
+                        }
+                    }
+                });
+            }
+        }
+
     }
 
 

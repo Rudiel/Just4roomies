@@ -535,7 +535,9 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
                         llPerfilesacabados.setVisibility(View.INVISIBLE);
                         llPerfilesOpciones.setVisibility(View.VISIBLE);
                     } else {
+                        //llPerfilesacabados.setVisibility(View.VISIBLE);
                         llPerfilesacabados.setVisibility(View.VISIBLE);
+                        ((TextView)getActivity().findViewById(R.id.tvTeAcabasteRoomies)).setText(getString(R.string.buscarroomie_nohayperfiles));
                         llPerfilesOpciones.setVisibility(View.INVISIBLE);
                     }
                     progressDialog.dismiss();
