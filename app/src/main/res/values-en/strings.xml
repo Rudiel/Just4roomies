@@ -47,6 +47,8 @@
     <string name="buscarroomie_buscoroomieyhabitacion">Looking Roomie and Room</string>
     <string name="buscarroomie_buscohabitacion">Looking for Room</string>
     <string name="buscarroomie_ofrezcohabitacion">Room offer</string>
+    <string name="buscarroomie_nohayperfiles">There are currently no roommates available in this area</string>
+    <string name="buscrarommie_buscarotrazona">Search in another area</string>
 
     <string name="ofrecer_cuandoestara">When will it be available?</string>
     <string name="ofrecer_precio_hint">Price</string>
