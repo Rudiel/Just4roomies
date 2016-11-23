@@ -1,0 +1,112 @@
+<resources>
+    <string name="app_name">Just4Roomies</string>
+
+    <string name="url_base">http://fremonweb.com/just4rommies/api/</string>
+
+    <string name="facebook_app_id">1068183313241785</string>
+
+    <string name="revisar_conexion">Please check your Internet connection and try again</string>
+
+    <string name="guardar_button">Save</string>
+    <string name="genero_dialog">Gender</string>
+    <string name="roomies_dialog">Roommates</string>
+    <string name="reiniciar_dialog">Reset Selection</string>
+    <string name="aplicar_dialog">Apply Filter</string>
+    <string name="sobremi_perfil">About Me</string>
+
+    <string name="invitar_amigos">Connect with people around the world and find the Roomie ideal! http://just4roomies.com/ </string>
+
+    <string name="login_bt_face_hint">Log in with Facebook</string>
+    <string name="login_terminos">When you log you agree to our <u>Terms</u> and <u>Conditions</u></string>
+
+    <string name="personalidad_nombre_hint">Name</string>
+    <string name="personalidad_nacionalidad_hint">Nationality</string>
+    <string name="personalidad_idioma_hint">Language</string>
+    <string name="personalidad_edad_hint">Age</string>
+    <string name="personalidad_tv_personalidad">Personality</string>
+    <string name="personalidad_fumas">Do you smoke?</string>
+    <string name="personalidad_mascotas">Have pets?</string>
+    <string name="personalidad_activo">Are you active?</string>
+    <string name="personalidad_dedicacion">Do you study?</string>
+    <string name="personalidad_fiestero">Do you drink?</string>
+    <string name="personalidad_cocinas">Do you cook?</string>
+    <string name="personalidad_guardar">Save</string>
+    <string name="personalidad_ubicacion">Where are you looking for roommates?</string>
+    <string name="personalidad_ubicacion_hint">Location</string>
+    <string name="personalidad_dialogo_titulo">Add User</string>
+    <string name="personalidad_dailogo_bien"></string>
+    <string name="personalidad_dailogo_mal">The user has not been created, try again</string>
+    <string name="personalidad_agregar_dialogo_nombre">The Name field is empty</string>
+    <string name="personalidad_agregar_dialogo_nacionalidad">The field is empty Nationality</string>
+    <string name="personalidad_agregar_dialogo_idioma">The Language field is empty</string>
+    <string name="personalidad_agregar_dialogo_edad">The Age field is empty</string>
+
+    <string name="buscarroomie_listos">Ready to find your ideal roomie?</string>
+    <string name="buscarroomie_et_hint">Where would you like to search?</string>
+    <string name="buscarroomie_situacion">Current situation</string>
+    <string name="buscarroomie_buscoroomieyhabitacion">Looking Roomie and Room</string>
+    <string name="buscarroomie_buscohabitacion">Looking for Room</string>
+    <string name="buscarroomie_ofrezcohabitacion">Room offer</string>
+
+    <string name="ofrecer_cuandoestara">When will it be available?</string>
+    <string name="ofrecer_precio_hint">Price</string>
+    <string name="ofrecer_amueblado">Furnished</string>
+    <string name="ofrecer_noamueblado">No Furnished</string>
+    <string name="ofrecer_alerta_titulo">Offer Room</string>
+    <string name="ofrecer_alerta_mensaje_bien">Successfully saved room</string>
+    <string name="ofrecer_alerta_mensaje_mal">An error occurred, please try again</string>
+
+    <string name="ajustes_titulo">Settings</string>
+    <string name="ajustes_notificacion">Notifications</string>
+    <string name="ajustes_localizacion">Location</string>
+    <string name="ajustes_politica">Privacy Policy</string>
+    <string name="ajustes_terminos">Terms of Use</string>
+    <string name="ajustes_eliminarcuenta">Delete account</string>
+
+    <string name="buscar_roomiesacabados">You ended the Roommates</string>
+    <string name="buscar_buscardenuevo">Search Again</string>
+    <string name="buscar_disponible">Available from</string>
+
+    <string name="editarperfil_dialog_titlo">Update</string>
+    <string name="editarperfil_dialog_mensaje_bien">Profile Updated Successfully</string>
+    <string name="editarperfil_dialog_mensaje_mal">An error occurred while updating. try again</string>
+
+    <string name="contacto_asunto">Subject</string>
+    <string name="contacto_nombre">Name</string>
+    <string name="contacto_mensaje">Message</string>
+    <string name="contacto_dialog_titulo">Contact</string>
+    <string name="contacto_dialog_mensaje_bien">Message sent successfully</string>
+    <string name="contacto_dialog_mensaje_mal">An error occurred, Try Again</string>
+
+
+    <string name="mensaje_error">An error occurred, Try Again</string>
+
+    <string name="gcm_send_message">Token retrieved and sent to server! You can now use gcmsender to
+        send downstream messages to this app.</string>
+    <string name="registering_message">Generating InstanceID token...</string>
+    <string name="token_error_message">An error occurred while either fetching the InstanceID token,
+        sending the fetched token to the server or subscribing to the PubSub topic. Please try
+        running the sample again.</string>
+
+    <string name="chat_solicitudes">Request</string>
+    <string name="chat_solicitudes_mesaje">Search Roommates to start!</string>
+    <string name="chat_misroomies">My Roommates</string>
+    <string name="chat_chats_mesaje">No new posts!</string>
+
+
+    <string name="solicitud_dialogo_titulo">Request</string>
+    <string name="solicitud_dialogo_mensaje_bien">You have accepted the request.</string>
+    <string name="solicitud_dialogo_mensaje_mal">You have rejected the request.</string>
+
+    <string name="menu_editarperfil">Edit Profile</string>
+    <string name="menu_buscarroomie">Search for Roommates</string>
+    <string name="menu_chats_conexiones">Chats/Connections</string>
+    <string name="menu_ofrecerhabitacion">Offer Room</string>
+    <string name="menu_ajustes">Settings</string>
+    <string name="menu_invitar_amigos">Share Just4Roomies</string>
+    <string name="menu_calificarapp">Rate App</string>
+    <string name="menu_cerrarsesion">Logout</string>
+    <string name="menu_contactanos">Contact</string>
+
+
+</resources>
