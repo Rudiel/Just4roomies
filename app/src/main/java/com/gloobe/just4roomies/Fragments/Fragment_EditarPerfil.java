@@ -39,6 +39,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.gloobe.just4roomies.Actividades.Activity_Principal;
 import com.gloobe.just4roomies.Actividades.Activity_Principal_Fragment;
 import com.gloobe.just4roomies.Adaptadores.Adapter_PlacesAutoComplete;
 import com.gloobe.just4roomies.Interfaces.Interface_RecyclerView_Sugerencia;
@@ -624,10 +625,12 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
         builder.setMessage(mensaje)
                 .setTitle(titulo);
         final android.app.AlertDialog dialog = builder.create();
+        dialog.setCancelable(false);
         dialog.setButton("ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialog.dismiss();
+                ((Activity_Principal_Fragment)getActivity()).iniciarFragment(new Fragment_Perfiles(),false);
             }
         });
         dialog.show();

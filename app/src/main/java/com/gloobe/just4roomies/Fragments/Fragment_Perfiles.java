@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -150,7 +149,11 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
         btBuscardeNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getProfiles();
+
+                if (((Activity_Principal_Fragment) getActivity()).arrRomies.size() > 0)
+                    getProfiles();
+                else
+                    ((Activity_Principal_Fragment) getActivity()).iniciarFragment(new Fragment_EditarPerfil(), false);
 
             }
         });
@@ -537,8 +540,9 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
                     } else {
                         //llPerfilesacabados.setVisibility(View.VISIBLE);
                         llPerfilesacabados.setVisibility(View.VISIBLE);
-                        ((TextView)getActivity().findViewById(R.id.tvTeAcabasteRoomies)).setText(getString(R.string.buscarroomie_nohayperfiles));
+                        ((TextView) getActivity().findViewById(R.id.tvTeAcabasteRoomies)).setText(getString(R.string.buscarroomie_nohayperfiles));
                         llPerfilesOpciones.setVisibility(View.INVISIBLE);
+                        btBuscardeNuevo.setText(getString(R.string.buscrarommie_buscarotrazona));
                     }
                     progressDialog.dismiss();
 

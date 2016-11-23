@@ -47,7 +47,8 @@
     <string name="buscarroomie_buscoroomieyhabitacion">Busco Roomie y Habitación</string>
     <string name="buscarroomie_buscohabitacion">Busco Habitación</string>
     <string name="buscarroomie_ofrezcohabitacion">Ofrezco Habitación</string>
-    <string name="buscarroomie_nohayperfiles">Actulamente no hay Roomies en esta zona</string>
+    <string name="buscarroomie_nohayperfiles">Actualmente no hay roomies en esta zona</string>
+    <string name="buscrarommie_buscarotrazona">Buscar en otra zona</string>
 
     <string name="ofrecer_cuandoestara">¿Cuando estará disponible?</string>
     <string name="ofrecer_precio_hint">Precio</string>
