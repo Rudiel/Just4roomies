@@ -252,7 +252,7 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
             intentCompartir.setType("text/plain");
             intentCompartir.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name);
             String texto = getResources().getString(R.string.invitar_amigos) + "\n";
-            texto = texto + "\n" + "market://details?id=" + getPackageName();
+            //texto = texto + "\n" + "market://details?id=" + getPackageName();
             intentCompartir.putExtra(Intent.EXTRA_TEXT, texto);
             startActivity(Intent.createChooser(intentCompartir, "choose one"));
         } catch (Exception e) {
