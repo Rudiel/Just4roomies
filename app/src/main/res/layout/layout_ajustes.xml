@@ -18,12 +18,15 @@
         android:textColor="@android:color/darker_gray"
         android:textSize="@dimen/ajustes_titulo" />
 
+
     <LinearLayout
         android:id="@+id/llSwiches"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvAjustestitulo"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvAjustestitulo"
+        android:layout_marginTop="21dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -69,7 +72,7 @@
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:src="@drawable/ic_notificacion" />
+                android:src="@drawable/ic_notification" />
 
             <TextView
                 android:id="@+id/tvAjustesNotificacion"
@@ -97,9 +100,8 @@
         android:id="@+id/btAjustesGuardar"
         android:layout_width="@dimen/ajustes_bt_guardar"
         android:layout_height="wrap_content"
-        android:layout_below="@id/llSwiches"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:background="@drawable/boton_degradado_personalidad"
         android:gravity="center"
         android:text="@string/guardar_button"
@@ -154,7 +156,7 @@
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_eliminar_naranja" />
+            android:src="@drawable/ic_deleteacount" />
 
         <TextView
             android:id="@+id/tvEliminarCuenta"
@@ -174,6 +176,5 @@
         android:layout_above="@id/rlEliminarCuenta"
         android:layout_marginBottom="10dp"
         android:background="@color/gris_bajo" />
-
 
 </RelativeLayout>

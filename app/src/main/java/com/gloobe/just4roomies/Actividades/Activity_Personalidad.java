@@ -1071,6 +1071,9 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
                     @Override
                     public void onResult(@NonNull PlaceLikelihoodBuffer placeLikelihoods) {
                         if (placeLikelihoods.getCount() <= 0) {
+                            rvSugerencias.setVisibility(View.INVISIBLE);
+                            pbPersonalidadUbicacion.setVisibility(View.INVISIBLE);
+                            ivPersonalidadUbicacionHint.setVisibility(View.VISIBLE);
 
                         } else {
                             //place= placeLikelihoods.get(0).getPlace().getName().toString();

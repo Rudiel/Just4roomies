@@ -51,6 +51,7 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_chat_conversaciones, container, false);
+
     }
 
     @Override
@@ -81,7 +82,7 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
     @Override
     public void clicItem(View view, int position) {
 
-        if (((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getStatus().equals("1")) {
+        if (((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getRequest().equals("1")) {
 
             Intent intent = new Intent(getActivity(), Activity_Conversacion.class);
             Bundle bundle = new Bundle();
@@ -202,4 +203,5 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
         });
 
     }
+
 }

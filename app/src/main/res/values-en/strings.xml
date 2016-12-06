@@ -110,5 +110,8 @@
     <string name="menu_cerrarsesion">Logout</string>
     <string name="menu_contactanos">Contact</string>
 
+    <string name="login_iniciando">Logging in...</string>
+
+
 
 </resources>

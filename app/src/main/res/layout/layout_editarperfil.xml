@@ -154,7 +154,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/edt_hint_edad" />
+                    android:src="@drawable/ic_fecha" />
 
                 <EditText
                     android:id="@+id/etEditarPerfil_Edad"
@@ -185,7 +185,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_price" />
+                    android:src="@drawable/ic_dinero" />
 
                 <EditText
                     android:id="@+id/etEditarPerfil_Precio"

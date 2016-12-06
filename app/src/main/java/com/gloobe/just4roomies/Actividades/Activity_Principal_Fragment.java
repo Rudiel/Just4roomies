@@ -34,6 +34,7 @@ import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.gloobe.just4roomies.Fragments.Fragment_Ajustes;
 import com.gloobe.just4roomies.Fragments.Fragment_Chat;
+import com.gloobe.just4roomies.Fragments.Fragment_Chat_Data;
 import com.gloobe.just4roomies.Fragments.Fragment_Contactanos;
 import com.gloobe.just4roomies.Fragments.Fragment_EditarPerfil;
 import com.gloobe.just4roomies.Fragments.Fragment_Perfiles;
@@ -83,6 +84,8 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
 
     public static final String PROPERTY_REG_ID = "registration_id";
     private static final String PROPERTY_APP_VERSION = "appVersion";
+
+    public static boolean isFromChat = false;
 
 
     @Override
@@ -384,5 +387,16 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             throw new RuntimeException("Could not get package name: " + e);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+       /* if(isFromChat){
+            setFragment(new Fragment_Chat());
+            isFromChat=false;
+        }*/
+
     }
 }

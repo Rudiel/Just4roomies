@@ -13,14 +13,15 @@ public class Model_Chat {
     private String date;
     private String data_user_send;
     private Model_User_Data data_user;
-    private int mensajes_novistos;
+    private String request;
 
-    public int getMensajes_novistos() {
-        return mensajes_novistos;
+
+    public String getRequest() {
+        return request;
     }
 
-    public void setMensajes_novistos(int mensajes_novistos) {
-        this.mensajes_novistos = mensajes_novistos;
+    public void setRequest(String request) {
+        this.request = request;
     }
 
     public int getId() {

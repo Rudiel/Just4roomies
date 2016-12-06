@@ -69,7 +69,8 @@ Adapter_SwipeDeck extends BaseAdapter {
         List<Integer> imagenes = new ArrayList<>();
 
         TextView tvNombre = (TextView) v.findViewById(R.id.tvNombre);
-        tvNombre.setText(listRoomies.get(position).getName() + " , " + listRoomies.get(position).getAge());
+        tvNombre.setText(listRoomies.get(position).getName() + "," + listRoomies.get(position).getAge());
+        //tvNombre.setText(listRoomies.get(position).getName());
         tvNombre.setTypeface(typeface);
 
         TextView tvConexion = (TextView) v.findViewById(R.id.tvConexion);

@@ -61,7 +61,8 @@ public class Adapter_ViewPager_Perfil extends PagerAdapter {
 
 
         Glide.with(context).load(roomies.get(position).getImagen()).centerCrop().into(imageView);
-        tvNombre.setText(roomies.get(position).getNombre() + "," + roomies.get(position).getEdad());
+        //tvNombre.setText(roomies.get(position).getNombre() + "," + roomies.get(position).getEdad());
+        tvNombre.setText(roomies.get(position).getNombre());
         tvDistancia.setText(roomies.get(position).getDistancia());
         tvPrecio.setText(roomies.get(position).getPrecio());
         tvSobremi.setText(roomies.get(position).getSobremi());

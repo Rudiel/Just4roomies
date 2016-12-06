@@ -55,10 +55,10 @@
 
                 <ImageView
                     android:id="@+id/ivIconoIamgenPerfil"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_centerInParent="true"
-                    android:src="@android:drawable/ic_menu_camera" />
+                    android:src="@drawable/camera" />
 
                 <ProgressBar
                     android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/edt_hint_nacionalidad" />
+                    android:src="@drawable/ic_nacionalidad" />
 
                 <EditText
                     android:id="@+id/etPersonalidad_Nacionalidad"
@@ -139,7 +139,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/edt_hint_nacionalidad" />
+                    android:src="@drawable/ic_nacionalidad" />
 
                 <Button
                     android:id="@+id/etPersonalidad_NacionalidadTest"
@@ -167,7 +167,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/edt_hint_idioma" />
+                    android:src="@drawable/ic_idioma" />
 
                 <EditText
                     android:id="@+id/etPersonalidad_Idioma"
@@ -196,7 +196,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/edt_hint_edad" />
+                    android:src="@drawable/ic_fecha" />
 
                 <EditText
                     android:id="@+id/etPersonalidad_Edad"

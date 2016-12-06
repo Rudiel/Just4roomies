@@ -479,4 +479,10 @@ public class Activity_Conversacion extends AppCompatActivity {
         super.onStop();
         isActive = false;
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //Activity_Principal_Fragment.isFromChat=true;
+    }
 }

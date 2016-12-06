@@ -14,7 +14,7 @@
     <string name="aplicar_dialog">Aplicar Filtro</string>
     <string name="sobremi_perfil">Sobre Mi</string>
 
-    <string name="invitar_amigos">Conéctate con gente al rededor del mundo y encuentra al Roomie ideal! http://just4roomies.com/ </string>
+    <string name="invitar_amigos">Conéctate con gente alrededor del mundo y encuentra al Roomie ideal! http://just4roomies.com/ </string>
 
     <string name="login_bt_face_hint">Inicia Sesión con Facebook</string>
     <string name="login_terminos">Al iniciar sesión estás aceptando nuestros <u>Términos</u> y <u>Condiciones</u></string>
@@ -47,7 +47,7 @@
     <string name="buscarroomie_buscoroomieyhabitacion">Busco Roomie y Habitación</string>
     <string name="buscarroomie_buscohabitacion">Busco Habitación</string>
     <string name="buscarroomie_ofrezcohabitacion">Ofrezco Habitación</string>
-    <string name="buscarroomie_nohayperfiles">Actualmente no hay roomies en esta zona</string>
+    <string name="buscarroomie_nohayperfiles">Actualmente no hay roomies en esta área</string>
     <string name="buscrarommie_buscarotrazona">Buscar en otra zona</string>
 
     <string name="ofrecer_cuandoestara">¿Cuando estará disponible?</string>
@@ -62,7 +62,7 @@
     <string name="ajustes_notificacion">Notificaciones</string>
     <string name="ajustes_localizacion">Localización</string>
     <string name="ajustes_politica">Política de Privacidad</string>
-    <string name="ajustes_terminos">Téminos de uso</string>
+    <string name="ajustes_terminos">Términos de uso</string>
     <string name="ajustes_eliminarcuenta">Eliminar Cuenta</string>
 
     <string name="buscar_roomiesacabados">Te Acabaste los Roomies</string>
