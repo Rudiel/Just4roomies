@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,6 +14,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
@@ -26,6 +28,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import me.leolin.shortcutbadger.ShortcutBadger;
 
 /**
  * Created by rudielavilaperaza on 03/10/16.
@@ -53,6 +57,8 @@ public class GCMIntentService extends IntentService {
                 Log.d("NOTIFICATION", "" + extras.toString());
             } catch (Exception e) {
             }
+
+            saveNotificationBadge();
         }
         GMCBroadcastReceiver.completeWakefulIntent(intent);
     }
@@ -157,5 +163,20 @@ public class GCMIntentService extends IntentService {
         //Bitmap _bmp = Bitmap.createScaledBitmap(output, 60, 60, false);
         //return _bmp;
         return output;
+    }
+
+    private void saveNotificationBadge() {
+
+        int badgeCount;
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        badgeCount = preferences.getInt("BADGE", 0);
+        badgeCount = badgeCount + 1;
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("BADGE", badgeCount);
+        editor.apply();
+
+        ShortcutBadger.applyCount(getApplicationContext(), badgeCount); //for 1.1.4+
     }
 }

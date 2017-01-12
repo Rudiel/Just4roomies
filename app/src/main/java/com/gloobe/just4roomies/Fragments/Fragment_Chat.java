@@ -1,8 +1,10 @@
 package com.gloobe.just4roomies.Fragments;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import com.gloobe.just4roomies.Interfaces.Just4Interface;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Response;
 import com.gloobe.just4roomies.R;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,6 +53,10 @@ public class Fragment_Chat extends Fragment {
         btChats.setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
         btSolicitudes.setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
 
+        ShortcutBadger.removeCount(getActivity());
+
+        removeSharedBadge();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.url_base))
                 .addConverterFactory(GsonConverterFactory.create())
@@ -62,7 +69,7 @@ public class Fragment_Chat extends Fragment {
         chats.enqueue(new Callback<Model_Chat_Response>() {
             @Override
             public void onResponse(Call<Model_Chat_Response> call, Response<Model_Chat_Response> response) {
-                if (response.body().getCode()==200) {
+                if (response.body().getCode() == 200) {
 
                     ((Activity_Principal_Fragment) getActivity()).arrChats = response.body().getList();
                     ((Activity_Principal_Fragment) getActivity()).arrSolicitudes = response.body().getListRequest();
@@ -118,6 +125,14 @@ public class Fragment_Chat extends Fragment {
 
     private void setFrgament(Fragment fragment) {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.flContenedorChat, fragment).commit();
+    }
+
+    private void removeSharedBadge() {
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("BADGE", 0);
+        editor.apply();
     }
 
 }
