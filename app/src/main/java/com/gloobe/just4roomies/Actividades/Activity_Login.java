@@ -3,6 +3,7 @@ package com.gloobe.just4roomies.Actividades;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -12,13 +13,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,7 +62,7 @@ public class Activity_Login extends AppCompatActivity {
 
     private LoginButton loginButton;
     private CallbackManager callbackManager;
-    private RelativeLayout btLoginFB;
+    private CardView btLoginFB;
     private ImageView iv_fondo;
     private ProgressDialog progressDialog;
     private ProfileTracker mProfileTracker;
@@ -102,7 +102,7 @@ public class Activity_Login extends AppCompatActivity {
         iv_fondo = (ImageView) findViewById(R.id.iv_login_fondo);
 
         Glide.with(this).load(R.drawable.bg_login).centerCrop().into(iv_fondo);
-        ((Button) findViewById(R.id.btLoginFB)).setTypeface(typeface);
+        ((TextView) findViewById(R.id.tvLoginFB)).setTypeface(typeface);
         ((TextView) findViewById(R.id.tvTerminosyCondiciones)).setTypeface(typeface);
 
         progressDialog = new ProgressDialog(this, R.style.MyTheme);
@@ -188,7 +188,7 @@ public class Activity_Login extends AppCompatActivity {
                 Toast.makeText(Activity_Login.this, getResources().getString(R.string.mensaje_error), Toast.LENGTH_SHORT).show();
             }
         });
-        btLoginFB = (RelativeLayout) findViewById(R.id.rlLogin);
+        btLoginFB = (CardView) findViewById(R.id.rlLogin);
         btLoginFB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -366,10 +366,29 @@ public class Activity_Login extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RespuestaLoginFB> call, Throwable t) {
-                progressDialog.dismiss();
 
+                progressDialog.dismiss();
+                showDialog();
             }
         });
+    }
+
+    private void showDialog() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setMessage(R.string.mensaje_error)
+                .setTitle(R.string.login_dialog_title);
+
+        final android.app.AlertDialog dialog = builder.create();
+        dialog.setCancelable(false);
+
+
+        builder.setNeutralButton("ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                iniciarSesion();
+            }
+        });
+        dialog.show();
     }
 
 }
