@@ -82,7 +82,7 @@ public class GCMIntentService extends IntentService {
 
         stackBuilder.addNextIntentWithParentStack(intent);
 
-        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
 
         android.support.v4.app.NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
@@ -96,7 +96,7 @@ public class GCMIntentService extends IntentService {
                         .setContentText(msg);
 
         mBuilder.setContentIntent(pendingIntent);
-        mNotificationManager.notify(0, mBuilder.build());
+        mNotificationManager.notify(1, mBuilder.build());
     }
 
     private void sendNotificationSolicitud(String msg, String title, String chat_photo) {

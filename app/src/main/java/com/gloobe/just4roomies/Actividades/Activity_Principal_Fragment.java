@@ -53,6 +53,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -208,6 +209,8 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
             updateImagenPerfil();
             iniciarFragment(new Fragment_Perfiles(), false);
         }
+
+        ShortcutBadger.removeCount(this);
 
     }
 
