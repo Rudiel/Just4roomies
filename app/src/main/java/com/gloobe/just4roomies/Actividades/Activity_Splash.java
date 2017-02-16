@@ -15,6 +15,7 @@ import com.gloobe.just4roomies.Interfaces.Just4Interface;
 import com.gloobe.just4roomies.Modelos.RespuestaLoginFB;
 import com.gloobe.just4roomies.Modelos.SocialLogin;
 import com.gloobe.just4roomies.R;
+import com.gloobe.just4roomies.Utils.Utilerias;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -60,7 +61,7 @@ public class Activity_Splash extends AppCompatActivity {
                     progressDialog.show();
 
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl(getString(R.string.url_base))
+                            .baseUrl(Utilerias.URL_GLOBAL)
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 

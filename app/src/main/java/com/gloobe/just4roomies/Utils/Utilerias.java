@@ -2,8 +2,10 @@ package com.gloobe.just4roomies.Utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.preference.PreferenceManager;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -12,6 +14,8 @@ import java.net.URL;
  * Created by rudielavilaperaza on 03/10/16.
  */
 public class Utilerias extends Activity {
+
+    public static final String URL_GLOBAL = "http://45.55.161.90/just4rommies/public/api/";
 
     public static boolean isOnline(Context context) {
 
@@ -65,5 +69,35 @@ public class Utilerias extends Activity {
         }
         return haveConnectedWifi || haveConnectedMobile;
     }
+
+
+    public static void SaveBatch() {
+
+    }
+
+    public static void saveNotificationsEnable(Context context, Boolean isEnable) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("NOTIFICATIONS_ENABLE", isEnable);
+        editor.apply();
+    }
+
+    public static boolean getNotificationsEnabled(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getBoolean("NOTIFICATIONS_ENABLE", true);
+    }
+
+    public static void saveLocationEnable(Context context, Boolean isEnable) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("LOCATION_ENABLE", isEnable);
+        editor.apply();
+    }
+
+    public static boolean getLocationEnabled(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getBoolean("LOCATION_ENABLE", true);
+    }
+
 
 }

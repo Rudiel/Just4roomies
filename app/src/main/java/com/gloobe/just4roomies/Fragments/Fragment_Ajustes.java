@@ -1,5 +1,6 @@
 package com.gloobe.just4roomies.Fragments;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,7 +16,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.gloobe.just4roomies.Actividades.Activity_Principal_Fragment;
+import com.gloobe.just4roomies.Actividades.Creators.AlertDialog_Creator;
+import com.gloobe.just4roomies.Actividades.Creators.IDialogCreator;
 import com.gloobe.just4roomies.R;
+import com.gloobe.just4roomies.Utils.Utilerias;
 
 /**
  * Created by rudielavilaperaza on 29/08/16.
@@ -27,6 +31,8 @@ public class Fragment_Ajustes extends Fragment {
     private Button btGuardar;
     private Switch swLocalizacion, swNotificaciones;
     private RelativeLayout rlEliminarCuenta;
+    private boolean notificationsEnabled = true;
+    private boolean locationEnabled = true;
 
     @Nullable
     @Override
@@ -64,14 +70,24 @@ public class Fragment_Ajustes extends Fragment {
             }
         });
 
+        if (Utilerias.getLocationEnabled(getActivity()))
+            swLocalizacion.setChecked(true);
+        else
+            swLocalizacion.setChecked(false);
+
+        if (Utilerias.getNotificationsEnabled(getActivity()))
+            swNotificaciones.setChecked(true);
+        else
+            swNotificaciones.setChecked(false);
+
         swLocalizacion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean cheked) {
 
                 if (cheked) {
-
+                    locationEnabled = true;
                 } else {
-
+                    locationEnabled = false;
                 }
 
             }
@@ -81,9 +97,9 @@ public class Fragment_Ajustes extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean cheked) {
                 if (cheked) {
-
+                    notificationsEnabled = true;
                 } else {
-
+                    notificationsEnabled = false;
                 }
             }
         });
@@ -97,7 +113,15 @@ public class Fragment_Ajustes extends Fragment {
     }
 
     private void guardarAjustes() {
+        Utilerias.saveNotificationsEnable(getActivity(), notificationsEnabled);
+        Utilerias.saveLocationEnable(getActivity(), locationEnabled);
 
+        new AlertDialog_Creator().showAlert(getActivity(), getString(R.string.ajustes_titulo), getString(R.string.editarperfil_dialog_mensaje_bien), new IDialogCreator() {
+            @Override
+            public void didOK(Dialog dialog) {
+                dialog.dismiss();
+            }
+        });
     }
 
     private void eliminarCuenta() {

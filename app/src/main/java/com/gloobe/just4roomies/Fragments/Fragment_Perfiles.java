@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import com.gloobe.just4roomies.Modelos.Model_Like_Response;
 import com.gloobe.just4roomies.Modelos.Model_Perfiles;
 import com.gloobe.just4roomies.Modelos.Model_Room;
 import com.gloobe.just4roomies.R;
+import com.gloobe.just4roomies.Utils.Utilerias;
 
 import java.util.ArrayList;
 
@@ -512,11 +514,13 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
         progressDialog.show();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         Just4Interface service = retrofit.create(Just4Interface.class);
+
+        Log.d("PERFIL_ID", "" + ((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getId());
 
         Call<Model_Perfiles> perfiles = service.listadoPerfiles(((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getId());
 
@@ -562,7 +566,7 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
         progressDialog.show();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -609,7 +613,7 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
     private void liketoPerfil(int position) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -625,9 +629,12 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
             @Override
             public void onResponse(Call<Model_Like_Response> call, Response<Model_Like_Response> response) {
                 if (response.body() != null) {
+                    Log.d("SOLICITUD","ENVIADA");
                     //Se envio la solicitud
                     // Toast.makeText(getActivity(), "Solicitud enviada", Toast.LENGTH_SHORT).show();
                 } else {
+                    Log.d("SOLICITUD","NO ENVIADA");
+
                     //No se pudo enviar la solicitud
                     //Toast.makeText(getActivity(), "Solicitud no enviada", Toast.LENGTH_SHORT).show();
                 }

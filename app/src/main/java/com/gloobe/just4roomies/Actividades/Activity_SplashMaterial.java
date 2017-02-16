@@ -198,7 +198,7 @@ public class Activity_SplashMaterial extends AppCompatActivity {
 
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(getString(R.string.url_base))
+                    .baseUrl(Utilerias.URL_GLOBAL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 

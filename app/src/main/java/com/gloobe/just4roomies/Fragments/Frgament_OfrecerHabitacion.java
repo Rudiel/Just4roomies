@@ -33,6 +33,7 @@ import com.gloobe.just4roomies.Modelos.AddRoom;
 import com.gloobe.just4roomies.Modelos.UpdateRoom;
 import com.gloobe.just4roomies.R;
 import com.gloobe.just4roomies.Utils.DatePickerFragment;
+import com.gloobe.just4roomies.Utils.Utilerias;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
@@ -383,7 +384,7 @@ public class Frgament_OfrecerHabitacion extends Fragment {
                 updateRoom.setImage3(convertImagetoBase64(file3));
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(getString(R.string.url_base))
+                    .baseUrl(Utilerias.URL_GLOBAL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
@@ -452,7 +453,7 @@ public class Frgament_OfrecerHabitacion extends Fragment {
                 addRoom.setImage3(convertImagetoBase64(file3));
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(getString(R.string.url_base))
+                    .baseUrl(Utilerias.URL_GLOBAL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 

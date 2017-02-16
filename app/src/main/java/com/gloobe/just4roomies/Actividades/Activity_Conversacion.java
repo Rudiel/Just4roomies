@@ -44,6 +44,7 @@ import com.gloobe.just4roomies.Modelos.Model_Chat_Imagen;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Mensaje;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Mensaje_Response;
 import com.gloobe.just4roomies.R;
+import com.gloobe.just4roomies.Utils.Utilerias;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
@@ -195,7 +196,7 @@ public class Activity_Conversacion extends AppCompatActivity {
     public static void getConversacion(int chat_id, final int user_id, final Context context) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(context.getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -263,7 +264,7 @@ public class Activity_Conversacion extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!etMenssage.getText().toString().trim().isEmpty())
-                    sendMessage(etMenssage.getText().toString(), context);
+                    sendMessage(etMenssage.getText().append("\ud83d\ude01").toString(), context);
             }
         });
     }
@@ -275,7 +276,7 @@ public class Activity_Conversacion extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(context.getResources().getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -429,7 +430,7 @@ public class Activity_Conversacion extends AppCompatActivity {
         pbEnviar.setVisibility(View.VISIBLE);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getResources().getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

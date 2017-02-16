@@ -29,6 +29,7 @@ import com.gloobe.just4roomies.Interfaces.Just4Interface;
 import com.gloobe.just4roomies.Modelos.Model_Chat_Response;
 import com.gloobe.just4roomies.Modelos.Model_EliminarChat;
 import com.gloobe.just4roomies.R;
+import com.gloobe.just4roomies.Utils.Utilerias;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -102,7 +103,7 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
         progressDialog.show();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -167,7 +168,7 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
 
     private void recargarLista() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

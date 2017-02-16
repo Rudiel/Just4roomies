@@ -17,6 +17,7 @@ import com.gloobe.just4roomies.Actividades.Activity_Principal_Fragment;
 import com.gloobe.just4roomies.Interfaces.Just4Interface;
 import com.gloobe.just4roomies.Modelos.Model_Contact;
 import com.gloobe.just4roomies.R;
+import com.gloobe.just4roomies.Utils.Utilerias;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -78,7 +79,7 @@ public class Fragment_Contactanos extends Fragment {
         progressDialog.show();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

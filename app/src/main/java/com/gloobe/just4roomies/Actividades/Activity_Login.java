@@ -37,6 +37,7 @@ import com.gloobe.just4roomies.Interfaces.Just4Interface;
 import com.gloobe.just4roomies.Modelos.RespuestaLoginFB;
 import com.gloobe.just4roomies.Modelos.SocialLogin;
 import com.gloobe.just4roomies.R;
+import com.gloobe.just4roomies.Utils.Utilerias;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -316,7 +317,7 @@ public class Activity_Login extends AppCompatActivity {
 
     private void iniciarSesion() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

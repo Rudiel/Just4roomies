@@ -46,6 +46,7 @@ import com.gloobe.just4roomies.Interfaces.Interface_RecyclerView_Sugerencia;
 import com.gloobe.just4roomies.Interfaces.Just4Interface;
 import com.gloobe.just4roomies.Modelos.Model_UserUpdate;
 import com.gloobe.just4roomies.R;
+import com.gloobe.just4roomies.Utils.Utilerias;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -588,7 +589,7 @@ public class Fragment_EditarPerfil extends Fragment implements LocationListener,
         String gson = new Gson().toJson(usuario);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -48,6 +48,7 @@ import com.gloobe.just4roomies.Modelos.RespuestaLoginFB;
 import com.gloobe.just4roomies.Modelos.SocialLogin;
 import com.gloobe.just4roomies.R;
 import com.gloobe.just4roomies.Utils.FontsOverride;
+import com.gloobe.just4roomies.Utils.Utilerias;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -210,7 +211,12 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
             iniciarFragment(new Fragment_Perfiles(), false);
         }
 
-        ShortcutBadger.removeCount(this);
+        try {
+            ShortcutBadger.removeCount(this);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -266,7 +272,7 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
         progressDialog.show();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -327,7 +333,7 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -343,13 +349,14 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
         p.enqueue(new Callback<RespuestaLoginFB>() {
             @Override
             public void onResponse(Call<RespuestaLoginFB> call, Response<RespuestaLoginFB> response) {
-                if (response.code() == 200) {
-                    perfil = response.body();
-                    //getProfiles();
-                    updateImagenPerfil();
-                    iniciarFragment(new Fragment_Perfiles(), false);
-                    progressDialog.dismiss();
-                }
+                if (response != null)
+                    if (response.code() == 200) {
+                        perfil = response.body();
+                        //getProfiles();
+                        updateImagenPerfil();
+                        iniciarFragment(new Fragment_Perfiles(), false);
+                        progressDialog.dismiss();
+                    }
             }
 
             @Override

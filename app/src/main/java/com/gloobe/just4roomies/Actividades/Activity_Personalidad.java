@@ -56,6 +56,7 @@ import com.gloobe.just4roomies.Modelos.RespuestaUsuario;
 import com.gloobe.just4roomies.Modelos.SocialLogin;
 import com.gloobe.just4roomies.Modelos.User;
 import com.gloobe.just4roomies.R;
+import com.gloobe.just4roomies.Utils.Utilerias;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -618,7 +619,7 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
         }
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -656,7 +657,7 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
     private void inciarSesion() {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.url_base))
+                .baseUrl(Utilerias.URL_GLOBAL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

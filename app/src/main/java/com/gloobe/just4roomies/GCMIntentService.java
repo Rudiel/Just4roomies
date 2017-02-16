@@ -22,6 +22,7 @@ import android.util.Log;
 import com.gloobe.just4roomies.Actividades.Activity_Conversacion;
 import com.gloobe.just4roomies.Actividades.Activity_Principal_Fragment;
 import com.gloobe.just4roomies.Actividades.Activity_SplashMaterial;
+import com.gloobe.just4roomies.Utils.Utilerias;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import java.io.IOException;
@@ -50,9 +51,11 @@ public class GCMIntentService extends IntentService {
             try {
                 if (extras.getString("message").equals("Tienes una solicitud de chat")) {
                     //solo inicio la aplicacion
-                    sendNotificationSolicitud(extras.getString("message"), extras.getString("title"), extras.getString("image"));
+                    if (Utilerias.getNotificationsEnabled(this))
+                        sendNotificationSolicitud(extras.getString("message"), extras.getString("title"), extras.getString("image"));
                 } else {
-                    sendNotification(extras.getString("message"), extras.getString("title"), extras.getString("chat_id"), extras.getString("image"), extras.getString("id_receiver"));
+                    if (Utilerias.getNotificationsEnabled(this))
+                        sendNotification(extras.getString("message"), extras.getString("title"), extras.getString("chat_id"), extras.getString("image"), extras.getString("id_receiver"));
                 }
                 Log.d("NOTIFICATION", "" + extras.toString());
             } catch (Exception e) {
