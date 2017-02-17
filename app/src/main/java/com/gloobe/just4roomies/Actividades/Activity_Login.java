@@ -68,7 +68,6 @@ public class Activity_Login extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private ProfileTracker mProfileTracker;
     private Profile profile;
-    private Typeface typeface;
 
     //GMC
     public static final String PROPERTY_REG_ID = "registration_id";
@@ -98,13 +97,11 @@ public class Activity_Login extends AppCompatActivity {
 
         context = getApplicationContext();
 
-        typeface = Typeface.createFromAsset(getAssets(), "fonts/MavenPro_Regular.ttf");
-
         iv_fondo = (ImageView) findViewById(R.id.iv_login_fondo);
 
         Glide.with(this).load(R.drawable.bg_login).centerCrop().into(iv_fondo);
-        ((TextView) findViewById(R.id.tvLoginFB)).setTypeface(typeface);
-        ((TextView) findViewById(R.id.tvTerminosyCondiciones)).setTypeface(typeface);
+        ((TextView) findViewById(R.id.tvLoginFB)).setTypeface(Utilerias.getMavenProRegular(Activity_Login.this));
+        ((TextView) findViewById(R.id.tvTerminosyCondiciones)).setTypeface(Utilerias.getMavenProRegular(Activity_Login.this));
 
         progressDialog = new ProgressDialog(this, R.style.MyTheme);
         progressDialog.setCancelable(false);

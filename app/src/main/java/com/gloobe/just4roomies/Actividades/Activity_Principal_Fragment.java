@@ -121,7 +121,7 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        typeFace = Typeface.createFromAsset(getAssets(), "fonts/MavenPro_Regular.ttf");
+        typeFace = Utilerias.getMavenProRegular(Activity_Principal_Fragment.this);
 
         FontsOverride.setDefaultFont(this, "MAVENPRO", "fonts/MavenPro_Regular.ttf");
 

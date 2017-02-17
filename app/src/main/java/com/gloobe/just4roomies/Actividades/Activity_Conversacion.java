@@ -108,7 +108,7 @@ public class Activity_Conversacion extends AppCompatActivity {
         pbEnviar = (ProgressBar) findViewById(R.id.pbEnviar);
         ivChatfoto = (ImageView) findViewById(R.id.ivImagenChat);
 
-        typeface = Typeface.createFromAsset(getAssets(), "fonts/MavenPro_Regular.ttf");
+        typeface = Utilerias.getMavenProRegular(Activity_Conversacion.this);
 
         ctx = Activity_Conversacion.this;
 

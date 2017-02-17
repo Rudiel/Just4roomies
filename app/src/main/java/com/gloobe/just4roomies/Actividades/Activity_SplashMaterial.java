@@ -44,7 +44,6 @@ public class Activity_SplashMaterial extends AppCompatActivity {
 
     private Profile profile;
     private ProgressDialog progressDialog;
-    private Typeface typeface;
 
 
     //GMC
@@ -72,8 +71,6 @@ public class Activity_SplashMaterial extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         profile = Profile.getCurrentProfile();
-
-        typeface = Typeface.createFromAsset(getAssets(), "fonts/MavenPro_Regular.ttf");
 
         context = getApplicationContext();
 
@@ -277,7 +274,7 @@ public class Activity_SplashMaterial extends AppCompatActivity {
     private void showProgressMessage() {
         progressDialog.show();
         progressDialog.setContentView(R.layout.layout_progressdialog);
-        ((TextView) progressDialog.findViewById(R.id.tvProgressMessage)).setTypeface(typeface);
+        ((TextView) progressDialog.findViewById(R.id.tvProgressMessage)).setTypeface(Utilerias.getMavenProRegular(Activity_SplashMaterial.this));
 
     }
 }

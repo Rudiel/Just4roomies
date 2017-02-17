@@ -3,6 +3,7 @@ package com.gloobe.just4roomies.Utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
@@ -139,6 +140,10 @@ public class Utilerias extends Activity {
     public static boolean getLocationEnabled(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getBoolean("LOCATION_ENABLE", true);
+    }
+
+    public static Typeface getMavenProRegular(Context context) {
+        return Typeface.createFromAsset(context.getAssets(), "fonts/MavenPro_Regular.ttf");
     }
 
 

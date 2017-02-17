@@ -131,7 +131,6 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
 
     private Typeface typeface;
 
-
     //GMC
     public static final String PROPERTY_REG_ID = "registration_id";
     private static final String PROPERTY_APP_VERSION = "appVersion";
@@ -181,8 +180,6 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
 
         buildGoogleApiClient();
 
-        typeface = Typeface.createFromAsset(getAssets(), "fonts/MavenPro_Regular.ttf");
-
         Bundle bundle = getIntent().getExtras();
 
         if (bundle != null) {
@@ -207,6 +204,8 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
         }
 
         profile = Profile.getCurrentProfile();
+
+        typeface = Utilerias.getMavenProRegular(Activity_Personalidad.this);
 
         ivImagenPersonalidad = (ImageView) findViewById(R.id.ivImagenPerfil);
         btGuardar = (Button) findViewById(R.id.btPersonalidadGuardar);
