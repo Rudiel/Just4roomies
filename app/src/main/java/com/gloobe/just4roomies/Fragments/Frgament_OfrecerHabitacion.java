@@ -369,7 +369,7 @@ public class Frgament_OfrecerHabitacion extends Fragment {
             } else {
                 int selectedId = rg.getCheckedRadioButtonId();
                 rbAmueblado = (RadioButton) getActivity().findViewById(selectedId);
-                if (rbAmueblado.getText().toString().equals("Amueblado"))
+                if (rbAmueblado.getText().toString().equals(getResources().getString(R.string.ofrecer_amueblado)))
                     updateRoom.setFurnished("true");
                 else
                     updateRoom.setFurnished("false");

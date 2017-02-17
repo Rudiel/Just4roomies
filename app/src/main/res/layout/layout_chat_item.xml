@@ -90,12 +90,12 @@
 
             <RelativeLayout
                 android:id="@+id/rlChatPatch"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_below="@id/tvHora"
                 android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@id/ivFlechaItem"
-                android:visibility="invisible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tvChatPatch"
