@@ -1,5 +1,6 @@
 package com.gloobe.just4roomies.Fragments;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -91,6 +92,7 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
             bundle.putInt("USER_ID", ((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getUser_id_send());
             bundle.putString("CHAT_PHOTO", ((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getData_user().getUrlphoto());
             bundle.putString("CHAT_NAME", ((Activity_Principal_Fragment) getActivity()).arrChats.get(position).getData_user().getName());
+            bundle.putBoolean("isFromNotification", false);
 
             intent.putExtras(bundle);
             startActivity(intent);
@@ -204,5 +206,6 @@ public class Fragment_Chat_Data extends Fragment implements Interface_RecyclerVi
         });
 
     }
+
 
 }

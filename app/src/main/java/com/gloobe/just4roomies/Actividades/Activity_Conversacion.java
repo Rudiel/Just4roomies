@@ -132,6 +132,10 @@ public class Activity_Conversacion extends AppCompatActivity {
                     ivChatImagen.setImageDrawable(circularBitmapDrawable);
                 }
             });
+
+            if (bundle.getBoolean("isFromNotification"))
+                Activity_Principal_Fragment.isFromNotification = true;
+
         }
 
         etMenssage.setTypeface(typeface);
@@ -191,6 +195,8 @@ public class Activity_Conversacion extends AppCompatActivity {
                 loadImageFromGallery();
             }
         });
+
+        Utilerias.RemoveBatch(this, String.valueOf(chat_id));
     }
 
     public static void getConversacion(int chat_id, final int user_id, final Context context) {
@@ -264,7 +270,7 @@ public class Activity_Conversacion extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!etMenssage.getText().toString().trim().isEmpty())
-                    sendMessage(etMenssage.getText().append("\ud83d\ude01").toString(), context);
+                    sendMessage(etMenssage.getText().toString(), context);
             }
         });
     }
@@ -484,6 +490,6 @@ public class Activity_Conversacion extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //Activity_Principal_Fragment.isFromChat=true;
+        Activity_Principal_Fragment.isFromChat = true;
     }
 }

@@ -1,6 +1,7 @@
 package com.gloobe.just4roomies.Actividades.Creators;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 
 /**
  * Created by rudielavilaperaza on 2/16/17.
@@ -8,5 +9,5 @@ import android.app.Dialog;
 
 public interface IDialogCreator {
 
-    void didOK(Dialog dialog);
+    void didOK(DialogInterface dialog);
 }

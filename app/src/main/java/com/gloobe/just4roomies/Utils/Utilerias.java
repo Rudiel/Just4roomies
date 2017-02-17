@@ -10,6 +10,8 @@ import android.preference.PreferenceManager;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
+
 /**
  * Created by rudielavilaperaza on 03/10/16.
  */
@@ -71,8 +73,48 @@ public class Utilerias extends Activity {
     }
 
 
-    public static void SaveBatch() {
+    public static void SaveBatch(Context context, String chatID) {
 
+        int badgeCount;
+        int total;
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        badgeCount = preferences.getInt("CHAT" + chatID, 0);
+        badgeCount = badgeCount + 1;
+
+        total = preferences.getInt("CHAT", 0);
+        total = total + 1;
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("CHAT" + chatID, badgeCount);
+        editor.putInt("CHAT", total);
+        editor.apply();
+
+        ShortcutBadger.applyCount(context, total); //for 1.1.4+
+
+    }
+
+    public static void RemoveBatch(Context context, String chatID) {
+
+        int badgeCount;
+        int total;
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        badgeCount = preferences.getInt("CHAT" + chatID, 0);
+        total = preferences.getInt("CHAT", 0);
+
+        preferences.edit().remove("CHAT" + chatID).apply();
+        preferences.edit().putInt("CHAT", total - badgeCount).apply();
+
+        ShortcutBadger.applyCount(context, total - badgeCount);
+
+    }
+
+    public static String getPatchChat(Context context, String chatID) {
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        return String.valueOf(preferences.getInt("CHAT" + chatID, 0));
     }
 
     public static void saveNotificationsEnable(Context context, Boolean isEnable) {

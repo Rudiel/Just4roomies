@@ -88,6 +88,7 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
     private static final String PROPERTY_APP_VERSION = "appVersion";
 
     public static boolean isFromChat = false;
+    public static boolean isFromNotification = false;
 
 
     @Override
@@ -209,13 +210,6 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
         if (perfil != null) {
             updateImagenPerfil();
             iniciarFragment(new Fragment_Perfiles(), false);
-        }
-
-        try {
-            ShortcutBadger.removeCount(this);
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }
@@ -403,10 +397,12 @@ public class Activity_Principal_Fragment extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-       /* if(isFromChat){
+        if (isFromChat && !isFromNotification) {
             setFragment(new Fragment_Chat());
-            isFromChat=false;
-        }*/
+            isFromChat = false;
+        }
+        isFromNotification = false;
 
     }
+
 }

@@ -41,4 +41,5 @@ dependencies {
     compile 'com.dmitrymalkovich.android:progress-fab:1.6'
     compile 'com.github.mukeshsolanki:country-picker-android:1.1.6'
     compile 'me.leolin:ShortcutBadger:1.1.10@aar'
+
 }

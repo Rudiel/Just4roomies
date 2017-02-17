@@ -54,47 +54,7 @@ public class Fragment_Chat extends Fragment {
         btChats.setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
         btSolicitudes.setTypeface(((Activity_Principal_Fragment) getActivity()).typeFace);
 
-        try {
-            ShortcutBadger.removeCount(getActivity());
-            removeSharedBadge();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Utilerias.URL_GLOBAL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        Just4Interface service = retrofit.create(Just4Interface.class);
-
-        Call<Model_Chat_Response> chats = service.getChats(((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getId());
-
-        chats.enqueue(new Callback<Model_Chat_Response>() {
-            @Override
-            public void onResponse(Call<Model_Chat_Response> call, Response<Model_Chat_Response> response) {
-                if (response.body().getCode() == 200) {
-
-                    ((Activity_Principal_Fragment) getActivity()).arrChats = response.body().getList();
-                    ((Activity_Principal_Fragment) getActivity()).arrSolicitudes = response.body().getListRequest();
-
-                    btChats.setEnabled(true);
-                    btSolicitudes.setEnabled(true);
-                    btChats.performClick();
-
-                    progressDialog.dismiss();
-
-                } else {
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Model_Chat_Response> call, Throwable t) {
-
-            }
-        });
+        init();
 
         btChats.setEnabled(false);
         btChats.setOnClickListener(new View.OnClickListener() {
@@ -132,12 +92,42 @@ public class Fragment_Chat extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.flContenedorChat, fragment).commit();
     }
 
-    private void removeSharedBadge() {
+    private void init() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Utilerias.URL_GLOBAL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("BADGE", 0);
-        editor.apply();
+        Just4Interface service = retrofit.create(Just4Interface.class);
+
+        Call<Model_Chat_Response> chats = service.getChats(((Activity_Principal_Fragment) getActivity()).perfil.getProfile().getId());
+
+        chats.enqueue(new Callback<Model_Chat_Response>() {
+            @Override
+            public void onResponse(Call<Model_Chat_Response> call, Response<Model_Chat_Response> response) {
+                if (response.body().getCode() == 200) {
+
+                    ((Activity_Principal_Fragment) getActivity()).arrChats = response.body().getList();
+                    ((Activity_Principal_Fragment) getActivity()).arrSolicitudes = response.body().getListRequest();
+
+                    btChats.setEnabled(true);
+                    btSolicitudes.setEnabled(true);
+                    btChats.performClick();
+
+                    progressDialog.dismiss();
+
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Model_Chat_Response> call, Throwable t) {
+
+            }
+        });
+
     }
+
 
 }

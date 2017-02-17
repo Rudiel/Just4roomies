@@ -16,11 +16,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.util.Util;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.gloobe.just4roomies.Interfaces.Interface_RecyclerView;
 import com.gloobe.just4roomies.Modelos.Model_Chat;
 import com.gloobe.just4roomies.R;
+import com.gloobe.just4roomies.Utils.Utilerias;
 
 import java.util.ArrayList;
 
@@ -32,11 +34,13 @@ public class Adapter_RecyclerView extends RecyclerSwipeAdapter<Adapter_RecyclerV
     public static class SimpleViewHolder extends RecyclerView.ViewHolder {
 
         SwipeLayout swipeLayout;
-        TextView tvNombre,tvHora;
+        TextView tvNombre, tvHora;
         LinearLayout buttonDelete;
         ImageView ivImagenPerfil;
         RelativeLayout rlContenedor;
         ImageView ivEnespera;
+        TextView tvPatch;
+        RelativeLayout rlPatch;
 
 
         public SimpleViewHolder(View itemView) {
@@ -48,7 +52,10 @@ public class Adapter_RecyclerView extends RecyclerSwipeAdapter<Adapter_RecyclerV
             ivImagenPerfil = (ImageView) itemView.findViewById(R.id.ivPerfilChatItem);
             rlContenedor = (RelativeLayout) itemView.findViewById(R.id.rlContenedorChat);
             ivEnespera = (ImageView) itemView.findViewById(R.id.ivEnespera);
-            tvHora=(TextView) itemView.findViewById(R.id.tvHora);
+            tvHora = (TextView) itemView.findViewById(R.id.tvHora);
+            tvPatch = (TextView) itemView.findViewById(R.id.tvChatPatch);
+            rlPatch = (RelativeLayout) itemView.findViewById(R.id.rlChatPatch);
+
         }
     }
 
@@ -92,8 +99,16 @@ public class Adapter_RecyclerView extends RecyclerSwipeAdapter<Adapter_RecyclerV
         else
             viewHolder.ivEnespera.setVisibility(View.VISIBLE);
 
-        viewHolder.tvHora.setText(mDataset.get(position).getDate().substring(11,16));
+        viewHolder.tvHora.setText(mDataset.get(position).getDate().substring(11, 16));
         viewHolder.tvHora.setTypeface(typeface);
+
+        viewHolder.tvPatch.setTypeface(typeface);
+
+        int notificaciones = Integer.parseInt(Utilerias.getPatchChat(mContext, String.valueOf(mDataset.get(position).getChat_id())));
+        if (notificaciones > 0) {
+            viewHolder.rlPatch.setVisibility(View.VISIBLE);
+            viewHolder.tvPatch.setText(String.valueOf(notificaciones));
+        }
 
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
         viewHolder.swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {

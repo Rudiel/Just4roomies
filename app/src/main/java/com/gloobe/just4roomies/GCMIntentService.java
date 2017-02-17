@@ -1,5 +1,6 @@
 package com.gloobe.just4roomies;
 
+import android.app.Activity;
 import android.app.IntentService;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -53,16 +54,21 @@ public class GCMIntentService extends IntentService {
                     //solo inicio la aplicacion
                     if (Utilerias.getNotificationsEnabled(this))
                         sendNotificationSolicitud(extras.getString("message"), extras.getString("title"), extras.getString("image"));
+
+
                 } else {
                     if (Utilerias.getNotificationsEnabled(this))
                         sendNotification(extras.getString("message"), extras.getString("title"), extras.getString("chat_id"), extras.getString("image"), extras.getString("id_receiver"));
+
+                    saveNotificationBadge(extras.getString("chat_id"));
                 }
                 Log.d("NOTIFICATION", "" + extras.toString());
             } catch (Exception e) {
             }
 
-            saveNotificationBadge();
         }
+
+
         GMCBroadcastReceiver.completeWakefulIntent(intent);
     }
 
@@ -78,6 +84,7 @@ public class GCMIntentService extends IntentService {
         bundle.putInt("USER_ID", Integer.valueOf(user_id));
         bundle.putString("CHAT_PHOTO", chat_photo);
         bundle.putString("CHAT_NAME", title);
+        bundle.putBoolean("isFromNotification", true);
 
         intent.putExtras(bundle);
 
@@ -168,18 +175,9 @@ public class GCMIntentService extends IntentService {
         return output;
     }
 
-    private void saveNotificationBadge() {
+    private void saveNotificationBadge(String chatID) {
 
-        int badgeCount;
+        Utilerias.SaveBatch(this, chatID);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        badgeCount = preferences.getInt("BADGE", 0);
-        badgeCount = badgeCount + 1;
-
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("BADGE", badgeCount);
-        editor.apply();
-
-        ShortcutBadger.applyCount(getApplicationContext(), badgeCount); //for 1.1.4+
     }
 }

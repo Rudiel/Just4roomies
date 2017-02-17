@@ -1,6 +1,7 @@
 package com.gloobe.just4roomies.Fragments;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -118,9 +119,10 @@ public class Fragment_Ajustes extends Fragment {
 
         new AlertDialog_Creator().showAlert(getActivity(), getString(R.string.ajustes_titulo), getString(R.string.editarperfil_dialog_mensaje_bien), new IDialogCreator() {
             @Override
-            public void didOK(Dialog dialog) {
-                dialog.dismiss();
+            public void didOK(DialogInterface dialog) {
+               dialog.dismiss();
             }
+
         });
     }
 
