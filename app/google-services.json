@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "1599014313",
-    "firebase_url": "https://just4roomies-143915.firebaseio.com",
-    "project_id": "just4roomies-143915",
-    "storage_bucket": "just4roomies-143915.appspot.com"
+    "project_number": "1005892665589",
+    "firebase_url": "https://just4roomies-261f2.firebaseio.com",
+    "project_id": "just4roomies-261f2",
+    "storage_bucket": "just4roomies-261f2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1599014313:android:b4ec0ed59dcb4914",
+        "mobilesdk_app_id": "1:1005892665589:android:20a8fa3dd50cee57",
         "android_client_info": {
-          "package_name": "com.gloobe.just4roomies"
+          "package_name": "com.just4roomies.j4r"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1599014313-v9k1rcd4vroa1bskbf0obokeut4meqpj.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.gloobe.just4roomies",
-            "certificate_hash": "42C9EF45E60111B48D16E27854831395EA8FBB5C"
-          }
-        },
-        {
-          "client_id": "1599014313-c80ijcukp2qiinsoen6evj7ur76s57p0.apps.googleusercontent.com",
+          "client_id": "1005892665589-h7uhm662s24qa14v1thutsr7iqq6edmd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAsYKgdz_37IIudIgAq-O77JjrRO5wrZpI"
+          "current_key": "AIzaSyAEaao4SgD1O7SdKJ_vazcIgjVoDlrVC6s"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1599014313-c80ijcukp2qiinsoen6evj7ur76s57p0.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

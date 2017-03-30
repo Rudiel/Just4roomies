@@ -6,7 +6,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion '25'
     defaultConfig {
-        applicationId "com.gloobe.just4roomies"
+        applicationId "com.just4roomies.j4r"
         minSdkVersion 16
         targetSdkVersion 24
         versionCode 1
@@ -41,5 +41,4 @@ dependencies {
     compile 'com.dmitrymalkovich.android:progress-fab:1.6'
     compile 'com.github.mukeshsolanki:country-picker-android:1.1.6'
     compile 'me.leolin:ShortcutBadger:1.1.10@aar'
-
 }

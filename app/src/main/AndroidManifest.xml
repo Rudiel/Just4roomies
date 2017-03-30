@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.gloobe.just4roomies"
+    package="com.just4roomies.j4r"
     android:installLocation="auto">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,9 +11,9 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission
-        android:name="com.gloobe.just4roomies.permission.CD2_MESSAGE"
+        android:name="com.just4roomies.j4r.permission.CD2_MESSAGE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="com.gloobe.just4roomies.permission.CD2_MESSAGE" />
+    <uses-permission android:name="com.just4roomies.j4r.permission.CD2_MESSAGE" />
 
     <application
         android:allowBackup="true"
@@ -23,22 +23,22 @@
         android:theme="@style/AppTheme">
 
         <receiver
-            android:name=".GMCBroadcastReceiver"
+            android:name="com.just4roomies.j4r.GMCBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="com.gloobe.just4roomies" />
+                <category android:name="com.just4roomies.j4rr" />
             </intent-filter>
         </receiver>
 
-        <service android:name=".GCMIntentService" />
+        <service android:name="com.just4roomies.j4r.GCMIntentService" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".Actividades.Activity_SplashMaterial"
+            android:name="com.just4roomies.j4r.Actividades.Activity_SplashMaterial"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,30 +48,30 @@
         </activity>
 
         <activity
-            android:name=".Actividades.Activity_Splash"
+            android:name="com.just4roomies.j4r.Actividades.Activity_Splash"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".Actividades.Activity_Login"
+            android:name="com.just4roomies.j4r.Actividades.Activity_Login"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".Actividades.Activity_Personalidad"
+            android:name="com.just4roomies.j4r.Actividades.Activity_Personalidad"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Actividades.Activity_Principal_Fragment"
+            android:name="com.just4roomies.j4r.Actividades.Activity_Principal_Fragment"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".Actividades.Activity_Conversacion"
-            android:parentActivityName=".Actividades.Activity_Principal_Fragment"
+            android:name="com.just4roomies.j4r.Actividades.Activity_Conversacion"
+            android:parentActivityName="com.just4roomies.j4r.Actividades.Activity_Principal_Fragment"
             android:screenOrientation="portrait">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Actividades.Activity_Principal_Fragment" />
+                android:value="com.just4roomies.j4r.Actividades.Activity_Principal_Fragment" />
 
         </activity>
 
