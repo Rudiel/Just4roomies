@@ -62,8 +62,6 @@ public class Activity_Login extends AppCompatActivity {
 
     private LoginButton loginButton;
     private CallbackManager callbackManager;
-    private CardView btLoginFB;
-    private ImageView iv_fondo;
     private ProgressDialog progressDialog;
     private ProfileTracker mProfileTracker;
     private Profile profile;
@@ -71,7 +69,6 @@ public class Activity_Login extends AppCompatActivity {
     //GMC
     public static final String PROPERTY_REG_ID = "registration_id";
     private static final String PROPERTY_APP_VERSION = "appVersion";
-    private String SENDER_ID = "1005892665589";
     static final String TAG = "GCMDemo";
 
     GoogleCloudMessaging gcm;
@@ -96,7 +93,7 @@ public class Activity_Login extends AppCompatActivity {
 
         context = getApplicationContext();
 
-        iv_fondo = (ImageView) findViewById(R.id.iv_login_fondo);
+        ImageView iv_fondo = (ImageView) findViewById(R.id.iv_login_fondo);
 
         Glide.with(this).load(R.drawable.bg_login).centerCrop().into(iv_fondo);
         ((TextView) findViewById(R.id.tvLoginFB)).setTypeface(Utilerias.getMavenProRegular(Activity_Login.this));
@@ -185,7 +182,7 @@ public class Activity_Login extends AppCompatActivity {
                 Toast.makeText(Activity_Login.this, getResources().getString(R.string.mensaje_error), Toast.LENGTH_SHORT).show();
             }
         });
-        btLoginFB = (CardView) findViewById(R.id.rlLogin);
+        CardView btLoginFB = (CardView) findViewById(R.id.rlLogin);
         btLoginFB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -282,7 +279,7 @@ public class Activity_Login extends AppCompatActivity {
                 if (gcm == null) {
                     gcm = GoogleCloudMessaging.getInstance(context);
                 }
-                regid = gcm.register(SENDER_ID);
+                regid = gcm.register(Utilerias.SENDER_ID);
                 msg = "Device registered, registration ID=" + regid;
                 Log.d(TAG, msg);
                 storeRegistrationId(context, regid);
@@ -308,7 +305,7 @@ public class Activity_Login extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(PROPERTY_REG_ID, regId);
         editor.putInt(PROPERTY_APP_VERSION, appVersion);
-        editor.commit();
+        editor.apply();
     }
 
     private void iniciarSesion() {
@@ -363,7 +360,6 @@ public class Activity_Login extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RespuestaLoginFB> call, Throwable t) {
-
                 progressDialog.dismiss();
                 showDialog();
             }

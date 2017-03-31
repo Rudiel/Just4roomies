@@ -49,12 +49,24 @@ public class GCMIntentService extends IntentService {
                     if (Utilerias.getNotificationsEnabled(this))
                         sendNotificationSolicitud(extras.getString("message"), extras.getString("title"), extras.getString("image"));
 
-
                 } else {
                     if (Utilerias.getNotificationsEnabled(this))
-                        sendNotification(extras.getString("message"), extras.getString("title"), extras.getString("chat_id"), extras.getString("image"), extras.getString("id_receiver"));
-
-                    saveNotificationBadge(extras.getString("chat_id"));
+                        if (Activity_Conversacion.isActive) {
+                            if (Activity_Conversacion.chat_id == Integer.parseInt(extras.getString("chat_id"))) {
+                                try {
+                                    Activity_Conversacion.getConversacion(Activity_Conversacion.chat_id, Activity_Conversacion.user_id, getApplicationContext());
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            } else
+                                sendNotification(extras.getString("message"), extras.getString("title"), extras.getString("chat_id"), extras.getString("image"), extras.getString("id_receiver"));
+                        } else
+                            sendNotification(extras.getString("message"), extras.getString("title"), extras.getString("chat_id"), extras.getString("image"), extras.getString("id_receiver"));
+                    try {
+                        saveNotificationBadge(extras.getString("chat_id"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 Log.d("NOTIFICATION", "" + extras.toString());
             } catch (Exception e) {

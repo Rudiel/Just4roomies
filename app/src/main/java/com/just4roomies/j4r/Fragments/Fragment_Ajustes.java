@@ -26,11 +26,6 @@ import com.just4roomies.j4r.Utils.Utilerias;
  */
 public class Fragment_Ajustes extends Fragment {
 
-    private ImageView ivFondo;
-    private TextView tvPolitica, tvTerminos;
-    private Button btGuardar;
-    private Switch swLocalizacion, swNotificaciones;
-    private RelativeLayout rlEliminarCuenta;
     private boolean notificationsEnabled = true;
     private boolean locationEnabled = true;
 
@@ -44,13 +39,13 @@ public class Fragment_Ajustes extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ivFondo = (ImageView) getActivity().findViewById(R.id.ivFondoAjustes);
-        tvPolitica = (TextView) getActivity().findViewById(R.id.tvPoliticas);
-        tvTerminos = (TextView) getActivity().findViewById(R.id.tvPrivacidad);
-        btGuardar = (Button) getActivity().findViewById(R.id.btAjustesGuardar);
-        swNotificaciones = (Switch) getActivity().findViewById(R.id.swAjustesNotificacion);
-        swLocalizacion = (Switch) getActivity().findViewById(R.id.swAjustesLocalizacion);
-        rlEliminarCuenta = (RelativeLayout) getActivity().findViewById(R.id.rlEliminarCuenta);
+        ImageView ivFondo = (ImageView) getActivity().findViewById(R.id.ivFondoAjustes);
+        TextView tvPolitica = (TextView) getActivity().findViewById(R.id.tvPoliticas);
+        TextView tvTerminos = (TextView) getActivity().findViewById(R.id.tvPrivacidad);
+        Button btGuardar = (Button) getActivity().findViewById(R.id.btAjustesGuardar);
+        Switch swNotificaciones = (Switch) getActivity().findViewById(R.id.swAjustesNotificacion);
+        Switch swLocalizacion = (Switch) getActivity().findViewById(R.id.swAjustesLocalizacion);
+        RelativeLayout rlEliminarCuenta = (RelativeLayout) getActivity().findViewById(R.id.rlEliminarCuenta);
 
         Glide.with(getActivity()).load(R.drawable.bg_perfil).centerCrop().into(ivFondo);
 

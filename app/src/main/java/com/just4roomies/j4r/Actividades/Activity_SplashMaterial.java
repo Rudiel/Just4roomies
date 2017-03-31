@@ -48,7 +48,6 @@ public class Activity_SplashMaterial extends AppCompatActivity {
     //GMC
     public static final String PROPERTY_REG_ID = "registration_id";
     private static final String PROPERTY_APP_VERSION = "appVersion";
-    private String SENDER_ID = "1005892665589";
     static final String TAG = "GCMDemo";
 
     GoogleCloudMessaging gcm;
@@ -158,7 +157,7 @@ public class Activity_SplashMaterial extends AppCompatActivity {
                 if (gcm == null) {
                     gcm = GoogleCloudMessaging.getInstance(context);
                 }
-                regid = gcm.register(SENDER_ID);
+                regid = gcm.register(Utilerias.SENDER_ID);
                 msg = "Device registered, registration ID=" + regid;
                 Log.d(TAG, msg);
                 storeRegistrationId(context, regid);

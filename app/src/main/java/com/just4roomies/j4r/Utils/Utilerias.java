@@ -20,6 +20,8 @@ public class Utilerias extends Activity {
 
     public static final String URL_GLOBAL = "http://45.55.161.90/just4rommies/public/api/";
 
+    public static final String SENDER_ID = "1005892665589";
+
     public static boolean isOnline(Context context) {
 
         if (haveNetworkConnection(context))

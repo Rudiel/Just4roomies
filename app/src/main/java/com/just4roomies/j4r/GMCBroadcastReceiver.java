@@ -18,8 +18,11 @@ public class GMCBroadcastReceiver extends WakefulBroadcastReceiver {
         ComponentName comp = new ComponentName(context.getPackageName(),
                 GCMIntentService.class.getName());
 
+        startWakefulService(context, (intent.setComponent(comp)));
+        setResultCode(Activity.RESULT_OK);
+
         //if(isRunning(context)){
-        if (Activity_Conversacion.isActive) {
+       /* if (Activity_Conversacion.isActive) {
             try {
                 Activity_Conversacion.getConversacion(Activity_Conversacion.chat_id, Activity_Conversacion.user_id, context);
             } catch (Exception e) {
@@ -28,7 +31,7 @@ public class GMCBroadcastReceiver extends WakefulBroadcastReceiver {
             startWakefulService(context, (intent.setComponent(comp)));
             setResultCode(Activity.RESULT_OK);
         }
-    }
+    }*/
 
  /*   public boolean isRunning(Context ctx) {
         ActivityManager activityManager = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
@@ -41,4 +44,6 @@ public class GMCBroadcastReceiver extends WakefulBroadcastReceiver {
 
         return false;
     }*/
+    }
+
 }

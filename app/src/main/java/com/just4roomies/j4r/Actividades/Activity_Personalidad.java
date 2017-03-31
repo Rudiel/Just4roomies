@@ -133,7 +133,6 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
     //GMC
     public static final String PROPERTY_REG_ID = "registration_id";
     private static final String PROPERTY_APP_VERSION = "appVersion";
-    private String SENDER_ID = "1599014313";
     static final String TAG = "GCMDemo";
 
     GoogleCloudMessaging gcm;
@@ -920,7 +919,7 @@ public class Activity_Personalidad extends AppCompatActivity implements Location
                 if (gcm == null) {
                     gcm = GoogleCloudMessaging.getInstance(context);
                 }
-                regid = gcm.register(SENDER_ID);
+                regid = gcm.register(Utilerias.SENDER_ID);
                 msg = "Device registered, registration ID=" + regid;
                 storeRegistrationId(context, regid);
 

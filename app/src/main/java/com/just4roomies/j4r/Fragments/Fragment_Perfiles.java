@@ -154,8 +154,10 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
 
                 if (((Activity_Principal_Fragment) getActivity()).arrRomies.size() > 0)
                     getProfiles();
-                else
+                else {
                     ((Activity_Principal_Fragment) getActivity()).iniciarFragment(new Fragment_EditarPerfil(), false);
+                    ((Activity_Principal_Fragment) getActivity()).ivFiltros.setVisibility(View.INVISIBLE);
+                }
 
             }
         });
@@ -629,11 +631,11 @@ public class Fragment_Perfiles extends Fragment implements Interface_CardListene
             @Override
             public void onResponse(Call<Model_Like_Response> call, Response<Model_Like_Response> response) {
                 if (response.body() != null) {
-                    Log.d("SOLICITUD","ENVIADA");
+                    Log.d("SOLICITUD", "ENVIADA");
                     //Se envio la solicitud
                     // Toast.makeText(getActivity(), "Solicitud enviada", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.d("SOLICITUD","NO ENVIADA");
+                    Log.d("SOLICITUD", "NO ENVIADA");
 
                     //No se pudo enviar la solicitud
                     //Toast.makeText(getActivity(), "Solicitud no enviada", Toast.LENGTH_SHORT).show();

@@ -9,7 +9,7 @@ android {
         applicationId "com.just4roomies.j4r"
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 1
+        versionCode 5
         versionName "1.0"
     }
     buildTypes {
@@ -33,12 +33,12 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.daprlabs.aaron:cardstack:0.3.0'
-    compile 'com.theartofdev.edmodo:android-image-cropper:2.2.+'
+    compile 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
     compile 'com.daimajia.swipelayout:library:1.2.0@aar'
     apply plugin: 'com.google.gms.google-services'
     compile 'com.google.android.gms:play-services-location:9.4.0'
     compile 'com.google.android.gms:play-services-places:9.4.0'
     compile 'com.dmitrymalkovich.android:progress-fab:1.6'
     compile 'com.github.mukeshsolanki:country-picker-android:1.1.6'
-    compile 'me.leolin:ShortcutBadger:1.1.10@aar'
+    compile "me.leolin:ShortcutBadger:1.1.13@aar"
 }
